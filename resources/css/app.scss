@@ -1,0 +1,17 @@
+/* Tailwind directives — must stay at the top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom SCSS */
+$primary-color: #1d4ed8;
+$primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+body {
+    font-family: $primary-font;
+    color: $primary-color;
+}
+
+.button {
+    @apply px-4 py-2 bg-blue-500 text-white rounded;
+}
