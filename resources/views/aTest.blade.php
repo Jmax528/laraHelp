@@ -13,7 +13,7 @@
         <p class="text-gray-700 text-center">
             This is a Tailwind 4 card using <span class="font-mono">size-48</span>!
         </p>
-        <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Click Me
         </button>
     </div>
