@@ -14,23 +14,25 @@
             <h2 class="text-lg font-bold">Card Header</h2>
             <button class="bg-white text-blue-500 px-3 py-1 rounded hover:bg-gray-100">Action</button>
         </div>
-        <div class="p-6 flex flex-col items-center">
+        <div class="chatArea p-6 flex flex-col items-center">
             <h1 class="text-2xl font-bold mb-2">Hello Laravel</h1>
             <p class="text-gray-700 text-center mb-4">
                 This is a Tailwind 4 card
             </p>
-            <div class="chat-container bg-green-200 flex relative left-35 text-black rounded-[8px]">
-                <div class="chatbox" >
+
+{{--            chat 1 and 2, the messages that are send and displayed--}}
+            <div id="chatOne" class="chat-container bg-green-200 flex relative left-35 text-black rounded-[8px]">
+                <div id="chatBoxOne" class="chatbox" >
                     <div id="chaterOne">Hello testing</div>
                 </div>
             </div>
-            <div id="chat-container" class=" bg-orange-200 flex relative right-35 top-15 text-black rounded-[8px]">
+            <div id="chatTwo" class="chat-container bg-orange-200 flex relative right-35 top-15 text-black rounded-[8px]">
                 <div class="chatbox" >
-                    <div id="chaterOne">Hello testing</div>
+                    <div id="chaterOne">Hello testing 2</div>
                 </div>
             </div>
-            <textarea id="autoTextarea" placeholder="Input text here" class="border-2 border-blue-500 py-1 rounded flex relative inset-x-0 top-20 resize-none transform-origin"></textarea>
-            <button class="send bg-green-500 text-white px-2 py-1.5 rounded hover:bg-blue-600 relative start-40 top-11">
+            <textarea id="textarea" placeholder="Input text here" class="border-2 border-blue-500 py-1 rounded flex relative inset-x-0 top-20 resize-none transform-origin"></textarea>
+            <button id="sendBtn" class="send bg-green-500 text-white px-2 py-1.5 rounded hover:bg-blue-600 relative start-40 top-11">
                 send
             </button>
         </div>
@@ -38,6 +40,7 @@
 </section>
 
 </body>
+
 </html>
 
 
