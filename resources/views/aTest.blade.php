@@ -19,6 +19,7 @@
             <p class="text-gray-700 text-center mb-4">
                 This is a Tailwind 4 card
             </p>
+{{--            it gets pushed up--}}
 
 {{--            chat 1 and 2, the messages that are send and displayed--}}
             <div id="chatOne" class="chat-container bg-green-200 flex relative left-35 text-black rounded-[8px]">
