@@ -1,6 +1,7 @@
 /* Tailwind directives — must stay at the top */
-@tailwind base;
-@tailwind components;
+//@tailwind base;
+@import "tailwindcss/preflight";
+//@tailwind components;
 @tailwind utilities;
 
 
@@ -25,10 +26,89 @@
 /* Your custom SCSS */
 $primary-color: #1d4ed8;
 $primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+$blue: #0C8CE9;
+$riverside: #4C6A92;
+$airy-blue: #92B6D5;
+$sharkskin: #838487;
+$aurora-red: #B93A32;
+$warm-taupe: #AE9382;
+$dusty-cedar: #AD5D5D;
+$lush-meadows: #006E51;
+$spicy-mustard: #D8AD47;
+$potters-clay: #9D4624;
+$bodacious: #B66AA3;
 
 body {
     font-family: $primary-font;
     color: $primary-color;
+}
+
+.bg-blue {
+    background-color: $blue;
+}
+.bg-riverside {
+    background-color: $riverside;
+}
+.bg-airy-blue {
+    background-color: $airy-blue;
+}
+.bg-sharkskin {
+    background-color: $sharkskin;
+}
+.bg-aurora-red {
+    background-color: $aurora-red;
+}
+.bg-warm-taupe {
+    background-color: $warm-taupe;
+}
+.bg-dusty-cedar {
+    background-color: $dusty-cedar;
+}
+.bg-lush-meadows {
+    background-color: $lush-meadows;
+}
+.bg-spicy-mustard {
+    background-color: $spicy-mustard;
+}
+.bg-potters-clay {
+    background-color: $potters-clay;
+}
+.bg-bodacious {
+    background-color: $bodacious;
+}
+
+.color-blue {
+    color: $blue;
+}
+.color-riverside {
+    color: $riverside;
+}
+.color-airy-blue {
+    color: $airy-blue;
+}
+.color-sharkskin {
+    color: $sharkskin;
+}
+.color-aurora-red {
+    color: $aurora-red;
+}
+.color-warm-taupe {
+    color: $warm-taupe;
+}
+.color-dusty-cedar {
+    color: $dusty-cedar;
+}
+.color-lush-meadows {
+    color: $lush-meadows;
+}
+.color-spicy-mustard {
+    color: $spicy-mustard;
+}
+.color-potters-clay {
+    color: $potters-clay;
+}
+.color-bodacious {
+    color: $bodacious;
 }
 
 .button {
