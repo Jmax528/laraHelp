@@ -16,15 +16,10 @@
 }
 @tailwind base;
 @tailwind components;
-@tailwind utilities; $primary-color: #1d4ed8; $primary-font: 'Instrument Sans',
-    ui-sans-serif, system-ui, sans-serif; body { font-family: $primary-font; color: $primary-color;
-    }
-.button {
-    @apply px-4 py-2 bg-blue-500 text-white rounded;
-}
+@tailwind utilities;
 
 /* Your custom SCSS */
-$primary-color: #1d4ed8;
+$primary-color: #000000;
 $primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 $blue: #0C8CE9;
 $riverside: #4C6A92;
