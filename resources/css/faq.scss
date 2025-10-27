@@ -1,0 +1,73 @@
+/* Tailwind directives — must stay at the top */
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+
+
+@import 'tailwindcss';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@theme { --font-sans: 'Instrument Sans', ui-sans-serif, system-ui,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Your custom SCSS */
+.spacer {
+    @media (max-width: 768px) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 768px;
+
+    .faq-container {
+        padding-top: 48px;
+        width: 100%;
+        height: 100%;
+
+        .faq-theme {
+            .h1 {
+                margin-bottom: 16px;
+            }
+
+            .faq-questions {
+                margin-right: 8px;
+                margin-left: 8px;
+                margin-bottom: 16px;
+                padding: 16px;
+                border-radius: 8px;
+
+                .faq-header {
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        font-size: 24px;
+                    }
+                }
+
+                .faq-text-blocks {
+
+                    & .hidden {
+                        display: none;
+                    }
+
+                    .faq-text-block {
+
+                        .faq-text {
+                            margin-top: 24px;
+                            font-size: 16px;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
