@@ -6,10 +6,10 @@ function message() {
     const textMessage = textarea.value.trim();
     if (!textMessage) return;
 
-    const newChat = document.getElementById('chaterOne');
+    const newChat = document.getElementById('chatOne');
     const userMessage = document.createElement('div');
     userMessage.textContent = textMessage;
-    userMessage.classList.add('message-box', 'send');
+    userMessage.classList.add('message-box');
     newChat.appendChild(userMessage);
     textarea.value = '';
     newChat.scrollTop = newChat.scrollHeight;
@@ -21,14 +21,14 @@ function message() {
 
     const botAnswer  = document.getElementById('chatBoxTwo');
     const messageBoxTwo = document.createElement('div');
-    messageBoxTwo.textContent = 'Are we testing again?';
+    messageBoxTwo.textContent ='Are we testing again?';
     messageBoxTwo.classList.add('botMessage', 'received');
     botAnswer.appendChild(messageBoxTwo);
-    botAnswer.scrollTop = botAnswer.scrollHeight;
 
 
     console.log('chatTwo', newChat, messageBoxTwo.textContent);
 
+    btmScrol();
 }, 1000);
 }
     const sendBtn = document.getElementById('sendBtn');
@@ -40,5 +40,8 @@ function message() {
             message();
         }
     });
+function btmScrol() {
+    chatArea.scrollTop = chatArea.scrollHeight;
 
+}
 });

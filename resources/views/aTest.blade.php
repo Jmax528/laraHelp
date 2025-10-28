@@ -4,52 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite(['resources/css/app.scss', 'resources/js/app.js', 'resources/js/script.js'])
-    <title>Document</title>
+    <title>Chat Layout</title>
 </head>
 <body>
 <section class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="size-96 min-h-[600px] bg-grey-200 rounded-xl shadow-lg border-blue-500 overflow-hidden">
-        <!-- Top colored section -->
-        <div class="bg-blue-500 text-white flex justify-between items-center p-10">
+    <!-- Main Card -->
+    <div class="w-96 h-[600px] bg-gray-200 rounded-xl shadow-lg border border-blue-500 flex flex-col overflow-hidden">
+
+        <!-- Header -->
+        <div class="bg-blue-500 text-white flex justify-between items-center p-6 flex-none">
             <h2 class="text-lg font-bold">Card Header</h2>
             <button class="bg-white text-blue-500 px-3 py-1 rounded hover:bg-gray-100">Action</button>
         </div>
-        <div class="chatArea p-6 flex flex-col h-full justify-start space-y-3">
-            <h1 class="text-2xl font-bold mb-2">Hello Laravel</h1>
-            <p class="text-gray-700 text-center mb-4">
-                This is a Tailwind 4 card
-            </p>
-{{--            it gets pushed up--}}
 
-{{--            chat 1 and 2, the messages that are send and displayed--}}
-            <div id="chatOne" class="chat-container bg-green-300 p-10px flex-col relative left-35 text-black rounded-[8px]">
-                <div id="chatBoxOne" class="chatbox flex-1 p-4" >
+
+        <!-- Scrollable Chat Area -->
+        <div class="chatArea flex-1 overflow-y-auto p-4 space-y-3 flex flex-col overflow-hidden">
+            <h1 class="text-2xl font-bold mb-2">Hello Laravel</h1>
+            <p class="text-gray-700 text-center mb-4">This is a Tailwind 4 card</p>
+
+            <!-- Chat messages -->
+            <div id="chatOne" class="chat-container bg-green-300 rounded-lg w-fit p-2 left-54">
+                <div id="chatBoxOne" class="chatbox flex-1 p-4 text-wrap break-words">
                     <div id="chaterOne">Hello testing</div>
                 </div>
             </div>
-            <div id="chatTwo" class="botMessage received chat-container bg-orange-200 flex-col relative right-35 top-15 text-black rounded-[8px]">
-                <div id="chatBoxTwo" class="chatbox flex-1 p-4" >
-                    <div id="chaterTwo" class="text-center">Hello testing 2</div>
-                </div>
-            </div>
 
-            <div class="flex flex-col h-[600px]">
-                <div class="flex-1 overflow-y-auto">
+            <div id="chatTwo" class="chat-container bg-orange-200 rounded-lg w-fit p-2 right-2">
+                <div id="chatBoxTwo" class="chatbox flex-1 p-4 text-wrap break-words">
+                    <div id="chaterTwo">Hello testing 2</div>
                 </div>
-            <div class="flex items-center gap-2 p-3 py-16 self-center border-t pt-3">
-            <textarea class="border-2 border-blue-500 py-1 rounded flex flex-col resize-none"
-                      id="textarea" placeholder="Input text here"></textarea>
+
+            </div>
+        </div>
+        <!-- Fixed Input Area -->
+        <div class="flex items-center gap-2 p-3 border-t bg-gray-100 flex-none mt-auto pb-2">
+      <textarea id="textarea"
+                class="border-2 border-blue-500 rounded w-full p-2 resize-none h-16"
+                placeholder="Input text here"></textarea>
             <button id="sendBtn"
-                    class="send bg-green-500 text-white px-6 py-1.5 rounded hover:bg-blue-600 ml-12">send</button>
-            </div>
-            </div>
+                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Send</button>
         </div>
     </div>
 </section>
-
 </body>
-
 </html>
-
-
-

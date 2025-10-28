@@ -18,9 +18,9 @@
 @tailwind utilities; $primary-color: #1d4ed8; $primary-font: 'Instrument Sans',
     ui-sans-serif, system-ui, sans-serif; body { font-family: $primary-font; color: $primary-color;
     }
-.button {
-    @apply px-4 py-2 bg-blue-500 text-white rounded;
-}
+//.button {
+//    @apply px-4 py-2 bg-blue-500 text-white rounded;
+//}
 
 /* Your custom SCSS */
 $primary-color: #1d4ed8;
@@ -31,6 +31,11 @@ body {
     color: $primary-color;
 }
 
-.button {
-    @apply px-4 py-2 bg-blue-500 text-white rounded;
+.chat-container {
+    @apply p-[10px] flex-col relative max-w-[80%] text-black rounded-[8px];
+}
+
+
+.chatArea {
+    @apply overflow-y-scroll overflow-x-hidden;
 }
