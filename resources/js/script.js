@@ -1,37 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-
-function message() {
     const textarea = document.getElementById('textarea');
-    const textMessage = textarea.value.trim();
-    if (!textMessage) return;
-
-    const newChat = document.getElementById('chatOne');
-    const userMessage = document.createElement('div');
-    userMessage.textContent = textMessage;
-    userMessage.classList.add('message-box');
-    newChat.appendChild(userMessage);
-    textarea.value = '';
-    newChat.scrollTop = newChat.scrollHeight;
-
-    console.log('chatOne', newChat, textMessage);
-
-
-    setTimeout(() => {
-
-    const botAnswer  = document.getElementById('chatBoxTwo');
-    const messageBoxTwo = document.createElement('div');
-    messageBoxTwo.textContent ='Are we testing again?';
-    messageBoxTwo.classList.add('botMessage', 'received');
-    botAnswer.appendChild(messageBoxTwo);
-
-
-    console.log('chatTwo', newChat, messageBoxTwo.textContent);
-
-    btmScrol();
-}, 1000);
-}
+    const chatArea = document.getElementById('chatArea');
     const sendBtn = document.getElementById('sendBtn');
+    const darkModeBtn = document.getElementById('darkModeBtn');
+
+    // messages
+    function message() {
+
+        const textMessage = textarea.value.trim();
+        if (!textMessage) return;
+
+        const userMessage = document.createElement('div');
+        userMessage.textContent = textMessage;
+        userMessage.classList.add('chat-container', 'chat-one');
+        chatArea.appendChild(userMessage);
+        textarea.value = '';
+
+        console.log('chat-one', textMessage);
+        btmScrol();
+
+
+        // bot answer for testing ppurpose
+        setTimeout(() => {
+
+            // const botAnswer  = document.getElementById('chatBoxTwo');
+            const messageBoxTwo = document.createElement('div');
+            messageBoxTwo.textContent = 'Are we testing again?';
+            messageBoxTwo.classList.add('chat-container', 'chat-two');
+            chatArea.appendChild(messageBoxTwo);
+            console.log('chat-two', messageBoxTwo.textContent);
+
+            btmScrol();
+        }, 1000);
+    }
+
+    // send message button
     sendBtn.addEventListener('click', message);
 
     document.addEventListener('keydown', e => {
@@ -40,8 +43,18 @@ function message() {
             message();
         }
     });
-function btmScrol() {
-    chatArea.scrollTop = chatArea.scrollHeight;
 
-}
+    // auto scroll to the bottom
+    function btmScrol() {
+        chatArea.scrollTop = chatArea.scrollHeight;
+
+    }
+
+    function darkMode() {
+        let element = document.body;
+        element.classList.toggle('dark-mode');
+    }
+    darkModeBtn.addEventListener('click', () => {
+        darkMode();
+    });
 });
