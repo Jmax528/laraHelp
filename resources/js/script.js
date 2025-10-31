@@ -50,11 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    function darkMode() {
-        let element = document.body;
-        element.classList.toggle('dark-mode');
-    }
+    // toggles dark mode
+    const darkMode = document.getElementsByClassName('dark' );
     darkModeBtn.addEventListener('click', () => {
-        darkMode();
+        for (let el of darkMode) {
+            el.classList.toggle('dark-mode');
+        }
     });
 });
