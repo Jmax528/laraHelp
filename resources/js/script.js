@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // auto scroll to the bottom
     function btmScrol() {
         chatArea.scrollTop = chatArea.scrollHeight;
-
     }
 
     // toggles dark mode
