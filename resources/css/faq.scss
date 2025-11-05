@@ -16,15 +16,18 @@
 @tailwind utilities;
 
 /* Your custom SCSS */
+
+//i {
+//    transition: all 1.3s ease;
+//}
+
 .spacer {
     @media (max-width: 768px) {
         @apply mx-0
     }
 
-    @apply mx-auto;
-    //margin-left: auto;
-    //margin-right: auto;
-    width: 768px;
+    @apply mx-auto px-2;
+    max-width: 768px;
 
     .faq-container {
         //padding-top: 48px;
@@ -33,41 +36,55 @@
         height: 100%;
 
         .faq-theme {
-            .h1 {
+            .theme-container {
                 @apply mb-4;
-                //margin-bottom: 16px;
+                display: flex;
+                align-items: center;
             }
 
-            .faq-questions {
-                @apply mb-4 mx-2 p-4;
-                border-radius: 8px;
+            .question-container {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: all 0.3s ease;
 
-                .faq-header {
-                    @apply flex justify-between;
-
-                    span {
-                        font-size: 24px;
-                    }
+                &.show {
+                    max-height: 100%;
+                    opacity: 1;
                 }
 
-                .faq-text-blocks {
-                    max-height: 0;
-                    opacity: 0;
-                    overflow: hidden;
-                    transition: all 0.7s ease;
+                .faq-question {
+                    @apply mb-4 mx-2 p-4;
+                    border-radius: 8px;
 
-                    &.show {
-                        max-height: 500px;
-                        opacity: 1;
-                    }
-                    .faq-text-block {
+                    .faq-header {
+                        @apply flex justify-between;
 
-                        .faq-text {
-                            margin-top: 24px;
-                            font-size: 16px;
+                        span {
+                            font-size: 24px;
                         }
                     }
 
+                    .faq-text-blocks {
+                        max-height: 0;
+                        opacity: 0;
+                        overflow: hidden;
+                        transition: all 0.3s ease;
+
+                        &.show {
+                            max-height: 100%;
+                            opacity: 1;
+                        }
+
+                        .faq-text-block {
+
+                            .faq-text {
+                                margin-top: 24px;
+                                font-size: 16px;
+                            }
+                        }
+
+                    }
                 }
             }
         }
