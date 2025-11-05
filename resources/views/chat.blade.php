@@ -14,7 +14,7 @@
         <!-- Header -->
         <div class="header">
             <h2 class="text-lg font-bold">Start of the Chat</h2>
-            <button class="button">Home</button>
+            <a class="home-button"  href="youtube.com">Home</a>
             <button id="darkModeBtn" class="button">Dark Mode</button>
         </div>
         <!-- Scrollable Chat Area -->
