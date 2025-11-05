@@ -94,7 +94,7 @@
 
         <div class="faq-theme">
             <div class="theme-container" id="theme-3">
-                <div id="less-3"class="hidden"><i class="fa-solid fa-xl fa-chevron-down"></i></div>
+                <div id="less-3" class="hidden"><i class="fa-solid fa-xl fa-chevron-down"></i></div>
                 <div id="more-3"><i class="fa-solid fa-xl fa-chevron-right"></i></div>
                 <span class="h1 ml-2">Welzijn</span>
             </div>
