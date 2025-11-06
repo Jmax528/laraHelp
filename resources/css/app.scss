@@ -15,6 +15,7 @@
 }
 @tailwind base;
 @import "tailwindcss/preflight";
+@tailwind components;
 @tailwind utilities;
 
 /* Your custom SCSS */
@@ -135,32 +136,4 @@ h6, .h6 {
 
 .button {
     @apply px-4 py-2 bg-blue-500 text-white rounded;
-}
-h1, .h1 {
-    font-size: 32px !important;
-    line-height: 40px;
-    font-weight: bold;
-}
-h2, .h2 {
-    font-size: 28px !important;
-    line-height: 36px;
-    font-weight: bold;
-}
-h3, .h3 {
-    font-size: 24px !important;
-    line-height: 32px;
-    font-weight: bold;
-}
-h4, .h4 {
-    font-size: 20px !important;
-    line-height: 28px;
-    font-weight: bold;
-}
-h5, .h5 {
-    font-size: 16px !important;
-    line-height: 24px;
-}
-h6, .h6 {
-    font-size: 12px !important;
-    line-height: 20px;
 }

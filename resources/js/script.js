@@ -1,35 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-
-function message() {
     const textarea = document.getElementById('textarea');
-    const textMessage = textarea.value.trim();
+    const chatArea = document.getElementById('chatArea');
+    const sendBtn = document.getElementById('sendBtn');
+    const darkModeBtn = document.getElementById('darkModeBtn');
 
-    if (!textMessage) return;
+    // messages
+    function message() {
 
-    const newChat = document.getElementById('chatBoxOne');
-    const messageBox = document.createElement('div');
-    messageBox.textContent = textMessage;
-    messageBox.classList.add('message-box', 'send');
+        const textMessage = textarea.value.trim();
+        if (!textMessage) return;
+
+        const userMessage = document.createElement('div');
+        userMessage.textContent = textMessage;
+        userMessage.classList.add('chat-container', 'chat-one');
+        chatArea.appendChild(userMessage);
+        textarea.value = '';
+
+        console.log('chat-one', textMessage);
+        btmScrol();
 
 
-    console.log('chatOne', newChat, textMessage);
+        // bot answer for testing ppurpose
+        setTimeout(() => {
 
-    newChat.appendChild(messageBox);
-    textarea.value = '';
+            // const botAnswer  = document.getElementById('chatBoxTwo');
+            const messageBoxTwo = document.createElement('div');
+            messageBoxTwo.textContent = 'Are we testing again?';
+            messageBoxTwo.classList.add('chat-container', 'chat-two');
+            chatArea.appendChild(messageBoxTwo);
+            console.log('chat-two', messageBoxTwo.textContent);
 
-    newChat.scrollTop = newChat.scrollHeight;
-
-
-}
-
-const sendBtn = document.getElementById('sendBtn');
-sendBtn.addEventListener('click', message);
-
-document.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-        message();
+            btmScrol();
+        }, 1000);
     }
-})
 
-})
+    // send message button
+    sendBtn.addEventListener('click', message);
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            message();
+        }
+    });
+
+    // auto scroll to the bottom
+    function btmScrol() {
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    // toggles dark mode
+    const darkMode = document.getElementsByClassName('dark' );
+    darkModeBtn.addEventListener('click', () => {
+        for (let el of darkMode) {
+            el.classList.toggle('dark-mode');
+        }
+    });
+});

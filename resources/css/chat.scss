@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'tailwindcss';
+
+/* Your custom SCSS */
+$primary-color: #000000;
+$primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+$blue: #0C8CE9;
+$riverside: #4C6A92;
+$airy-blue: #92B6D5;
+$sharkskin: #838487;
+$aurora-red: #B93A32;
+$warm-taupe: #AE9382;
+$dusty-cedar: #AD5D5D;
+$lush-meadows: #006E51;
+$spicy-mustard: #D8AD47;
+$potters-clay: #9D4624;
+$bodacious: #B66AA3;
+
+
+/* Your custom SCSS */
+$primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+body {
+    font-family: $primary-font;
+    color: $primary-color;
+}
+
+.section-one {
+    background: $warm-taupe;
+    @apply flex items-center justify-center min-h-screen;
+}
+
+//TailwindCSS that for the chat bubbles
+.chat-container {
+    @apply p-[10px] flex flex-col relative max-w-[80%] text-black rounded-lg
+    w-fit whitespace-pre-line break-words;
+    overflow-wrap: anywhere;
+}
+
+.chat-area {
+    background: $airy-blue;
+    @apply flex-1 overflow-y-auto p-4 space-y-3 flex flex-col overflow-hidden text-black;
+}
+
+.chat-box {
+    @apply flex-1 p-4;
+}
+
+.chat-div {
+    background: $sharkskin;
+    @apply text-black flex items-center gap-2 p-3 border-t flex-none mt-auto pb-2;
+}
+
+.textarea {
+    @apply text-black border-2 border-blue-500 rounded w-full p-2 resize-none h-16;
+}
+
+.header {
+    background: $blue;
+    @apply flex justify-between items-center p-6 flex-none;
+}
+
+.chat-card {
+    @apply border w-96 h-[600px] border-blue-500 bg-gray-200 rounded-xl shadow-lg flex flex-col overflow-hidden;
+}
+
+.chat-one {
+    background: $lush-meadows;
+    @apply self-end;
+}
+
+.chat-two {
+    background: $potters-clay;
+    @apply self-start;
+}
+
+
+.home-button, .button {
+    background: $sharkskin;
+    @apply px-3 py-1 rounded hover:bg-gray-400;
+}
+
+.send-btn {
+    background: $lush-meadows;
+    @apply text-white px-4 py-2 rounded hover:bg-green-500
+}
+
+.dark-mode {
+    color: white;
+    @apply bg-gray-900
+}
