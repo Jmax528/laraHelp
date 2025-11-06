@@ -15,3 +15,5 @@ Route::view('profile', 'profile')
 require __DIR__.'/auth.php';
 
 Route::view('/chat', 'chat' );
+Route::view('/faq', 'faq' );
+Route::view('/testhome', 'testhome' );
