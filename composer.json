@@ -71,6 +71,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
+        "ddfsn/blade-components": "^0.3.0",
         "laravel/reverb": "^1.0",
         "livewire/volt": "^1.7"
     }

@@ -14,9 +14,12 @@
         <!-- Header -->
         <div class="header">
             <h2 class="text-lg font-bold">Start of the Chat</h2>
-            <a class="home-button"  href="youtube.com">Home</a>
-            <button id="darkModeBtn" class="button">Dark Mode</button>
+            <div class="flex gap-3">
+                <a href="/" class="home-link text-3xl">Home</a>
+                <button id="darkModeBtn" class="dark-button">Dark Mode</button>
+            </div>
         </div>
+
         <!-- Scrollable Chat Area -->
         <div id="chatArea" class="dark chat-area">
             <h1 class="text-2xl font-bold mb-2">Welcome!</h1>
@@ -29,7 +32,7 @@
                 class="textarea dark "
                 placeholder="Input text here"></textarea>
             <button id="sendBtn"
-                    class="send-btn">Send
+                    class="send-btn dark">Send
             </button>
         </div>
     </div>

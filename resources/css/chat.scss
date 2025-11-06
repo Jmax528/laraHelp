@@ -78,14 +78,14 @@ body {
 }
 
 
-.home-button, .button {
+.home-link, .dark-button {
     background: $sharkskin;
-    @apply px-3 py-1 rounded hover:bg-gray-400;
+    @apply px-4 py-2 rounded hover:bg-gray-400;
 }
 
-.send-btn {
+.send-btn, .dark.send-btn {
     background: $lush-meadows;
-    @apply text-white px-4 py-2 rounded hover:bg-green-500
+    @apply  px-4 py-2 rounded hover:bg-green-500;
 }
 
 .dark-mode {

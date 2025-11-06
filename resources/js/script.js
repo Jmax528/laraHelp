@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btmScrol();
 
 
-        // bot answer for testing ppurpose
+        // bot answer for testing purposes
         setTimeout(() => {
 
             // const botAnswer  = document.getElementById('chatBoxTwo');

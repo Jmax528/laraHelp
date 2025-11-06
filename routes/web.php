@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::view('/', 'home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -16,4 +16,3 @@ require __DIR__.'/auth.php';
 
 Route::view('/chat', 'chat' );
 Route::view('/faq', 'faq' );
-Route::view('/testhome', 'testhome' );
