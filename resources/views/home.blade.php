@@ -13,12 +13,12 @@
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <h1 class="text-white main-title">Het LBC</h1>
         <nav>
-            <ul class="flex space-x-6">
+            <ul class="flex gap-4">
                 <!-- Home link - actief (blauw) -->
-                <li><a href="#" class="text-blue-300 font-medium border-b-2 border-blue-300 pb-1">Home</a></li>
+                <li><a href="/" class="text-blue-300 font-medium border-b-2 border-blue-300 pb-1">Home</a></li>
                 <!-- Andere links - inactief (wit) -->
-                <li><a href="#" class="text-white hover:text-blue-300 font-medium">Chatbox</a></li>
-                <li><a href="#" class="text-white hover:text-blue-300 font-medium">FAQ</a></li>
+                <li><a href="/chat" class="text-white hover:text-blue-300 font-medium">Chatbox</a></li>
+                <li><a href="/faq" class="text-white hover:text-blue-300 font-medium">FAQ</a></li>
             </ul>
         </nav>
     </div>
@@ -116,29 +116,29 @@
             </div>
 
             <!-- Accordion Item 2 -->
-            <div class="border border-white/30 rounded-lg overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-4 bg-white/10 hover:bg-white/20 transition-colors duration-200" data-target="accordion-2">
-                    <span class="text-left font-medium text-white normal-text">Veelgestelde vragen</span>
-                    <svg class="w-5 h-5 text-white transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                </button>
-                <div id="accordion-2" class="accordion-content bg-white/10 border-t border-white/30 max-h-0 opacity-0 transition-all duration-300 overflow-hidden">
-                    <div class="p-4 text-white">
-                        <div class="space-y-4">
-                            <div>
-                                <p class="mt-1 normal-text">Voorbeeld</p>
-                            </div>
-                            <div>
-                                <p class="mt-1 normal-text">Voorbeeld</p>
-                            </div>
-                            <div>
-                                <p class="mt-1 normal-text">Voorbeeld</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="border border-white/30 rounded-lg overflow-hidden">--}}
+{{--                <button class="accordion-toggle w-full flex justify-between items-center p-4 bg-white/10 hover:bg-white/20 transition-colors duration-200" data-target="accordion-2">--}}
+{{--                    <span class="text-left font-medium text-white normal-text">Veelgestelde vragen</span>--}}
+{{--                    <svg class="w-5 h-5 text-white transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
+{{--                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>--}}
+{{--                    </svg>--}}
+{{--                </button>--}}
+{{--                <div id="accordion-2" class="accordion-content bg-white/10 border-t border-white/30 max-h-0 opacity-0 transition-all duration-300 overflow-hidden">--}}
+{{--                    <div class="p-4 text-white">--}}
+{{--                        <div class="space-y-4">--}}
+{{--                            <div>--}}
+{{--                                <p class="mt-1 normal-text">Voorbeeld</p>--}}
+{{--                            </div>--}}
+{{--                            <div>--}}
+{{--                                <p class="mt-1 normal-text">Voorbeeld</p>--}}
+{{--                            </div>--}}
+{{--                            <div>--}}
+{{--                                <p class="mt-1 normal-text">Voorbeeld</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </section>
 </main>
