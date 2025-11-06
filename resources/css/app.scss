@@ -1,6 +1,7 @@
 /* Tailwind directives — must stay at the top */
 @tailwind base;
 @import "tailwindcss/preflight";
+@tailwind components;
 @tailwind utilities;
 
 
