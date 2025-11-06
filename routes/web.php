@@ -16,3 +16,4 @@ require __DIR__.'/auth.php';
 
 Route::view('/test', 'aTest' );
 Route::view('/faq', 'faq' );
+Route::view('/testhome', 'testhome' );
