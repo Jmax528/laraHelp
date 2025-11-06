@@ -1,0 +1,92 @@
+/* Tailwind directives — must stay at the top */
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+
+
+@import 'tailwindcss';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@theme { --font-sans: 'Instrument Sans', ui-sans-serif, system-ui,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Your custom SCSS */
+
+//i {
+//    transition: all 1.3s ease;
+//}
+
+.spacer {
+    @media (max-width: 768px) {
+        @apply mx-0
+    }
+
+    @apply mx-auto px-2;
+    max-width: 768px;
+
+    .faq-container {
+        //padding-top: 48px;
+        @apply pt-6;
+        width: 100%;
+        height: 100%;
+
+        .faq-theme {
+            .theme-container {
+                @apply mb-4;
+                display: flex;
+                align-items: center;
+            }
+
+            .question-container {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: all 0.3s ease;
+
+                &.show {
+                    max-height: 100%;
+                    opacity: 1;
+                }
+
+                .faq-question {
+                    @apply mb-4 mx-2 p-4;
+                    border-radius: 8px;
+
+                    .faq-header {
+                        @apply flex justify-between;
+
+                        span {
+                            font-size: 24px;
+                        }
+                    }
+
+                    .faq-text-blocks {
+                        max-height: 0;
+                        opacity: 0;
+                        overflow: hidden;
+                        transition: all 0.3s ease;
+
+                        &.show {
+                            max-height: 100%;
+                            opacity: 1;
+                        }
+
+                        .faq-text-block {
+
+                            .faq-text {
+                                margin-top: 24px;
+                                font-size: 16px;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

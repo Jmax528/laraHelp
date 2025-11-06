@@ -1,7 +1,6 @@
 /* Tailwind directives — must stay at the top */
 @tailwind base;
 @import "tailwindcss/preflight";
-@tailwind components;
 @tailwind utilities;
 
 
@@ -15,16 +14,11 @@
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 @tailwind base;
-@tailwind components;
-@tailwind utilities; $primary-color: #1d4ed8; $primary-font: 'Instrument Sans',
-    ui-sans-serif, system-ui, sans-serif; body { font-family: $primary-font; color: $primary-color;
-    }
-.button {
-    @apply px-4 py-2 bg-blue-500 text-white rounded;
-}
+@import "tailwindcss/preflight";
+@tailwind utilities;
 
 /* Your custom SCSS */
-$primary-color: #1d4ed8;
+$primary-color: #000000;
 $primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 $blue: #0C8CE9;
 $riverside: #4C6A92;
@@ -41,7 +35,35 @@ $bodacious: #B66AA3;
 body {
     font-family: $primary-font;
     color: $primary-color;
+    font-size: 16px;
+    line-height: 24px;
 }
+
+h1, .h1 {
+    font-size: 32px !important;
+    line-height: 40px;
+}
+h2, .h2 {
+    font-size: 28px !important;
+    line-height: 36px;
+}
+h3, .h3 {
+    font-size: 24px !important;
+    line-height: 32px;
+}
+h4, .h4 {
+    font-size: 20px !important;
+    line-height: 28px;
+}
+h5, .h5 {
+    font-size: 16px !important;
+    line-height: 24px;
+}
+h6, .h6 {
+    font-size: 12px !important;
+    line-height: 20px;
+}
+
 
 .bg-blue {
     background-color: $blue;
