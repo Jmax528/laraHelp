@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController;
 
 Route::view('/', 'home');
 
@@ -14,5 +15,8 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
-Route::view('/chat', 'chat' );
 Route::view('/faq', 'faq' );
+
+Route::view('/chat', 'chat' );
+Route::get('/chat', [ChatController::class, 'chat'] )->name('chat');
+Route::post('/chat', [ChatController::class, 'send'] )->name('chat');

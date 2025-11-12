@@ -6,6 +6,20 @@
     @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/app.js', 'resources/js/script.js'])
     <title>Chat Layout</title>
 </head>
+<header class="bg-[#4C6A92] shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-white main-title">Het LBC</h1>
+        <nav>
+            <ul class="flex gap-4">
+                <!-- Home link - actief (blauw) -->
+                <li><a href="/" class="text-blue-300 font-medium border-b-2 border-blue-300 pb-1">Home</a></li>
+                <!-- Andere links - inactief (wit) -->
+                <li><a href="/chat" class="text-white hover:text-blue-300 font-medium">Chatbox</a></li>
+                <li><a href="/faq" class="text-white hover:text-blue-300 font-medium">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <body class="body">
 <section class="section-one dark">
     <!-- Main Card -->
@@ -13,17 +27,16 @@
 
         <!-- Header -->
         <div class="header">
-            <h2 class="text-lg font-bold">Start of the Chat</h2>
+            <h2 class="text-lg font-bold">Start van de Chat</h2>
             <div class="flex gap-3">
-                <a href="/" class="home-link text-3xl">Home</a>
-                <button id="darkModeBtn" class="dark-button">Dark Mode</button>
+                <button id="darkModeBtn" class="dark-button">Dark mode</button>
             </div>
         </div>
 
         <!-- Scrollable Chat Area -->
         <div id="chatArea" class="dark chat-area">
-            <h1 class="text-2xl font-bold mb-2">Welcome!</h1>
-            <p class="text-center mb-4">Send a message to start the chat</p>
+            <h1 class="text-2xl font-bold mb-2">Welkom!</h1>
+            <p class="text-center mb-4">Stuur een bericht om de chat the beginnen.</p>
         </div>
 
         <!-- Fixed Input Area -->
