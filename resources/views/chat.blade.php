@@ -43,7 +43,7 @@
         <div class="chat-div">
       <textarea id="textarea"
                 class="textarea dark "
-                placeholder="Input text here"></textarea>
+                placeholder="Jouw bericht hier."></textarea>
             <button id="sendBtn"
                     class="send-btn dark">Send
             </button>
