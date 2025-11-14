@@ -1,25 +1,10 @@
-/* Tailwind directives — must stay at the top */
-@import "tailwindcss/preflight";
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
-
-
 
 @import 'tailwindcss';
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-@theme { --font-sans: 'Instrument Sans', ui-sans-serif, system-ui,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
-@import "tailwindcss/preflight";
-@tailwind utilities;
 
 /* Your custom SCSS */
-
-//i {
-//    transition: all 1.3s ease;
-//}
 
 .spacer {
     @media (max-width: 768px) {
