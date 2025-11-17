@@ -4,23 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById('sendBtn');
     const darkModeBtn = document.getElementById('darkModeBtn');
 
-    // messages
-    function message() {
+    function addMessage(text, type) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        div.classList.add('chat-container');
 
-        const textMessage = textarea.value.trim();
-        if (!textMessage) return;
+        if (type === 'self') {
+            div.classList.add('chat-one');
+        } else {
+            div.classList.add('chat-two');
+        }
 
-        const userMessage = document.createElement('div');
-        userMessage.textContent = textMessage;
-        userMessage.classList.add('chat-container', 'chat-one');
-        chatArea.appendChild(userMessage);
-        textarea.value = '';
+        chatArea.appendChild(div);
+        chatArea.scrollTop = chatArea.scrollHeight;
 
-        console.log('chat-one', textMessage);
-        btmScrol();
-
-
-        // bot answer for testing purposes
+        // bot answer for testing ppurpose
         setTimeout(() => {
 
             // const botAnswer  = document.getElementById('chatBoxTwo');
@@ -32,6 +30,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
             btmScrol();
         }, 1000);
+
+    }
+
+
+
+
+    // messages
+    async function message() {
+
+        const textMessage = textarea.value.trim();
+        if (!textMessage) return;
+
+        addMessage(textMessage, "self");
+        textarea.value = "";
+
+        await fetch("/chat/send", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({message: textMessage})
+        })
+        console.log('chat-one', textMessage);
+        btmScrol();
+
+
     }
 
     // send message button
@@ -56,4 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
             el.classList.toggle('dark-mode');
         }
     });
+
+    window.Echo.channel("chat").listen(".message.sent", (event => {
+        addMessage(event.message, "other");
+    }));
 });
