@@ -7,8 +7,21 @@
     <script src="https://kit.fontawesome.com/f23681219e.js" crossorigin="anonymous"></script>
     <title>FAQ</title>
 </head>
-
 <body class="bg-warm-taupe">
+<header class="bg-[#4C6A92] shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-white main-title">Het LBC</h1>
+        <nav>
+            <ul class="flex gap-4">
+                <!-- Home link - actief (blauw) -->
+                <li><a href="/" class="text-blue-300 font-medium border-b-2 border-blue-300 pb-1">Home</a></li>
+                <!-- Andere links - inactief (wit) -->
+                <li><a href="/chat" class="text-white hover:text-blue-300 font-medium">Chatbox</a></li>
+                <li><a href="/faq" class="text-white hover:text-blue-300 font-medium">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <section class="spacer">
     <div class="faq-container">
 

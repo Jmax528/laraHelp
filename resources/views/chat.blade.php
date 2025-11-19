@@ -7,6 +7,7 @@
     @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/echo.js', 'resources/js/app.js'])
     <title>Chat Layout</title>
 </head>
+<body class="body">
 <header class="bg-[#4C6A92] shadow-md sticky top-0 z-50">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <h1 class="text-white main-title">Het LBC</h1>
@@ -21,7 +22,6 @@
         </nav>
     </div>
 </header>
-<body class="body">
 <section class="section-one dark">
     <!-- Main Card -->
     <div class="chat-card">
