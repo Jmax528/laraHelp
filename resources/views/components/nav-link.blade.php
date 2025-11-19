@@ -1,11 +1,25 @@
-@props(['active'])
+@props(['href'])
 
 @php
-$classes = ($active ?? false)
-            ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 dark:border-indigo-600 text-sm font-medium leading-5 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out'
-            : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 focus:outline-none focus:text-gray-700 dark:focus:text-gray-300 focus:border-gray-300 dark:focus:border-gray-700 transition duration-150 ease-in-out';
+//  returns the url and trims the link before the /
+    $currentLink = trim(request()->path(), '/');
+    $targetLink = trim($href, '/');
+
+//  checks if the current page matches the link or if they're blank in case of the home page
+    $isActive = ($currentLink === $targetLink) || ($currentLink === '' && $targetLink === '');
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }}>
+
+<a href="{{ $href }}"
+    {{ $attributes->merge([
+        'class' => implode(' ', [
+            'nav-item',
+            'text-white',
+            'hover:text-blue-300',
+            'font-medium',
+            'pb-1',
+            $isActive ? 'text-blue-500 font-bold border-b-2 border-blue-500' : ''
+        ])
+    ]) }}>
     {{ $slot }}
 </a>

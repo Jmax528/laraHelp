@@ -1,3 +1,3 @@
 import './bootstrap';
 import './echo';
-import './script.js'
+import './script.js';
