@@ -20,5 +20,8 @@
         "sass": "^1.92.1",
         "tailwindcss": "^4.1.13",
         "vite": "^7.0.4"
+    },
+    "dependencies": {
+        "tailwind-scrollbar": "^4.0.2"
     }
 }

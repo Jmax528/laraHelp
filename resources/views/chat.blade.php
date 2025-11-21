@@ -22,7 +22,7 @@
         </div>
 
         <!-- Scrollable Chat Area -->
-        <div id="chatArea" class="dark chat-area">
+        <div id="chatArea" class="dark chat-area no-scrollbar">
             <h1 class="text-2xl font-bold mb-2">Welkom!</h1>
             <p class="text-center mb-4">Stuur een bericht om de chat the beginnen.</p>
         </div>
@@ -30,7 +30,7 @@
         <!-- Fixed Input Area -->
         <div class="chat-div">
       <textarea id="textarea"
-                class="textarea dark "
+                class="textarea dark no-scrollbar"
                 placeholder="Jouw bericht hier."></textarea>
             <button id="sendBtn"
                     class="send-btn dark">Send
