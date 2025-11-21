@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const textarea = document.getElementById('textarea');
     const chatArea = document.getElementById('chatArea');
     const sendBtn = document.getElementById('sendBtn');
-    const darkModeBtn = document.getElementById('darkModeBtn');
 
     // messages
     function message() {
@@ -20,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btmScrol();
 
 
-        // bot answer for testing ppurpose
+        // bot answer for testing purpose
         setTimeout(() => {
 
             // const botAnswer  = document.getElementById('chatBoxTwo');
@@ -49,11 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 
-    // toggles dark mode
-    const darkMode = document.getElementsByClassName('dark' );
-    darkModeBtn.addEventListener('click', () => {
-        for (let el of darkMode) {
-            el.classList.toggle('dark-mode');
-        }
-    });
 });
+
+

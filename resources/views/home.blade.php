@@ -7,7 +7,7 @@
     @vite(['resources/css/app.scss', 'resources/js/app.js', 'resources/js/script.js','resources/js/home.js'])
 
 </head>
-<body class="bg-[#AE9382]">
+<body class="bg-[#AE9382] dark">
 <!-- Header -->
 <x-header />
 

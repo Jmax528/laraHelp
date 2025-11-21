@@ -15,15 +15,12 @@
 
         <!-- Header -->
         <div class="header">
-            <h2 class="text-lg font-bold">Start van de Chat</h2>
-            <div class="flex gap-3">
-                <button id="darkModeBtn" class="dark-button">Dark mode</button>
-            </div>
+            <h2 class="text-lg font-bold text-center ml-12">Welkom bij de Chat</h2>
+
         </div>
 
         <!-- Scrollable Chat Area -->
         <div id="chatArea" class="dark chat-area no-scrollbar">
-            <h1 class="text-2xl font-bold mb-2">Welkom!</h1>
             <p class="text-center mb-4">Stuur een bericht om de chat the beginnen.</p>
         </div>
 

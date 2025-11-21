@@ -1,3 +1,4 @@
 import './bootstrap';
-import './echo';
 import './script.js';
+import './darkModeBtn.js';
+import './echo';

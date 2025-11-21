@@ -27,7 +27,7 @@ body {
     font-family: $primary-font;
     color: $primary-color;
 }
-.chat-div, .home-link, .dark-button {
+.chat-div {
     background: $sharkskin;
 }
 
@@ -89,9 +89,7 @@ body {
 }
 
 
-.home-link, .dark-button {
-    @apply px-4 py-2 rounded hover:bg-gray-400;
-}
+
 
 .send-btn, .dark.send-btn {
     background: $lush-meadows;

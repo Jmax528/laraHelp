@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/f23681219e.js" crossorigin="anonymous"></script>
     <title>FAQ</title>
 </head>
-<body class="bg-warm-taupe">
+<body class="bg-warm-taupe dark">
 <x-header />
 <section class="spacer">
     <div class="faq-container">
