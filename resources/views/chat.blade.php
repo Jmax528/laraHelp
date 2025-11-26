@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/echo.js', 'resources/js/app.js'])
+    @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/app.js'])
     <title>Chat Layout</title>
 </head>
 <body class="body">
@@ -41,27 +41,5 @@
     </div>
 </section>
 </body>
-
-<script>
-    document.getElementById('sentMessageForm').addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission
-        const formData = new FormData(this);
-        console.log("Making a request");
-        for (let [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
-        fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-            }
-        })
-            .then(response => response.json())
-            .then(data => console.log('Success:', data))
-            .catch(error => console.error('Error:', error));
-
-    });
-</script>
 </html>
 

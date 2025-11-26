@@ -15,29 +15,16 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-// Optional: test connection
-// window.Echo.channel('test-channel')
-//     .listen('TestEvent', (event) => {
-//         console.log('Reverb TestEvent received:', event);
-//     });
-
-
 window.Echo.channel('chat')
     .listen('MessageSent', (e) => {
-        console.log('Reverb MessageSent received:', e);
         createNewMessage(e);
     });
 
 function createNewMessage(e) {
     console.log(e);
     const newElement = document.createElement('div');
-    newElement.classList.add('w-full', 'mb-1');
-    newElement.innerHTML = `
-        <p class="text-amber-50 w-1/2 bg-gray-700 p-1.5 rounded">
-            <br>
-            ${e.message}
-        </p>
-    `;
+    newElement.classList.add('chat-container', 'chat-two');
+    newElement.innerHTML = `${e.message}`;
     document.getElementById('chatArea').appendChild(newElement);
 }
 
