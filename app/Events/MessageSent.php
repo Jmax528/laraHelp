@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $message;
+    public string $message;
 
 
     /**
@@ -34,10 +34,5 @@ class MessageSent implements ShouldBroadcast
         return [
             new Channel('chat'),
         ];
-    }
-
-    public function broadcastAs(): string
-    {
-        return 'message.sent';
     }
 }

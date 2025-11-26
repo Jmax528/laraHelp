@@ -26,15 +26,42 @@
 
         <!-- Fixed Input Area -->
         <div class="chat-div">
-      <textarea id="textarea"
-                class="textarea dark no-scrollbar"
-                placeholder="Jouw bericht hier."></textarea>
-            <button id="sendBtn"
-                    class="send-btn dark">Send
-            </button>
+            <form id="sentMessageForm" method="post" action="{{ route('chat.create') }}">
+                @csrf
+                <textarea id="textarea"
+                    class="textarea dark no-scrollbar"
+                    placeholder="Jouw bericht hier."
+                          name="message"></textarea>
+                <button id="sendBtn"
+                        class="send-btn dark"
+                        type="submit">Send
+                </button>
+            </form>
         </div>
     </div>
 </section>
 </body>
+
+<script>
+    document.getElementById('sentMessageForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+        const formData = new FormData(this);
+        console.log("Making a request");
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            }
+        })
+            .then(response => response.json())
+            .then(data => console.log('Success:', data))
+            .catch(error => console.error('Error:', error));
+
+    });
+</script>
 </html>
 
