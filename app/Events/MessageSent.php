@@ -11,17 +11,15 @@ use Illuminate\Queue\SerializesModels;
 class MessageSent implements ShouldBroadcast
 {
     public string $message;
-//    public int $user_id;
-
-    public function __construct($message)
+    public string $clientId;
+    public function __construct(string $message)
     {
         $this->message = $message;
-//        $this->user_id = auth()->id();
     }
 
-    public function broadcastOn()
+    public function broadcastOn(): array
     {
-        return new Channel('chat');
+        return [new Channel('chat')];
     }
 
 //    public function broadcastAs()
