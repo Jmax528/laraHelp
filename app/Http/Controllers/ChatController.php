@@ -18,6 +18,6 @@ class ChatController extends Controller
         $message = $request->input('message');
         broadcast(new MessageSent($message))->toOthers();
 
-        return response()->json(['success' => true]);
+        return ['success' => true];
     }
 }

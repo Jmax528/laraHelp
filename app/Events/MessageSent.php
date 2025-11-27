@@ -10,27 +10,23 @@ use Illuminate\Queue\SerializesModels;
 
 class MessageSent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
     public string $message;
+//    public int $user_id;
 
-
-//    /**
-//     * Create a new event instance.
-//     */
     public function __construct($message)
     {
         $this->message = $message;
+//        $this->user_id = auth()->id();
     }
 
-//    /**
-//     * Get the channels the event should broadcast on.
-//     *
-//     * @return array<int, \Illuminate\Broadcasting\Channel>
-//     */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
-        return [
-            new Channel('chat'),
-        ];
+        return new Channel('chat');
     }
+
+//    public function broadcastAs()
+//    {
+//        return 'message.sent';
+//    }
 }
+

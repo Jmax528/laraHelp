@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--    <meta name="user-id" content="{{ auth()->id() }}">--}}
     @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/app.js'])
     <title>Chat Layout</title>
 </head>
@@ -26,10 +27,10 @@
 
         <!-- Fixed Input Area -->
         <div class="chat-div">
-            <form id="sentMessageForm" class="textarea dark" method="post" action="{{ route('chat.create') }}">
+            <form id="sentMessageForm" class="" method="post" action="{{ route('chat.create') }}">
                 @csrf
                 <textarea id="textarea"
-                          class="no-scrollbar"
+                          class="textarea dark no-scrollbar"
                           placeholder="Jouw bericht hier."
                           name="message">
                 </textarea>
