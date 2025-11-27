@@ -20,3 +20,4 @@ Route::view('/faq', 'faq' );
 Route::view('/chat', 'chat' );
 Route::get('/chat', [ChatController::class, 'index'] )->name('chat.index');
 Route::post('/chat', [ChatController::class, 'create'] )->name('chat.create');
+

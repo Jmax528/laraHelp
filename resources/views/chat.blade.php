@@ -26,12 +26,13 @@
 
         <!-- Fixed Input Area -->
         <div class="chat-div">
-            <form id="sentMessageForm" method="post" action="{{ route('chat.create') }}">
+            <form id="sentMessageForm" class="textarea dark" method="post" action="{{ route('chat.create') }}">
                 @csrf
                 <textarea id="textarea"
-                    class="textarea dark no-scrollbar"
-                    placeholder="Jouw bericht hier."
-                          name="message"></textarea>
+                          class="no-scrollbar"
+                          placeholder="Jouw bericht hier."
+                          name="message">
+                </textarea>
                 <button id="sendBtn"
                         class="send-btn dark"
                         type="submit">Send
@@ -40,6 +41,7 @@
         </div>
     </div>
 </section>
+
 </body>
 </html>
 
