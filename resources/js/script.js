@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Listen for broadcast messages
     window.Echo.channel('chat')
         .listen('MessageSent', (event) => {
-            addUserMessage(event.message);
+            receivedMessage(event.message);
         });
 
     sendMessage.addEventListener('submit', function (e) {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const textMessage = textarea.value.trim();
         if (!textMessage) return;
 
-        // addUserMessage(textMessage);
+        addUserMessage(textMessage);
 
 
         const formData = new FormData(this);
@@ -48,17 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
         btmScrol();
     }
 
-    // function botReply() {
-    //     setTimeout(() => {
-    //         const messageBoxTwo = document.createElement('div');
-    //         messageBoxTwo.textContent = 'Are we testing again?';
-    //         messageBoxTwo.classList.add('chat-container', 'chat-two');
-    //         chatArea.appendChild(messageBoxTwo);
-    //
-    //         console.log('chat-two', messageBoxTwo.textContent);
-    //         btmScrol();
-    //     }, 1000);
-    // }
+    function receivedMessage(text) {
+            const messageBoxTwo = document.createElement('div');
+            messageBoxTwo.textContent = text;
+            messageBoxTwo.classList.add('chat-container', 'chat-two');
+            chatArea.appendChild(messageBoxTwo);
+
+            console.log('chat-two', messageBoxTwo.textContent);
+            btmScrol();
+    }
 
     sendBtn.addEventListener('click', () => sendMessage.requestSubmit());
 
