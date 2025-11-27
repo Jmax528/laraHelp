@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const textMessage = textarea.value.trim();
         if (!textMessage) return;
 
-        addUserMessage(textMessage);
+        // addUserMessage(textMessage);
 
 
         const formData = new FormData(this);
