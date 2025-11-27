@@ -15,7 +15,7 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-window.Echo.channel('chat')
+window.Echo.private('chat.1')
     .listen('MessageSent', (e) => {
         createNewMessage(e);
     });
