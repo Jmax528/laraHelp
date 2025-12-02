@@ -17,17 +17,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('messages', function (Blueprint $table) {
-            $table->primary('id');
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('chat_id')->constrained();
+            $table->foreignId('chat_id')->constrained('chats');
             $table->string('message');
             $table->timestamp('sent_at');
         });
 
-        Schema::table('chat_participants', function (Blueprint $table) {
-            $table->foreignId('chat_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+        Schema::create('chat_participants', function (Blueprint $table) {
+            $table->foreignId('chat_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->primary(['chat_id', 'user_id']);
         });
 
         Schema::table('users', function (Blueprint $table) {
@@ -40,9 +41,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chats');
         Schema::dropIfExists('messages');
         Schema::dropIfExists('chat_participants');
+        Schema::dropIfExists('chats');
+
         schema::table('users', function (Blueprint $table) {
            $table->dropColumn('role');
         });
