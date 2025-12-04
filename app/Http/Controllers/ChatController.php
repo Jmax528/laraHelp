@@ -44,7 +44,6 @@ class ChatController extends Controller
 
     public function show(Chats $chat): View
     {
-        Log::debug('chat.show', $chat->toArray());
         // Load participants and messages with user info
         $chat->load([
             'participants:id,name', // eager load participants (only id & name for brevity)

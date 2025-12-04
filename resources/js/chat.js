@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const chatArea = document.getElementById('chatArea');
+    const chatId = chatArea.dataset.chatId;
+
+    window.Echo.private(`chat.${chatId}`)
+        .listen('MessageSent', (e) => {
+            createNewMessage(e);
+        });
 
     btmScroll();
 
@@ -23,6 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 });
+
+function createNewMessage(e) {
+    console.log(e);
+    const newElement = document.createElement('div');
+    newElement.classList.add('chat-container', 'chat-two');
+    newElement.innerHTML = `${e.message}`;
+    document.getElementById('chatArea').appendChild(newElement);
+}
 
 
 

@@ -7,7 +7,6 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class MessageSent implements ShouldBroadcast
 {
@@ -22,7 +21,6 @@ class MessageSent implements ShouldBroadcast
      */
     public function __construct($message, $chatId, $userId)
     {
-        Log::info('chatId: ' . $chatId);
         $this->message = $message;
         $this->chatId = $chatId;
         $this->userId = $userId;
@@ -36,8 +34,8 @@ class MessageSent implements ShouldBroadcast
     public function broadcastWith(): array
     {
         return [
-            'Message' => $this->message,
-            'User_id' => $this->userId,
+            'message' => $this->message,
+            'user_id' => $this->userId,
         ];
     }
 
@@ -48,7 +46,6 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-        Log::info('sending message on chat.'.$this->chatId);
         return [
             new PrivateChannel('chat.' . $this->chatId),
         ];
