@@ -6,24 +6,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendBtn = document.getElementById('sendBtn');
     const sendMessage = document.getElementById('sentMessageForm');
 
-
-    // Listen for broadcast messages
-    window.Echo.channel('chat')
+    // --- Broadcast listener for other users ---
+    window.Echo.private(`chat.${chatId}`)
         .listen('MessageSent', (event) => {
-            receivedMessage(event.message);
+            // Don't re-add your own message
+            if (event.user_id !== currentUserId) {
+                receivedMessage(event.message, event.user_name);
+            }
         });
 
+    // --- Submit message ---
     sendMessage.addEventListener('submit', function (e) {
         e.preventDefault();
 
         const textMessage = textarea.value.trim();
         if (!textMessage) return;
 
-        // addUserMessage(textMessage);
-
+        addUserMessage(textMessage); // show your message immediately
 
         const formData = new FormData(this);
-
         fetch(this.action, {
             method: 'POST',
             body: formData,
@@ -36,29 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(err));
 
         textarea.value = '';
-        // botReply();
     });
 
-    function addUserMessage(text) {
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('chat-container', 'chat-one');
-        userMessage.textContent = text;
-        chatArea.appendChild(userMessage);
-
-        console.log('chat-one', text);
-        btmScrol();
-    }
-
-    function receivedMessage(text) {
-        const messageBoxTwo = document.createElement('div');
-        messageBoxTwo.textContent = text;
-        messageBoxTwo.classList.add('chat-container', 'chat-two');
-        chatArea.appendChild(messageBoxTwo);
-
-        console.log('chat-two', messageBoxTwo.textContent);
-        btmScrol();
-    }
-
+    // --- Click and Enter key ---
     sendBtn.addEventListener('click', () => sendMessage.requestSubmit());
 
     document.addEventListener('keydown', e => {
@@ -68,9 +49,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function btmScrol() {
-        chatArea.scrollTop = chatArea.scrollHeight;
+    // --- Add your own message ---
+    function addUserMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-container', 'chat-one'); // right side
+        messageDiv.textContent = text;
+        chatArea.appendChild(messageDiv);
+        scrollToBottom();
     }
 
+    // --- Add message from other user ---
+    function receivedMessage(text, userName = '') {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-container', 'chat-two'); // left side
+        messageDiv.textContent = userName ? `${userName}: ${text}` : text;
+        chatArea.appendChild(messageDiv);
+        scrollToBottom();
+    }
 
+    // --- Auto scroll ---
+    function scrollToBottom() {
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
 });

@@ -20,7 +20,7 @@
         </div>
 
         <!-- Scrollable Chat Area -->
-        <div id="chatArea" class="dark chat-area no-scrollbar">
+        <div id="chatArea" class="dark chat-area no-scrollbar" data-chat-id="{{ $chat->id }}">
             <p class="text-center mb-4">Stuur een bericht om de chat the beginnen.</p>
         </div>
 
@@ -42,6 +42,7 @@
     </div>
 </section>
 <script>
+    let currentUserId = {{ Auth::id() }};
     let chatId = {{$chat->id}}
 </script>
 </body>

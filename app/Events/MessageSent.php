@@ -17,6 +17,7 @@ class MessageSent implements ShouldBroadcast
     public string $userId;
 
 
+
     /**
      * Create a new event instance.
      */
@@ -36,8 +37,8 @@ class MessageSent implements ShouldBroadcast
     public function broadcastWith(): array
     {
         return [
-            'Message' => $this->message,
-            'User_id' => $this->userId,
+            'message' => $this->message,
+            'user_id' => $this->userId,
         ];
     }
 
@@ -53,4 +54,10 @@ class MessageSent implements ShouldBroadcast
             new PrivateChannel('chat.' . $this->chatId),
         ];
     }
+//    public function broadcastAs(): string
+//    {
+//        return 'message.sent';
+//    }
+
+
 }
