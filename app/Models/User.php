@@ -45,4 +45,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // A user can send many messages
+    public function messages()
+    {
+        return $this->hasMany(Messages::class, 'user_id');
+    }
+
+    // A user can participate in many chats via pivot
+    public function chats()
+    {
+        return $this->belongsToMany(Chats::class, 'chat_participants', 'user_id', 'chat_id');
+    }
 }

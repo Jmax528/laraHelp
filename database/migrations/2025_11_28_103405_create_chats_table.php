@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('chat_id')->constrained('chats');
             $table->string('message');
-            $table->timestamp('sent_at');
+            $table->timestamp('sent_at')->default(now());
         });
 
         Schema::create('chat_participants', function (Blueprint $table) {

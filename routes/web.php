@@ -17,6 +17,7 @@ require __DIR__.'/auth.php';
 
 Route::view('/faq', 'faq' );
 
+
 Route::view('/chat', 'chat' );
-Route::get('/chat', [ChatController::class, 'index'] )->name('chat.index');
-Route::post('/chat', [ChatController::class, 'create'] )->name('chat.create');
+Route::get('/chat/{chat}', [ChatController::class, 'show'] )->name('chat.show');
+Route::post('/chat/{chat}/message', [ChatController::class, 'create'] )->name('chat.create');
