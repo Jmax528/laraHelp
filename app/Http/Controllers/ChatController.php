@@ -55,7 +55,7 @@ class ChatController extends Controller
         ]);
 
         // Return a Blade view instead of JSON
-        return view('chat.show', [
+        return view('chat', [
             'chat' => $chat,
             'participants' => $chat->participants,
             'messages' => $chat->messages,

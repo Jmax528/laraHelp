@@ -19,11 +19,5 @@ window.Echo.private(`chat.${chatId}`)
         createNewMessage(e);
     });
 
-function createNewMessage(e) {
-    console.log(e);
-    const newElement = document.createElement('div');
-    newElement.classList.add('chat-container', 'chat-two');
-    newElement.innerHTML = `${e.message}`;
-    document.getElementById('chatArea').appendChild(newElement);
-}
+
 
