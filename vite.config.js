@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+console.log("app.js loaded");
+
 
 
 export default defineConfig({

@@ -16,7 +16,6 @@
         <!-- Header -->
         <div class="header">
             <h2 class="text-lg font-bold text-center ml-12">Welkom bij de Chat</h2>
-
         </div>
 
         <!-- Scrollable Chat Area -->
@@ -42,8 +41,8 @@
     </div>
 </section>
 <script>
-    let currentUserId = {{ Auth::id() }};
-    let chatId = {{$chat->id}}
+    let currentUserId = @json(Auth::id());
+    let chatId = @json($chat->id ?? null);
 </script>
 </body>
 </html>

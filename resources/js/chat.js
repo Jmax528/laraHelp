@@ -58,14 +58,22 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollToBottom();
     }
 
-    // --- Add message from other user ---
-    function receivedMessage(text, userName = '') {
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('chat-container', 'chat-two'); // left side
-        messageDiv.textContent = userName ? `${userName}: ${text}` : text;
-        chatArea.appendChild(messageDiv);
-        scrollToBottom();
+    window.Echo.private(`chat.${chatId}`)
+        .listen('MessageSent', (e) => {
+            createNewMessageTwo(e);
+        });
+
+
+    function createNewMessageTwo(event) {
+        const chatArea = document.getElementById('chatArea');
+        const messageBox = document.createElement('div');
+        messageBox.classList.add('chat-container', 'chat-two'); // message from others
+        messageBox.textContent = event.message;
+        chatArea.appendChild(messageBox);
+        chatArea.scrollTop = chatArea.scrollHeight;
     }
+
+
 
     // --- Auto scroll ---
     function scrollToBottom() {

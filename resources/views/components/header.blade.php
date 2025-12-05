@@ -16,6 +16,8 @@
                 <li><x-nav-link href="/">Home</x-nav-link></li>
                 <li><x-nav-link href="/chat">Chat</x-nav-link></li>
                 <li><x-nav-link href="/faq">FAQ</x-nav-link></li>
+                <li><x-nav-link href="{{ route('login') }}">Login</x-nav-link></li>
+                <li><x-nav-link href="{{ route('register') }}">Register</x-nav-link></li>
             </ul>
         </nav>
     </div>

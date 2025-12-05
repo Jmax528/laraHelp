@@ -132,7 +132,10 @@
         </div>
     </div>
 </section>
-
+<script>
+    let currentUserId = {{ Auth::id() }};
+    {{--let chatId = {{$chat->id}}--}}
+</script>
 </body>
 
 </html>

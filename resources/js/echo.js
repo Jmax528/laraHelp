@@ -19,5 +19,12 @@ window.Echo.private(`chat.${chatId}`)
         createNewMessage(e);
     });
 
-
+function createNewMessage(event) {
+    const chatArea = document.getElementById('chatArea');
+    const messageBox = document.createElement('div');
+    messageBox.classList.add('chat-container', 'chat-two'); // message from others
+    messageBox.textContent = event.message;
+    chatArea.appendChild(messageBox);
+    chatArea.scrollTop = chatArea.scrollHeight;
+}
 
