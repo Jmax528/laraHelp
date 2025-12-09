@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function darkMode() {
         const darkModeBtn = document.getElementById('darkModeBtn');
+        if (!darkModeBtn) return;
 
         //grab the button, grab the svg path, the "d" atribute within it and replace the content of "d"
         const path = document.getElementById('svgPath');

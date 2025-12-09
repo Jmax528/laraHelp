@@ -4,7 +4,9 @@ import Pusher from 'pusher-js';
 
 window.Pusher = Pusher;
 
-// Initialize Laravel Echo for Reverb
+
+
+
 window.Echo = new Echo({
     broadcaster: 'reverb',
     key: import.meta.env.VITE_REVERB_APP_KEY,
@@ -14,17 +16,38 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
 });
+
 window.Echo.private(`chat.${chatId}`)
     .listen('MessageSent', (e) => {
-        createNewMessage(e);
+        createMessage(e);
+        //delete this console.log
+        console.log("Event payload:", e);
     });
 
-function createNewMessage(event) {
+//delete this console.log
+console.log("ChatId: ", chatId, "CurrentUserId: ", currentUserId);
+
+function createMessage(e) {
     const chatArea = document.getElementById('chatArea');
     const messageBox = document.createElement('div');
-    messageBox.classList.add('chat-container', 'chat-two'); // message from others
-    messageBox.textContent = event.message;
+    const textarea = document.getElementById('textarea');
+
+
+    // Same class applied to both
+    messageBox.classList.add('chat-container');
+
+    const userId = parseInt(e.user_id);
+    // Sender side = green bubble
+    if (userId === currentUserId) {
+        messageBox.classList.add('chat-one');
+    } else {
+        // Receiver side = orange bubble
+        messageBox.classList.add('chat-two');
+    }
+
+    textarea.value = '';
+    messageBox.textContent = e.message;
     chatArea.appendChild(messageBox);
     chatArea.scrollTop = chatArea.scrollHeight;
-}
 
+}
