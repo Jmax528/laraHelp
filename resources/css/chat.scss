@@ -9,15 +9,20 @@ $primary-color: #ffffff;
 $primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 $blue: #0C8CE9;
 $riverside: #4C6A92;
+$riverside-300: #8196B2;
+$riverside-600: #445f83;
 $airy-blue: #92B6D5;
+$airy-blue-300: #7491aa;
 $sharkskin: #838487;
 $aurora-red: #B93A32;
 $warm-taupe: #AE9382;
 $dusty-cedar: #AD5D5D;
 $lush-meadows: #006E51;
+$lush-meadows-200: #80cdbf;
 $spicy-mustard: #D8AD47;
 $potters-clay: #9D4624;
 $bodacious: #B66AA3;
+$bodacious-300: #e1c3da;
 
 
 /* Your custom SCSS */
@@ -39,13 +44,13 @@ body {
 
 ////TailwindCSS that for the chat bubbles
 .chat-container {
-    @apply p-[10px] flex flex-col relative max-w-[80%] text-white rounded-lg
+    @apply p-[10px] flex flex-col relative max-w-[80%] text-black rounded-lg
     w-fit whitespace-pre-line break-words;
     overflow-wrap: anywhere;
 }
 
 .chat-area {
-    background: $airy-blue;
+    background: $airy-blue-300;
     @apply flex-1 overflow-y-auto p-4 space-y-3 flex flex-col overflow-hidden text-white;
 
     &.dark-mode {
@@ -58,6 +63,7 @@ body {
 }
 
 .chat-div {
+    background: $riverside-600;
     @apply text-white items-center gap-2 p-3 border-t flex-none mt-auto pb-2;
 }
 
@@ -66,6 +72,7 @@ body {
 }
 
 .textarea {
+    background: $riverside-300;
     @apply text-white border-2 border-blue-500 rounded w-full p-2 resize-none h-16;
 
     &.dark-mode {
@@ -74,7 +81,7 @@ body {
 }
 
 .header {
-    background: $blue;
+    background: $riverside-600;
     @apply flex justify-between items-center p-3 flex-none;
 }
 
@@ -83,12 +90,12 @@ body {
 }
 
 .chat-one {
-    background: $lush-meadows;
+    background: $lush-meadows-200;
     @apply self-end;
 }
 
 .chat-two {
-    background: $potters-clay;
+    background: $bodacious-300;
     @apply self-start;
 }
 
@@ -97,6 +104,9 @@ body {
 
 .send-btn, .dark.send-btn {
     background: $lush-meadows;
-    @apply  px-4 py-2 rounded hover:bg-green-500;
+    @apply  px-8 py-3 rounded;
+    &:hover {
+        background-color: #22c55c;
+    }
 }
 

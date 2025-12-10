@@ -34,8 +34,8 @@ class ChatController extends Controller
         broadcast(new MessageSent(
             $message,
             $chat->id,
-            Auth::id()));
-//        ))->toOthers();
+            Auth::id(),
+        ))->toOthers();
 
         return response()->json([
             'success' => true,

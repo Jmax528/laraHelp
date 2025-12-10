@@ -4,12 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sendBtn = document.getElementById('sendBtn');
     const sendMessage = document.getElementById('sentMessageForm');
+    const textarea = document.getElementById('textarea');
+    textarea.value = '';
 
     // --- Submit message ---
     sendMessage.addEventListener('submit', function (e) {
         e.preventDefault();
-
-
 
 
         const formData = new FormData(this);
@@ -27,20 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Click and Enter key ---
-    sendBtn.addEventListener('click', () => sendMessage.requestSubmit());
+    sendBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (textarea.value.trim()) {
+            sendMessage.requestSubmit();
+        }
+        textarea.value = '';
+    });
 
     document.addEventListener('keydown', e => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            sendMessage.requestSubmit();
+            if (textarea.value.trim()) {
+                sendMessage.requestSubmit();
+            }
+            textarea.value = '';
         }
     });
-
-
-
-
-    // // --- Auto scroll ---
-    // function scrollToBottom() {
-    //     chatArea.scrollTop = chatArea.scrollHeight;
-    // }
 });

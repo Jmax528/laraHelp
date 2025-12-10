@@ -4,9 +4,6 @@ import Pusher from 'pusher-js';
 
 window.Pusher = Pusher;
 
-
-
-
 window.Echo = new Echo({
     broadcaster: 'reverb',
     key: import.meta.env.VITE_REVERB_APP_KEY,
@@ -24,13 +21,20 @@ window.Echo.private(`chat.${chatId}`)
         console.log("Event payload:", e);
     });
 
+
 //delete this console.log
 console.log("ChatId: ", chatId, "CurrentUserId: ", currentUserId);
 
 function createMessage(e) {
     const chatArea = document.getElementById('chatArea');
     const messageBox = document.createElement('div');
-    const textarea = document.getElementById('textarea');
+
+    const placeholder = document.getElementById('chatPlaceholder');
+    if (placeholder) {
+        placeholder.remove();
+    }
+
+
 
 
     // Same class applied to both
@@ -45,7 +49,6 @@ function createMessage(e) {
         messageBox.classList.add('chat-two');
     }
 
-    textarea.value = '';
     messageBox.textContent = e.message;
     chatArea.appendChild(messageBox);
     chatArea.scrollTop = chatArea.scrollHeight;
