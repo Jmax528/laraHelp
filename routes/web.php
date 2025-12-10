@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\FaqController;
 
 Route::view('/', 'home');
 
@@ -15,7 +16,8 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
-Route::view('/faq', 'faq' );
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+Route::post('/faq', [FaqController::class, 'create'])->name('faq.create');
 
 Route::view('/chat', 'chat' );
 Route::get('/chat', [ChatController::class, 'chat'] )->name('chat');
