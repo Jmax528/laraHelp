@@ -14,7 +14,9 @@ class FaqController extends Controller
         return view('faq', compact('sections'));
     }
 
-    public function create(Request $request)
+
+
+    public function edit(Request $request)
     {
         // Validate incoming data
         $validated = $request->validate([
@@ -33,4 +35,6 @@ class FaqController extends Controller
             'faq'     => $faq,
         ]);
     }
+
+
 }
