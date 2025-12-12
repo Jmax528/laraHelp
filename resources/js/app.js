@@ -1,4 +1,4 @@
 import './bootstrap';
-import './chat.js';
 import './darkModeBtn.js';
+import './chat.js';
 import './echo.js';

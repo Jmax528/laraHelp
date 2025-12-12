@@ -40,6 +40,10 @@ body {
     background: $warm-taupe;
     @apply flex justify-center pt-6 pb-4;
     height:calc(100vh - 72px);
+
+    &.dark-mode {
+        background-color: #293a50;
+    }
 }
 
 ////TailwindCSS that for the chat bubbles
