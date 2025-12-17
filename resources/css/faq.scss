@@ -74,6 +74,7 @@
             }
         }
     }
+
     .faq-box {
         @apply mb-4 mx-2 p-4 rounded-lg;
     }
@@ -85,8 +86,4 @@
     .faq-create {
         @extend .faq-box;
     }
-
-
-
-
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->smallInteger('order')->default(0);
+            $table->smallInteger('order')->default(0)->unique();
             $table->timestamps();
         });
 
