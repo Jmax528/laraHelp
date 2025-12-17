@@ -30,50 +30,31 @@
                 <div>
                     <h3 class="text-white section-title mb-6">Welkom bij het Loopbaancentrum</h3>
                     <div class="space-y-4 text-white normal-text">
-                        <p>Soms heb je meer begeleiding en hulp of aanpassingen nodig.
-                            Misschien twijfel je over je studiekeuze. Of heb je problemen met je studie of thuis.
-                            Je kunt dan naar het loopbaancentrum.</p>
-                        <p>Je kunt advies krijgen over je studie en het werk dat je later wilt doen.</p>
-                        <p>Of je kunt praten over je problemen. Niemand komt dat te weten.
-                            Je kunt ook een doorverwijzing krijgen naar bijvoorbeeld maatschappelijk werk.</p>
+                        <p>Soms heb je meer begeleiding en hulp of aanpassingen nodig. Misschien twijfel je over je studiekeuze. Of heb je problemen met je studie of thuis. Je kunt dan naar het loopbaancentrum. Je kunt advies krijgen over je studie en het werk dat je later wilt doen. Of je kunt praten over je problemen. We werken samen met mensen van het WIJ-team en eurocoaches en kunnen op deze manier makkelijk doorverwijzen naar mensen die je kunnen helpen buiten school.</p>
                     </div>
                 </div>
 
                 <!-- Highlight Box -->
                 <div class="bg-white/20 backdrop-blur-sm border-l-4 border-white p-6 rounded-r-lg">
-                    <h4 class="font-medium text-white mb-2 section-title">Kom gewoon langs.</h4>
+                    <h4 class="font-medium text-white mb-2 section-title">Kom gewoon langs in lokaal 4.51</h4>
                     <p class="text-white mb-2 normal-text">Of overleg eerst met je slber en ouders en maak een afspraak.</p>
-                    <p class="text-white normal-text">Kijk ook eens op <a href="#" class="text-blue-200 hover:underline font-medium">Mbotoegankelijk.nl</a> om te bekijken wat voor ondersteuning mogelijk is in het mbo.</p>
                 </div>
             </div>
 
             <!-- Right Column -->
             <div class="space-y-8">
-                <!-- Introduction Section -->
-                <div>
-                    <h3 class="text-white section-title mb-6">Kennismaking</h3>
-                    <div class="space-y-4 text-white normal-text">
-                        <p>Heb je je aangemeld? We leren je graag beter kennen. In een kennismakingsgesprek stellen we vragen.</p>
-                        <p>Bijvoorbeeld: Waarom kies je deze opleiding? Wat verwacht je ervan? Ook kun jij jouw vragen aan ons stellen.</p>
-                        <p>Samen kijken we of de opleiding goed bij je past. En wat je nodig hebt om de opleiding goed te doen.</p>
-                    </div>
-                </div>
-
                 <!-- Support Section -->
                 <div>
                     <h3 class="text-white section-title mb-6">Extra ondersteuning</h3>
                     <div class="space-y-4 text-white normal-text">
-                        <p>Heb je dyslexie, psychische problemen of een beperking? Of moet je bijvoorbeeld thuis veel voor je familie zorgen?</p>
-                        <p>Het is belangrijk dat je ons dit zo vroeg mogelijk laat weten. Het liefst bij de aanmelding.</p>
-                        <p>Vertel het ons. We helpen je. Samen maken we een plan. Als je wilt, kunnen je ouders hierin meedenken.</p>
-                        <p>Of andere mensen die belangrijk voor jou zijn.</p>
+                        <p>Heb je extra ondersteuning nodig van school? Bijvoorbeeld vanwege dyslexie, psychische problemen of een beperking? Of moet je bijvoorbeeld thuis veel voor je familie zorgen? Het is belangrijk dat je ons dit zo vroeg mogelijk laat weten. Het liefst bij de aanmelding. Vertel het ons zodat we je kunnen helpen. Samen maken we een plan. Als je wilt, kunnen je ouders hierin meedenken.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Vertical Divider Line - Gecorrigeerd -->
-        <div class="hidden lg:block absolute left-1/2 top-[-32px] bottom-[-50px] w-0.5 bg-white/30 transform -translate-x-1/2"></div>
+        <div class="hidden lg:block absolute left-1/2 top-8 bottom-[-50px] w-0.5 bg-white/30 transform -translate-x-1/2"></div>
     </section>
 
     <!-- Accordion Section -->
