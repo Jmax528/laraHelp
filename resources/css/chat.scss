@@ -29,17 +29,23 @@ $bodacious-300: #e1c3da;
 $primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 
 body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: $warm-taupe;
     font-family: $primary-font;
     color: $primary-color;
 }
 .chat-div {
     background: $sharkskin;
 }
+.card-body {
+    @apply  flex flex-col flex-1 gap-0 overscroll-none;
+}
 
 .section-one {
-    background: $warm-taupe;
-    @apply flex justify-center pt-6 pb-4;
-    height:calc(100vh - 72px);
+    @apply flex flex-1 items-center justify-center;
+    height:calc(100vh);
+    width: 992px;
 
     &.dark-mode {
         background-color: #293a50;
@@ -62,6 +68,18 @@ body {
     }
 }
 
+.users-area {
+    background-color: #293a50;
+    //background: $airy-blue-300;
+    @apply flex-1 overflow-y-auto flex text-white p-0;
+}
+
+.admin-side {
+    background: $riverside-600;
+    @apply  w-8 flex-none;
+}
+
+
 .chat-box {
     @apply flex-1 p-4;
 }
@@ -75,7 +93,7 @@ body {
     @apply text-white flex items-center gap-2 p-3 flex-none mt-auto pb-2;
 }
 
-.textarea {
+.textarea, .admin-search {
     background: $riverside-300;
     @apply text-white border-2 border-blue-500 rounded w-full p-2 resize-none h-16;
 
@@ -84,13 +102,27 @@ body {
     }
 }
 
-.header {
-    background: $riverside-600;
-    @apply flex justify-between items-center p-3 flex-none;
+.admin-search {
+    @apply h-9;
+    width: 80%;
+
 }
 
-.chat-card {
-    @apply border w-96 border-blue-500 bg-gray-200 rounded-xl shadow-lg flex flex-col overflow-hidden;
+.card-header {
+    background: $riverside-600;
+    @apply flex justify-center items-center p-3 max-h-14;
+}
+
+
+
+.chat-card, .admin-card {
+    height: calc(100vh - 105px);
+    @apply gap-0 border w-96 border-blue-500 bg-gray-200 rounded-xl shadow-lg
+    flex flex-col overflow-hidden py-0;
+}
+
+.admin-card {
+    @apply w-72;
 }
 
 .chat-one {
@@ -104,13 +136,46 @@ body {
 }
 
 
+.admin-btn {
+    background: $lush-meadows;
+    @apply h-9 px-6 flex items-center justify-start rounded;
+    &:hover {
+        background-color: #22c55c;
+    }
+}
+
+.admin-btn {
+    background: $lush-meadows;
+}
 
 
-.send-btn, .dark.send-btn {
+.send-btn {
     background: $lush-meadows;
     @apply  px-8 py-3 rounded;
     &:hover {
         background-color: #22c55c;
     }
+}
+
+
+.users-area {
+    @apply flex flex-col p-0 overflow-y-auto;
+
+}
+.user-list-items {
+    @apply w-full h-16 flex items-center gap-4 px-5 py-4 border-b border-blue-500;
+    &:hover {
+        background: $blue;
+    }
+}
+.userImg {
+    @apply w-9 h-9 bg-red-600 rounded-full flex-none;
+}
+.userInfo {
+    @apply flex flex-col;
+}
+.onderwerp, .user-name {
+    color: white;
+    @apply  text-xs font-semibold;
 }
 

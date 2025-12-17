@@ -44,4 +44,48 @@ document.addEventListener("DOMContentLoaded", () => {
             textarea.value = '';
         }
     });
+    function amdinSearch(){
+        const adminBtn = document.getElementById('adminBtn');
+
+    }
+
+    const usersArea = document.getElementById('usersArea');
+    for (let i = 1; i < 10; i++) {
+        usersArea.appendChild(createProfiles(`Onderwerp ${i+1}`, `Gebruikersnaam / anoniem ${i+1}`));
+    }
+    function createProfiles(onderwerpText = 'Onderwerp', userNameText = 'Gebruiker', imgSrc = '', ) {
+        // main container
+        const userList = document.createElement('div');
+        userList.className = 'user-list-items';
+
+        // profile image
+        const userImg = document.createElement('img');
+        userImg.className = 'userImg';
+        userImg.src = imgSrc;
+        userImg.alt = 'user';
+
+        // text container
+        const userInfo = document.createElement('div');
+        userInfo.className = 'userInfo';
+
+        // onderwerp
+        const onderwerp = document.createElement('h5');
+        onderwerp.className = 'onderwerp'; // SCSS handles text color and size
+        onderwerp.textContent = onderwerpText;
+
+        // username
+        const userName = document.createElement('h6');
+        userName.className = 'user-name';
+        userName.textContent = userNameText;
+
+        // build tree
+        userInfo.appendChild(onderwerp);
+        userInfo.appendChild(userName);
+
+        userList.appendChild(userImg);
+        userList.appendChild(userInfo);
+
+        return userList;
+    }
+
 });

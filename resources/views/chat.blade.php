@@ -7,15 +7,48 @@
     @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/app.js'])
     <title>Chat Layout</title>
 </head>
-<body class="body">
+<body class="body dark min-h-screen flex flex-col">
 <x-header />
-<section class="section-one dark">
-    <!-- Main Card -->
-    <div class="chat-card">
+<section class="section-one flex-1 flex items-center justify-center">
+{{--    admin card--}}
+    <x-card class="admin-card">
+        <div class="card-header flex items-center p-3 gap-3">
+            <!-- aligns with admin-side -->
+            <div class="w-12 flex justify-center">
+{{--                <button class="admin-btn">--}}
+{{--                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">--}}
+{{--                        <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>--}}
+{{--                    </svg>--}}
+{{--                </button>--}}
+                <img src="" alt="admin" class="w-9 h-9 bg-red-600 rounded-full">
+            </div>
 
-        <!-- Header -->
-        <div class="header">
-            <h2 class="text-lg font-bold text-center ml-12">Welkom bij de Chat</h2>
+            <!-- search area -->
+            <textarea
+                id="admin-search"
+                class="admin-search dark no-scrollbar flex-1"
+                placeholder="Zoek naar een gebruiker."
+            ></textarea>
+        </div>
+
+        <div id="usersArea" class="users-area dark no-scrollbar">
+{{--            <div class="admin-side"></div>--}}
+                <div id="userList" class="user-list-items">
+                    <img src="" alt="user" class="userImg">
+                    <div id="userInfo" class="userInfo">
+                        <h5 id="onderwerp" class="onderwerp">Onderwerp</h5>
+                        <h6 id="userName" class="user-name">Gebruikersnaam / anoniem</h6>
+                    </div>
+                </div>
+
+        </div>
+
+    </x-card>
+
+    <!-- Main Card -->
+    <x-card class="chat-card">
+        <div class="card-header">
+            <h2 class="text-lg font-bold text-center">Welkom bij de Chat</h2>
         </div>
 
         <!-- Scrollable Chat Area -->
@@ -24,7 +57,7 @@
         </div>
 
         <!-- Fixed Input Area -->
-        <div class="chat-div">
+        <div class="chat-div card-typing">
             <form id="sentMessageForm" class="chat-div-form" method="post" action="{{ route('chat.create', $chat->id) }}">
                 @csrf
                 <textarea id="textarea"
@@ -40,7 +73,7 @@
                 </button>
             </form>
         </div>
-    </div>
+    </x-card>
 </section>
 <script>
     let currentUserId = @json(Auth::id());
