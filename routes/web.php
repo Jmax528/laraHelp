@@ -18,9 +18,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 Route::post('/faq/create', [FaqController::class, 'create'])->name('faq.create');
-Route::post('/faq/edit', [FaqController::class, 'edit'])->name('faq.edit');
-Route::delete('/faq/delete', [FaqController::class, 'destroy'])->name('faq.destroy');
-
+Route::post('/faq/update', [FaqController::class, 'update'])->name('faq.update');
+Route::post('/faq/delete', [FaqController::class, 'delete'])->name('faq.delete');
 
 Route::view('/chat', 'chat' );
 Route::get('/chat', [ChatController::class, 'chat'] )->name('chat');
