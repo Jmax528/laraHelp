@@ -49,10 +49,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    console.log(window.users);
+
+    window.users.forEach(user => {
+        console.log(user.name, user.email);
+    });
+
+
     const usersArea = document.getElementById('usersArea');
-    for (let i = 1; i < 10; i++) {
-        usersArea.appendChild(createProfiles(`Onderwerp ${i+1}`, `Gebruikersnaam / anoniem ${i+1}`));
-    }
+    window.users.forEach(user => {
+        usersArea.appendChild(
+            createProfiles(
+                user.name,
+                user.email,
+                ''
+            )
+        );
+    })
     function createProfiles(onderwerpText = 'Onderwerp', userNameText = 'Gebruiker', imgSrc = '', ) {
         // main container
         const userList = document.createElement('div');

@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        window.users = @json($users);
+        window.currentUserId = @json(Auth::id());
+        window.chatId = @json($chat->id ?? null);
+        window.chatMessage = @json($messages);
+    </script>
     @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/app.js'])
     <title>Chat Layout</title>
 </head>
@@ -32,15 +38,6 @@
         </div>
 
         <div id="usersArea" class="users-area dark no-scrollbar">
-{{--            <div class="admin-side"></div>--}}
-                <div id="userList" class="user-list-items">
-                    <img src="" alt="user" class="userImg">
-                    <div id="userInfo" class="userInfo">
-                        <h5 id="onderwerp" class="onderwerp">Onderwerp</h5>
-                        <h6 id="userName" class="user-name">Gebruikersnaam / anoniem</h6>
-                    </div>
-                </div>
-
         </div>
 
     </x-card>

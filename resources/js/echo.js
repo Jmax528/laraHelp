@@ -21,6 +21,12 @@ window.Echo.private(`chat.${chatId}`)
         console.log("Event payload:", e);
     });
 
+window.chatMessage.forEach(message => {
+    createMessage({
+        user_id: message.user_id,
+        message: message.message
+    });
+});
 
 //delete this console.log
 console.log("ChatId: ", chatId, "CurrentUserId: ", currentUserId);
@@ -48,6 +54,11 @@ function createMessage(e) {
         // Receiver side = orange bubble
         messageBox.classList.add('chat-two');
     }
+
+    const userName = document.createElement('div');
+    userName.classList.add('chat-name');
+    messageBox.appendChild(userName);
+
 
     messageBox.textContent = e.message;
     chatArea.appendChild(messageBox);
