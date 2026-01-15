@@ -15,6 +15,7 @@
             <ul class="flex gap-4">
                 <li><x-nav-link href="/">Home</x-nav-link></li>
                 <li><x-nav-link href="/chat">Chat</x-nav-link></li>
+                <li><x-nav-link href="/ons-team">Ons Team</x-nav-link></li>
                 <li><x-nav-link href="/faq">FAQ</x-nav-link></li>
             </ul>
         </nav>
