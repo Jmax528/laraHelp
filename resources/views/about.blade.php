@@ -34,7 +34,12 @@
                 <img src="image/ElkeAltenburg.jpg" alt="Elke Altenburg">
                 <p>Elke Altenburg</p>
             </a>
+            <a href="#olga" class="header-part">
+                <img src="image/OlgaMikesova.jpg" alt="Olga Mikešová">
+                <p>Olga Mikešová</p>
+            </a>
         </div>
+
         <div class="team-container" id="jaap">
             <div class="name">
                 <img src="image/JaapVanGerrevink.jpg" alt="Jaap van Gerrevink">
@@ -47,10 +52,10 @@
                 </div>
                 <div>
                     <p>Wat vind ik leuk om te doen?</p>
-                    <span>ik kijk graag voetbal, luister veel muziek en start elke dag met een lekkere kop koffie.</span>
+                    <span>Ik kijk graag voetbal, luister veel muziek en start elke dag met een lekkere kop koffie.</span>
                 </div>
                 <div>
-                    <p>Welke opleiding ben ik aangekoppeld?</p>
+                    <p>Aan welke opleiding ben ik gekoppeld?</p>
                     <ul>
                         <li>MBO Bedrijfsadministratie</li>
                         <li>E-commerce specialist</li>
@@ -76,7 +81,7 @@
                     <span>Met mijn hond het bos in gaan, theater maken en goede documentaires kijken over gedrag.</span>
                 </div>
                 <div>
-                    <p>Welke opleiding ben ik aangekoppeld?</p>
+                    <p>Aan welke opleiding ben ik gekoppeld?</p>
                     <ul>
                         <li>ICT Support technician</li>
                         <li>Medewerker ICT</li>
@@ -98,10 +103,10 @@
                 </div>
                 <div>
                     <p>Wat vind ik leuk om te doen?</p>
-                    <span>voetbal, fotografie en wandelen in de bergen.</span>
+                    <span>Voetbal, fotografie en wandelen in de bergen.</span>
                 </div>
                 <div>
-                    <p>Welke opleiding ben ik aangekoppeld?</p>
+                    <p>Aan welke opleiding ben ik gekoppeld?</p>
                     <ul>
                         <li>Mediavormgever</li>
                         <li>MBO Rechten (oudere jaars)</li>
@@ -122,10 +127,10 @@
                 </div>
                 <div>
                     <p>Wat vind ik leuk om te doen?</p>
-                    <span>hardlopen, paardrijden, pianospelen en met mijn hond wandelen.</span>
+                    <span>Hardlopen, paardrijden, pianospelen en met mijn hond wandelen.</span>
                 </div>
                 <div>
-                    <p>Welke opleiding ben ik aangekoppeld?</p>
+                    <p>Aan welke opleiding ben ik gekoppeld?</p>
                     <ul>
                         <li>Medewerken Administratie en Receptie</li>
                         <li>Retailmedewerker</li>
@@ -149,13 +154,38 @@
                 </div>
                 <div>
                     <p>Wat vind ik leuk om te doen?</p>
-                    <span>reizen, volleybal en ik hou van bordspellen.</span>
+                    <span>Reizen, volleybal en ik hou van bordspellen.</span>
                 </div>
                 <div>
-                    <p>Welke opleiding ben ik aangekoppeld?</p>
+                    <p>Aan welke opleiding ben ik gekoppeld?</p>
                     <ul>
                         <li>Software Developer</li>
                         <li>System engineer (1e jaars)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-container" id="olga">
+            <div class="name">
+                <img src="image/OlgaMikesova.jpg" alt="Olga Mikešová">
+                <p>Olga Mikešová</p>
+            </div>
+            <div class="info">
+                <div>
+                    <p>Wie ben ik?</p>
+                    <span>Ik ben adviseur studentenbegeleiding en denk met je mee over je opleiding, doelen en hoe je alles op de rit houdt.</span>
+                </div>
+                <div>
+                    <p>Wat vind ik leuk om te doen?</p>
+                    <span>Koken, naar de sauna gaan, olietjes mengen, wandelen en fietsen</span>
+                </div>
+                <div>
+                    <p>Aan welke opleiding ben ik gekoppeld?</p>
+                    <ul>
+                        <li>Assistent Logistiek</li>
+                        <li>Assistent verkoop/retail (Entree, Entree NT2)</li>
+                        <li>System Engineer (oudere jaars)</li>
                     </ul>
                 </div>
             </div>
