@@ -2,101 +2,83 @@ import './echo.js';
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ----------------------------
+       ELEMENTS
+    ----------------------------- */
     const sendBtn = document.getElementById('sendBtn');
     const sendMessage = document.getElementById('sentMessageForm');
     const textarea = document.getElementById('textarea');
+    const usersArea = document.getElementById('usersArea');
+
     textarea.value = '';
 
-    // --- Submit message ---
+    /* ----------------------------
+       SEND MESSAGE
+    ----------------------------- */
     sendMessage.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        if (!textarea.value.trim()) return;
 
-        const formData = new FormData(this);
         fetch(this.action, {
             method: 'POST',
-            body: formData,
+            body: new FormData(this),
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
             }
-        })
-            .then(r => r.json())
-            .then(data => console.log('Success:', data))
-            .catch(err => console.error(err));
+        });
 
+        textarea.value = '';
     });
 
-    // --- Click and Enter key ---
-    sendBtn.addEventListener('click', (e) => {
+    sendBtn.addEventListener('click', e => {
         e.preventDefault();
-        if (textarea.value.trim()) {
-            sendMessage.requestSubmit();
-        }
-        textarea.value = '';
+        sendMessage.requestSubmit();
     });
 
     document.addEventListener('keydown', e => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            if (textarea.value.trim()) {
-                sendMessage.requestSubmit();
-            }
-            textarea.value = '';
+            sendMessage.requestSubmit();
         }
     });
-    function amdinSearch(){
-        const adminBtn = document.getElementById('adminBtn');
 
+    /* ----------------------------
+       RENDER USERS (ADMIN PANEL)
+    ----------------------------- */
+    if (window.users && usersArea) {
+        window.users.forEach(user => {
+            usersArea.appendChild(createProfile(user));
+        });
     }
 
-    console.log(window.users);
-
-    window.users.forEach(user => {
-        console.log(user.name, user.email);
-    });
-
-
-    const usersArea = document.getElementById('usersArea');
-    window.users.forEach(user => {
-        usersArea.appendChild(
-            createProfiles(
-                user.name,
-                user.email,
-                ''
-            )
-        );
-    })
-    function createProfiles(onderwerpText = 'Onderwerp', userNameText = 'Gebruiker', imgSrc = '', ) {
-        // main container
+    function createProfile(user) {
         const userList = document.createElement('div');
         userList.className = 'user-list-items';
+        userList.dataset.chatId = user.chats.id;
 
-        // profile image
-        const userImg = document.createElement('img');
-        userImg.className = 'userImg';
-        userImg.src = imgSrc;
-        userImg.alt = 'user';
-
-        // text container
         const userInfo = document.createElement('div');
         userInfo.className = 'userInfo';
 
-        // onderwerp
         const onderwerp = document.createElement('h5');
-        onderwerp.className = 'onderwerp'; // SCSS handles text color and size
-        onderwerp.textContent = onderwerpText;
+        onderwerp.className = 'user-name';
+        onderwerp.textContent = user.name;
 
-        // username
         const userName = document.createElement('h6');
-        userName.className = 'user-name';
-        userName.textContent = userNameText;
+        userName.className = 'email';
+        userName.textContent = user.email;
 
-        // build tree
         userInfo.appendChild(onderwerp);
         userInfo.appendChild(userName);
-
-        userList.appendChild(userImg);
         userList.appendChild(userInfo);
+
+        userList.addEventListener('click', () => {
+            if (!userList.dataset.chatId) {
+                alert('Geen chat gevonden.');
+                return;
+            }
+            window.location.href = `/chat/${userList.dataset.chatId}`;
+        });
 
         return userList;
     }

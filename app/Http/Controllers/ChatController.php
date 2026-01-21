@@ -5,60 +5,72 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use App\Models\Chats;
 use App\Models\Messages;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class ChatController extends Controller
 {
-    public function index(): View
-    {
-        return view('chat');
+
+    public function openUserChat(User $user){
+        $chat = Chats::firstOrCreate([
+            ['user_id' => $user->id],
+            ['title' => 'Chat with ' . $user->name]
+        ]);
+        return redirect()->route('chat.show', $chat->id);
     }
+
+    /**
+     * Show a chat with users + messages
+     */
+    public function show(Chats $chat): View
+    {
+        // Load chat messages + sender
+        $chat->load([
+            'participants:id,name',
+            'messages' => fn ($q) => $q->orderBy('sent_at', 'asc'),
+            'messages.user:id,name'
+        ]);
+
+        // Load users for admin sidebar (exclude yourself)
+        $users = User::with('chats')
+            ->where('id', '!=', Auth::id())
+            ->orderBy('name')
+            ->get();
+
+        return view('chat', [
+            'chat' => $chat,
+            'users' => $users,
+            'messages' => $chat->messages,
+        ]);
+    }
+
+    /**
+     * Send a message
+     */
     public function create(Request $request, Chats $chat): JsonResponse
     {
-        $message = $request->input('message');
+        $request->validate([
+            'message' => 'required|string'
+        ]);
 
-        Log::info('chat ID: ' . $chat->id);
-        Log::info('Message: ' . $message);
-
-        // Save message to database
-        Messages::create([
+        $message = Messages::create([
             'chat_id' => $chat->id,
             'user_id' => Auth::id(),
-            'message' => $message,
+            'message' => $request->message,
         ]);
 
         broadcast(new MessageSent(
-            $message,
+            $message->message,
             $chat->id,
-            Auth::id(),
+            $message->user_id,
+            Auth::user()->name
         ))->toOthers();
 
         return response()->json([
             'success' => true,
-        ]);
-    }
-
-    public function show(Chats $chat): View
-    {
-        Log::debug('chat.show', $chat->toArray());
-        // Load participants and messages with user info
-        $chat->load([
-            'participants:id,name', // eager load participants (only id & name for brevity)
-            'messages' => function ($query) {
-                $query->orderBy('sent_at', 'asc'); // order messages chronologically
-            },
-            'messages.user:id,name' // eager load message sender info
-        ]);
-
-        // Return a Blade view instead of JSON
-        return view('chat', [
-            'chat' => $chat,
-            'participants' => $chat->participants,
-            'messages' => $chat->messages,
         ]);
     }
 }
