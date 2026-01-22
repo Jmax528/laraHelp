@@ -1,19 +1,21 @@
-document.querySelectorAll('.theme-container').forEach(theme => {
-    theme.addEventListener('click', function(e) {
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', function (e) {
 
         const idNumber = this.id.split('-')[1];
-        const less = document.getElementById(`less-${idNumber}`);
-        const more = document.getElementById(`more-${idNumber}`);
-        const faq = document.getElementById(`faq-${idNumber}`);
 
-        less.classList.toggle('hidden');
-        more.classList.toggle('hidden');
-        faq.classList.toggle('show');
+        const expand = this.querySelector('.expand-toggle');
+        const retract = this.querySelector('.retract-toggle');
+        const answer = document.getElementById(`answer-${idNumber}`);
+
+        expand.classList.toggle('hidden');
+        retract.classList.toggle('hidden');
+        answer.classList.toggle('show');
     });
 });
 
+
 document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', function(e) {
+    question.addEventListener('click', function (e) {
 
         const idNumber = this.id.split('-')[1];
         const expand = document.getElementById(`expand-${idNumber}`);
@@ -25,25 +27,3 @@ document.querySelectorAll('.faq-question').forEach(question => {
         answer.classList.toggle('show');
     });
 });
-
-function removeOrAddFaqs() {
-    const faq = `<div>
-                    <label for="question">Vraag:</label>
-                    <input type="text">
-                    <br>
-                    <label for="answer">Antwoord:</label>
-                    <input for="answer"/>
-                </div>`
-    document.getElementById('faq').innerHTML = faq;
-}
-
-function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
-    document.getElementById(id).classList.add('flex');
-}
-
-function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
-    document.getElementById(id).classList.remove('flex');
-}
-
