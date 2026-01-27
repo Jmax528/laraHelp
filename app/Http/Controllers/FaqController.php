@@ -80,11 +80,11 @@ class FaqController extends Controller
         ]);
 
         if (!empty($validated['faq_id']) && Faq::destroy($validated['faq_id'])) {
-            return response()->json([], 200);
+            return redirect()->back()->with('success', 'Deleted');
         }
 
         if (!empty($validated['section_id']) && Section::destroy($validated['section_id'])) {
-            return response()->json([], 200);
+            return redirect()->back()->with('success', 'Deleted');
         }
 
         return response()->json([], 404);
