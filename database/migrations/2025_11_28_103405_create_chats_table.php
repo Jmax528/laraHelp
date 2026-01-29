@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->unsignedBigInteger('user_id')->unique(); // each user has 1 chat
             $table->timestamps();
         });
 

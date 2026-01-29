@@ -11,8 +11,13 @@ class Chats extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
     // A chat has many messages
     public function messages()
@@ -20,9 +25,4 @@ class Chats extends Model
         return $this->hasMany(Messages::class, 'chat_id');
     }
 
-    // A chat has many participants (users) via pivot
-    public function participants()
-    {
-        return $this->belongsToMany(User::class, 'chat_participants', 'chat_id', 'user_id');
-    }
 }

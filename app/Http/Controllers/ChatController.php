@@ -13,32 +13,68 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
+    /**
+     * 👤 Regular user: open own chat (auto-create)
+     */
+    public function userChat()
+    {
+        $user = auth()->user();
 
-    public function openUserChat(User $user){
-        $chat = Chats::firstOrCreate([
+        // Admins should not use this route
+        if ($user->isAdmin()) {
+            abort(403);
+        }
+
+        $chat = Chats::firstOrCreate(
             ['user_id' => $user->id],
-            ['title' => 'Chat with ' . $user->name]
-        ]);
-        return redirect()->route('chat.show', $chat->id);
+            ['title' => 'Support chat']
+        );
+
+        return redirect()->route('chat.show', $chat);
     }
 
     /**
-     * Show a chat with users + messages
+     * 🛡 Admin: open chat with a specific user
+     */
+    public function openUserChat(User $user)
+    {
+        if (!auth()->user()->isAdmin()) {
+            abort(403);
+        }
+
+        $chat = Chats::firstOrCreate(
+            ['user_id' => $user->id],
+            ['title' => 'Chat with ' . $user->name]
+        );
+
+        return redirect()->route('chat.show', $chat);
+    }
+
+    /**
+     * 💬 Show an existing chat
      */
     public function show(Chats $chat): View
     {
-        // Load chat messages + sender
+        $user = auth()->user();
+
+        // 🔐 Authorization
+        if (!$user->isAdmin() && $chat->user_id !== $user->id) {
+            abort(403);
+        }
+
+        // Load messages
         $chat->load([
-            'participants:id,name',
             'messages' => fn ($q) => $q->orderBy('sent_at', 'asc'),
             'messages.user:id,name'
         ]);
 
-        // Load users for admin sidebar (exclude yourself)
-        $users = User::with('chats')
-            ->where('id', '!=', Auth::id())
-            ->orderBy('name')
-            ->get();
+        // Admin sidebar users
+        $users = [];
+        if ($user->isAdmin()) {
+            $users = User::where('id', '!=', $user->id)
+                ->orderBy('name')
+                ->get();
+        }
 
         return view('chat', [
             'chat' => $chat,
@@ -48,7 +84,7 @@ class ChatController extends Controller
     }
 
     /**
-     * Send a message
+     * ✉ Send a message
      */
     public function create(Request $request, Chats $chat): JsonResponse
     {
@@ -59,7 +95,7 @@ class ChatController extends Controller
         $message = Messages::create([
             'chat_id' => $chat->id,
             'user_id' => Auth::id(),
-            'message' => $request->message,
+            'message' => strip_tags($request->message),
         ]);
 
         broadcast(new MessageSent(
@@ -71,6 +107,7 @@ class ChatController extends Controller
 
         return response()->json([
             'success' => true,
+            'message' => $message,
         ]);
     }
 }

@@ -55,7 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function createProfile(user) {
         const userList = document.createElement('div');
         userList.className = 'user-list-items';
-        userList.dataset.chatId = user.chats.id;
+        userList.dataset.chatId = user.chat?.id ?? '';
+        if (!user.chat) return;
+
 
         const userInfo = document.createElement('div');
         userInfo.className = 'userInfo';
@@ -73,12 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
         userList.appendChild(userInfo);
 
         userList.addEventListener('click', () => {
-            if (!userList.dataset.chatId) {
-                alert('Geen chat gevonden.');
+            if (!user.chat?.id) {
+                alert('Geen chat gevonden bij deze gebruiker.');
                 return;
             }
-            window.location.href = `/chat/${userList.dataset.chatId}`;
+            window.location.href = `/chat/${user.chat.id}`;
         });
+
 
         return userList;
     }

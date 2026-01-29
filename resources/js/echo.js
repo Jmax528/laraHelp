@@ -14,22 +14,25 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-window.Echo.private(`chat.${chatId}`)
+window.Echo.private(`chat.${window.chatId}`)
     .listen('MessageSent', (e) => {
         createMessage(e);
         //delete this console.log
         console.log("Event payload:", e);
     });
 
-window.chatMessage.forEach(message => {
-    createMessage({
-        user_id: message.user_id,
-        message: message.message
+if (Array.isArray(window.chatMessage)) {
+    window.chatMessage.forEach(message => {
+        createMessage({
+            user_id: message.user_id,
+            message: message.message,
+        });
     });
-});
+}
+
 
 //delete this console.log
-console.log("ChatId: ", chatId, "CurrentUserId: ", currentUserId);
+console.log("ChatId: ", window.chatId, "CurrentUserId: ", currentUserId);
 
 function createMessage(e) {
     const chatArea = document.getElementById('chatArea');

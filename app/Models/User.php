@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -49,12 +50,17 @@ class User extends Authenticatable
     // A user can send many messages
     public function messages()
     {
-        return $this->hasMany(Messages::class, 'user_id');
+        return $this->hasMany(Messages::class);
     }
 
-    // A user can participate in many chats via pivot
-    public function chats()
+    // A user can participate in one chat (with admin)
+    public function chat()
     {
-        return $this->belongsToMany(Chats::class, 'chat_participants', 'user_id', 'chat_id');
+        return $this->hasOne(Chats::class);
+    }
+
+//    checks if a user is Admin
+    public function isAdmin(): bool {
+        return $this->role === 1;
     }
 }

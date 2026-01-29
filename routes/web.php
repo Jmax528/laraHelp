@@ -17,19 +17,24 @@ require __DIR__.'/auth.php';
 
 Route::view('/faq', 'faq' );
 
-
 Route::middleware('auth')->group(function () {
-    Route::get('/chat/{chat}', [ChatController::class, 'show'] )
+
+    // 👤 Regular user: open OWN chat (auto-create if needed)
+    Route::get('/chat', [ChatController::class, 'userChat'])
+        ->name('chat.user');
+
+    // 🛡 Admin: open chat with a specific user
+    Route::get('/admin/chat/user/{user}', [ChatController::class, 'openUserChat'])
+        ->middleware('admin')
+        ->name('chat.admin.open');
+
+    // 💬 Show an existing chat
+    Route::get('/chat/{chat}', [ChatController::class, 'show'])
         ->name('chat.show');
 
-    Route::post('/chat/{chat}/message', [ChatController::class, 'create'] )
+    // ✉ Send message
+    Route::post('/chat/{chat}/message', [ChatController::class, 'create'])
         ->name('chat.create');
 
-    Route::get('/admin/chat/user/{user}', [ChatController::class, 'loadUserChat'])
-        ->middleware('auth');
-
-    Route::get('/admin/chat/user/{user}', [ChatController::class, 'openUserChat'])
-        ->middleware(['auth', 'admin']);
-
-
 });
+
