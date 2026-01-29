@@ -5,6 +5,11 @@ use App\Http\Controllers\ChatController;
 
 Route::view('/', 'home');
 
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Redirect to login or homepage
+})->name('logout');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -28,7 +33,7 @@ Route::middleware('auth')->group(function () {
         ->middleware('admin')
         ->name('chat.admin.open');
 
-    // 💬 Show an existing chat
+    // Show an existing chat
     Route::get('/chat/{chat}', [ChatController::class, 'show'])
         ->name('chat.show');
 

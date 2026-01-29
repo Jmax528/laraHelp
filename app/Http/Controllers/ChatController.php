@@ -54,9 +54,16 @@ class ChatController extends Controller
     /**
      * 💬 Show an existing chat
      */
-    public function show(Chats $chat): View|RedirectResponse
+    public function show($chatId): View|RedirectResponse
     {
+        $chat = Chats::find($chatId);
+
         $user = auth()->user();
+
+        if (!$chat) {
+            return redirect()->route('chat.user');
+
+        }
 
         if (!$user->isAdmin() && $chat->user_id !== $user->id) {
             return redirect()->route('chat.user');

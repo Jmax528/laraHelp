@@ -14,6 +14,10 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
+
+if (!window.chatId)  {
+    console.warn("ChatId not found, live messaging will not work.");
+} else {
 window.Echo.private(`chat.${window.chatId}`)
     .listen('MessageSent', (e) => {
         createMessage(e);
@@ -28,6 +32,7 @@ if (Array.isArray(window.chatMessage)) {
             message: message.message,
         });
     });
+}
 }
 
 

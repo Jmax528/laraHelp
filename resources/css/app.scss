@@ -144,7 +144,7 @@ h6, .h6 {
 }
 
 
-.nav-item {
+.nav-item, .logout {
     @apply text-white hover:text-blue-300 font-medium;
     .active {
         @apply text-blue-300 font-medium border-b-2 border-blue-300 pb-1;

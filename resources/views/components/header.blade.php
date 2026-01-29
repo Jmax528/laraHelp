@@ -20,7 +20,17 @@
                 <li><x-nav-link href="/">Home</x-nav-link></li>
                 <li><x-nav-link href="/chat">Chat</x-nav-link></li>
                 <li><x-nav-link href="/faq">FAQ</x-nav-link></li>
-                <li><x-nav-link href="{{ route('login') }}">Login</x-nav-link></li>
+                @if (!Auth::check())
+                    <li><x-nav-link href="{{ route('login') }}">Login</x-nav-link></li>
+                @else
+                    <li>
+                        <span>User:  {{ Auth::user()->name }}</span>
+                        <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                            @csrf
+                            <button class="logout" type="submit">Logout</button>
+                        </form>
+                    </li>
+                @endif
             </ul>
         </nav>
     </div>

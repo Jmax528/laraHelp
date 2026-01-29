@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const usersArea = document.getElementById('usersArea');
     const chatArea = document.getElementById('chatArea');
 
+    textarea.value = '';
+
+
     //messages
     if (Array.isArray(window.chatMessage)) {
         window.chatMessage.forEach(message => {
@@ -96,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.addEventListener('click', e => {
         e.preventDefault();
         sendMessage.requestSubmit();
+
     });
 
     document.addEventListener('keydown', e => {
@@ -104,5 +108,4 @@ document.addEventListener('DOMContentLoaded', () => {
             sendMessage.requestSubmit();
         }
     });
-
 });
