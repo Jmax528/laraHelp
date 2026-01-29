@@ -8,6 +8,7 @@ use App\Models\Messages;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,12 +54,12 @@ class ChatController extends Controller
     /**
      * 💬 Show an existing chat
      */
-    public function show(Chats $chat): View
+    public function show(Chats $chat): View|RedirectResponse
     {
         $user = auth()->user();
 
         if (!$user->isAdmin() && $chat->user_id !== $user->id) {
-            abort(403);
+            return redirect()->route('chat.user');
         }
 
         $chat->load([
