@@ -14,8 +14,8 @@
 <!-- Hero Section -->
 <section class="bg-[#4C6A92] text-white py-16">
     <div class="container mx-auto px-4">
-        <h2 class="main-title mb-4">Uitleg LBC</h2>
-        <p class="hero-subtitle max-w-3xl">We helpen je met elke situatie.</p>
+        <h1 class="h2 font-500 main-title mb-4">Uitleg LBC</h1>
+        <p class="h4 hero-subtitle max-w-3xl">We helpen je met elke situatie.</p>
     </div>
 </section>
 
@@ -27,17 +27,17 @@
             <!-- Left Column -->
             <div class="space-y-8">
                 <!-- Welcome Section -->
-                <div>
-                    <h3 class="text-white section-title mb-6">Welkom bij het Loopbaancentrum</h3>
+                <div class="mb-6">
+                    <h2 class="h3 font-500 text-white section-title mb-6">Welkom bij het Loopbaancentrum</h2>
                     <div class="space-y-4 text-white normal-text">
-                        <p>Soms heb je meer begeleiding en hulp of aanpassingen nodig. Misschien twijfel je over je studiekeuze. Of heb je problemen met je studie of thuis. Je kunt dan naar het loopbaancentrum. Je kunt advies krijgen over je studie en het werk dat je later wilt doen. Of je kunt praten over je problemen. We werken samen met mensen van het WIJ-team en eurocoaches en kunnen op deze manier makkelijk doorverwijzen naar mensen die je kunnen helpen buiten school.</p>
+                        <p class="h4">Soms heb je meer begeleiding en hulp of aanpassingen nodig. Misschien twijfel je over je studiekeuze. Of heb je problemen met je studie of thuis. Je kunt dan naar het loopbaancentrum. Je kunt advies krijgen over je studie en het werk dat je later wilt doen. Of je kunt praten over je problemen. We werken samen met mensen van het WIJ-team en eurocoaches en kunnen op deze manier makkelijk doorverwijzen naar mensen die je kunnen helpen buiten school.</p>
                     </div>
                 </div>
 
                 <!-- Highlight Box -->
                 <div class="bg-white/20 backdrop-blur-sm border-l-4 border-white p-6 rounded-r-lg">
-                    <h4 class="font-medium text-white mb-2 section-title">Kom gewoon langs in lokaal 4.51</h4>
-                    <p class="text-white mb-2 normal-text">Of overleg eerst met je slber en ouders en maak een afspraak.</p>
+                    <h2 class="h3 font-500 text-white mb-2 section-title">Kom gewoon langs in lokaal 4.51</h2>
+                    <p class="h5 text-white mb-2 normal-text">Of overleg eerst met je slber en ouders en maak een afspraak.</p>
                 </div>
             </div>
 
@@ -45,9 +45,9 @@
             <div class="space-y-8">
                 <!-- Support Section -->
                 <div>
-                    <h3 class="text-white section-title mb-6">Extra ondersteuning</h3>
+                    <h2 class="h3 font-500 text-white section-title mb-6">Extra ondersteuning</h2>
                     <div class="space-y-4 text-white normal-text">
-                        <p>Heb je extra ondersteuning nodig van school? Bijvoorbeeld vanwege dyslexie, psychische problemen of een beperking? Of moet je bijvoorbeeld thuis veel voor je familie zorgen? Het is belangrijk dat je ons dit zo vroeg mogelijk laat weten. Het liefst bij de aanmelding. Vertel het ons zodat we je kunnen helpen. Samen maken we een plan. Als je wilt, kunnen je ouders hierin meedenken.</p>
+                        <p class="h4">Heb je extra ondersteuning nodig van school? Bijvoorbeeld vanwege dyslexie, psychische problemen of een beperking? Of moet je bijvoorbeeld thuis veel voor je familie zorgen? Het is belangrijk dat je ons dit zo vroeg mogelijk laat weten. Het liefst bij de aanmelding. Vertel het ons zodat we je kunnen helpen. Samen maken we een plan. Als je wilt, kunnen je ouders hierin meedenken.</p>
                     </div>
                 </div>
             </div>
