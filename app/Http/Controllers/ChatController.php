@@ -57,24 +57,20 @@ class ChatController extends Controller
     {
         $user = auth()->user();
 
-        // 🔐 Authorization
         if (!$user->isAdmin() && $chat->user_id !== $user->id) {
             abort(403);
         }
 
-        // Load messages
         $chat->load([
-            'messages' => fn ($q) => $q->orderBy('sent_at', 'asc'),
+            'messages' => fn ($q) => $q->orderBy('id', 'asc'),
             'messages.user:id,name'
         ]);
 
-        // Admin sidebar users
-        $users = [];
-        if ($user->isAdmin()) {
-            $users = User::where('id', '!=', $user->id)
-                ->orderBy('name')
-                ->get();
-        }
+        $users = User::with('chat')
+            ->where('id', '!=', $user->id)
+            ->whereHas('chat')
+            ->orderBy('name')
+            ->get();
 
         return view('chat', [
             'chat' => $chat,

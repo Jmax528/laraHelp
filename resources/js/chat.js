@@ -1,20 +1,89 @@
 import './echo.js';
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    /* ----------------------------
-       ELEMENTS
-    ----------------------------- */
+
     const sendBtn = document.getElementById('sendBtn');
     const sendMessage = document.getElementById('sentMessageForm');
     const textarea = document.getElementById('textarea');
     const usersArea = document.getElementById('usersArea');
+    const chatArea = document.getElementById('chatArea');
 
-    textarea.value = '';
+    /* -----------------------------
+       Render existing messages
+    ------------------------------ */
+    if (Array.isArray(window.chatMessage)) {
+        window.chatMessage.forEach(message => {
+            renderMessage({
+                user_id: message.user_id,
+                message: message.message
+            });
+        });
+    }
 
-    /* ----------------------------
-       SEND MESSAGE
-    ----------------------------- */
+    /* -----------------------------
+       Render user sidebar (ADMIN)
+    ------------------------------ */
+    if (Array.isArray(window.users)) {
+        window.users.forEach(user => {
+            const profile = createProfile(user);
+            if (profile) {
+                usersArea.appendChild(profile);
+            }
+        });
+    }
+
+    /* -----------------------------
+       Create user profile
+    ------------------------------ */
+    function createProfile(user) {
+        // if no user return it as null instead of undifined
+        if (!user.chat) return null;
+
+        const userList = document.createElement('div');
+        userList.className = 'user-list-items';
+        userList.dataset.chatId = user.chat.id;
+
+        const userInfo = document.createElement('div');
+        userInfo.className = 'userInfo';
+
+        const name = document.createElement('h5');
+        name.className = 'user-name';
+        name.textContent = user.name;
+
+        const email = document.createElement('h6');
+        email.className = 'email';
+        email.textContent = user.email;
+
+        userInfo.appendChild(name);
+        userInfo.appendChild(email);
+        userList.appendChild(userInfo);
+
+        userList.addEventListener('click', () => {
+            window.location.href = `/chat/${user.chat.id}`;
+        });
+
+        return userList;
+    }
+
+    /* -----------------------------
+       Render a message bubble
+    ------------------------------ */
+    function renderMessage(e) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('chat-container');
+
+        if (parseInt(e.user_id) === window.currentUserId) {
+            bubble.classList.add('chat-one');
+        } else {
+            bubble.classList.add('chat-two');
+        }
+
+        bubble.textContent = e.message;
+        chatArea.appendChild(bubble);
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
     sendMessage.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -42,48 +111,5 @@ document.addEventListener("DOMContentLoaded", () => {
             sendMessage.requestSubmit();
         }
     });
-
-    /* ----------------------------
-       RENDER USERS (ADMIN PANEL)
-    ----------------------------- */
-    if (window.users && usersArea) {
-        window.users.forEach(user => {
-            usersArea.appendChild(createProfile(user));
-        });
-    }
-
-    function createProfile(user) {
-        const userList = document.createElement('div');
-        userList.className = 'user-list-items';
-        userList.dataset.chatId = user.chat?.id ?? '';
-        if (!user.chat) return;
-
-
-        const userInfo = document.createElement('div');
-        userInfo.className = 'userInfo';
-
-        const onderwerp = document.createElement('h5');
-        onderwerp.className = 'user-name';
-        onderwerp.textContent = user.name;
-
-        const userName = document.createElement('h6');
-        userName.className = 'email';
-        userName.textContent = user.email;
-
-        userInfo.appendChild(onderwerp);
-        userInfo.appendChild(userName);
-        userList.appendChild(userInfo);
-
-        userList.addEventListener('click', () => {
-            if (!user.chat?.id) {
-                alert('Geen chat gevonden bij deze gebruiker.');
-                return;
-            }
-            window.location.href = `/chat/${user.chat.id}`;
-        });
-
-
-        return userList;
-    }
 
 });
