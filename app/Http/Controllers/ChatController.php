@@ -66,6 +66,8 @@ class ChatController extends Controller
             'messages.user:id,name'
         ]);
 
+
+
         $users = User::with('chat')
             ->where('id', '!=', $user->id)
             ->whereHas('chat')

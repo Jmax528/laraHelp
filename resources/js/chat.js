@@ -9,9 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const usersArea = document.getElementById('usersArea');
     const chatArea = document.getElementById('chatArea');
 
-    /* -----------------------------
-       Render existing messages
-    ------------------------------ */
+    //messages
     if (Array.isArray(window.chatMessage)) {
         window.chatMessage.forEach(message => {
             renderMessage({
@@ -21,21 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* -----------------------------
-       Render user sidebar (ADMIN)
-    ------------------------------ */
-    if (Array.isArray(window.users)) {
+    // Only render admin panel if usersArea exists and there are users
+    if (usersArea && Array.isArray(window.users)) {
         window.users.forEach(user => {
-            const profile = createProfile(user);
-            if (profile) {
-                usersArea.appendChild(profile);
+            if (user.chat?.id) { // make sure the user has a chat
+                usersArea.appendChild(createProfile(user));
             }
         });
     }
 
-    /* -----------------------------
-       Create user profile
-    ------------------------------ */
+    //user profiles
     function createProfile(user) {
         // if no user return it as null instead of undifined
         if (!user.chat) return null;

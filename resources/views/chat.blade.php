@@ -16,6 +16,9 @@
 <body class="body dark min-h-screen flex flex-col">
 <x-header />
 <section class="section-one flex-1 flex items-center justify-center">
+
+    @if(Auth::user()->isAdmin())
+
 {{--    admin card--}}
     <x-card class="admin-card">
         <div class="card-header flex items-center p-3 gap-3">
@@ -41,6 +44,7 @@
         </div>
 
     </x-card>
+    @endif
 
     <!-- Main Card -->
     <x-card class="chat-card">
