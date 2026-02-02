@@ -62,9 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return userList;
     }
 
-    /* -----------------------------
-       Render a message bubble
-    ------------------------------ */
+    //render the message bubbles
     function renderMessage(e) {
         const bubble = document.createElement('div');
         bubble.classList.add('chat-container');
@@ -80,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 
+    //send message, remove the white spaces at the ends, clear the textarea
     sendMessage.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -96,12 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         textarea.value = '';
     });
 
+    //send with button
     sendBtn.addEventListener('click', e => {
         e.preventDefault();
         sendMessage.requestSubmit();
 
     });
-
+    //send with enter, go to the next line with shift enter
     document.addEventListener('keydown', e => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();

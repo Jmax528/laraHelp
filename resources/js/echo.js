@@ -15,30 +15,26 @@ window.Echo = new Echo({
 });
 
 
-if (!window.chatId)  {
+//check if there's a chatId, listen if a message is being sent
+if (!window.chatId) {
     console.warn("ChatId not found, live messaging will not work.");
 } else {
-window.Echo.private(`chat.${window.chatId}`)
-    .listen('MessageSent', (e) => {
-        createMessage(e);
-        //delete this console.log
-        console.log("Event payload:", e);
-    });
-
-if (Array.isArray(window.chatMessage)) {
-    window.chatMessage.forEach(message => {
-        createMessage({
-            user_id: message.user_id,
-            message: message.message,
+    window.Echo.private(`chat.${window.chatId}`)
+        .listen('MessageSent', (e) => {
+            createMessage(e);
         });
-    });
+
+    if (Array.isArray(window.chatMessage)) {
+        window.chatMessage.forEach(message => {
+            createMessage({
+                user_id: message.user_id, message: message.message,
+            });
+        });
+    }
 }
-}
 
 
-//delete this console.log
-console.log("ChatId: ", window.chatId, "CurrentUserId: ", currentUserId);
-
+//delete placeholders if the chatArea and messageBox aren't empty
 function createMessage(e) {
     const chatArea = document.getElementById('chatArea');
     const messageBox = document.createElement('div');
@@ -47,8 +43,6 @@ function createMessage(e) {
     if (placeholder) {
         placeholder.remove();
     }
-
-
 
 
     // Same class applied to both

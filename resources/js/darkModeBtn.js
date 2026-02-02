@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const svgSun = path.getAttribute('d');
         const svgMoon = "M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z";
 
+        //toggle the CSS for between light mode and dark mode, swap the SVG pattern between a sun and a moon
         const darkMode = document.getElementsByClassName('dark' );
         darkModeBtn.addEventListener('click', () => {
             for (let el of darkMode) {
