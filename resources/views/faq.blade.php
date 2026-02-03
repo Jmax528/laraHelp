@@ -24,9 +24,11 @@
                     </div>
 
                     <span class="h1 ml-2">{{ $section->name }}</span>
+                    @can('create', $section)
                     <button class="ml-auto p-2 dusty-ceder-300 rounded" onclick="openModal('Toevoegen-menu')">
                         Toevoegen
                     </button>
+                    @endcan
                 </div>
 
                 {{-- FAQ LIST --}}
@@ -64,39 +66,15 @@
     </div>
 </section>
 
-{{-- ADD QEUSTION MODAL --}}
-<div id="add-faq-modal" class="modal-overlay hidden">
-    <div class="modal">
-        <h2 class="text-xl font-bold mb-4">Nieuwe vraag toevoegen</h2>
 
-        <form id="add-faq-form" method="POST" action="{{ route('faq.create') }}">
-            @csrf
-            <input type="hidden" name="section_id" id="add-section-id">
-
-            <label for="question">Vraag</label>
-            <input type="text" name="question" class="w-full p-2 border rounded mb-4">
-
-            <label for="answer">Antwoord</label>
-            <input type="text" name="question" class="w-full p-2 border rounded mb-4">
-
-            <div class="flex justify-end mt-4">
-                <button type="button" onclick="closeModal('add-faq-modal')" class="px-4 py-2 bg-gray-300 rounded mr-2">
-                    Annuleren
-                </button>
-                <button class="px-4 py-2 bg-blue-600 text-white rounded">Opslaan</button>
-            </div>
-        </form>
-    </div>
-</div>
-
+@can('update', $faq)
 {{-- EDIT FAQ MODAL --}}
 <div id="edit-faq-modal" class="modal-overlay hidden">
     <div class="modal">
         <h2 class="text-xl font-bold mb-4">FAQ Bewerken</h2>
 
-        <form id="edit-faq-form" method="POST">
+        <form id="edit-faq-form" method="POST" action="{{route('faq.update')}}">
             @csrf
-            @method('PUT')
 
             <label class="block mb-2">Vraag</label>
             <input id="edit-question" type="text" name="question" class="w-full p-2 border rounded mb-4">
@@ -104,8 +82,8 @@
             <label class="block mb-2">Antwoord</label>
             <textarea id="edit-answer" name="answer" class="w-full p-2 border rounded mb-4" rows="4"></textarea>
 
-            <label class="block mb-2">Order</label>
-            <input id="edit-order" name="order" class="w-full p-2 border rounded mb-4">
+            <label hidden class="block mb-2">Order</label>
+            <input hidden id="edit-order" name="order" class="w-full p-2 border rounded mb-4">
 
             <input type="hidden" id="edit-faq-id" name="faq_id">
 
@@ -117,13 +95,18 @@
             </div>
         </form>
 
-        <form id="delete-faq-form" method="POST" class="mt-2">
+        <form action="{{ route('faq.delete') }}" method="POST" class="ml-auto">
             @csrf
-            <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded">Delete</button>
+            <input type="hidden" id="delete-faq-id" name="faq_id">
+            <button class="p-2 bg-red-600 text-white rounded"
+                    onclick="return confirm('Are you sure you want to delete this?')">Delete
+            </button>
         </form>
     </div>
 </div>
+@endcan
 
+@can('create', $faq)
 <div id="Toevoegen-menu" class="modal-overlay hidden">
     <div class="modal">
         <div class="flex mb-1">
@@ -173,6 +156,7 @@
         </form>
     </div>
 </div>
+@endcan
 
 <script>
     function openModal(id, sectionId = null) {
@@ -198,13 +182,12 @@
         document.getElementById('edit-question').value = question;
         document.getElementById('edit-answer').value = answer;
         document.getElementById('edit-order').value = order;
-
-        document.getElementById('edit-faq-form').action = `/faq/${id}`;
-        document.getElementById('delete-faq-form').action = `/faq/${id}`;
         document.getElementById('edit-faq-id').value = id;
+        document.getElementById('delete-faq-id').value = id;
 
         openModal('edit-faq-modal');
     }
+
 
     function toggleCustomSection() {
         const select = document.getElementById('section-select');

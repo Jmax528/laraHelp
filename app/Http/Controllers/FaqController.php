@@ -66,10 +66,17 @@ class FaqController extends Controller
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
             'order' => 'nullable|integer|min:0',
-            'id' => 'required|integer|exists:faqs,id',
+            'faq_id' => 'required|integer|exists:faqs,id',
         ]);
 
-        $faq = Faq::find($request->id);
+        $faq = Faq::find($request->faq_id);
+
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->order = $request->order;
+        $faq->save();
+
+        return redirect()->back()->with('success', 'FAQ aangepast!');
     }
 
     public function delete(Request $request)
