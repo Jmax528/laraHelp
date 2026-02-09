@@ -1,7 +1,7 @@
 <header class="bg-[#4C6A92] shadow-md sticky top-0 z-50">
     <div class="px-[75px] flex justify-between items-center">
         <div class="flex items-center gap-12">
-            <img width="72px" height="72px" src="image/alfa-logo.png" alt="Alfa-college">
+            <img class="my-2" width="56px" height="56px" src="image/alfa-logo-wit.png" alt="Alfa-college">
             <h1 class="text-white main-title">Het LBC</h1>
         </div>
         <div class="flex gap-3">
