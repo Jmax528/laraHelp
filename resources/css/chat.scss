@@ -45,8 +45,10 @@ body {
 .section-one {
     @apply flex flex-1 items-center justify-center;
     height:calc(100vh);
-    width: 992px;
-
+    max-width: 992px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     &.dark-mode {
         background-color: #293a50;
     }

@@ -15,8 +15,9 @@
 </head>
 <body class="body dark min-h-screen flex flex-col">
 <x-header/>
-<section class="section-one flex-1 flex items-center justify-center">
 
+<section class="section-one flex-1 flex
+    {{ Auth::user()->isAdmin() ? 'items-start justify-start' : 'items-center justify-center' }}">
     @if(Auth::user()->isAdmin())
 
         {{--    admin card--}}
