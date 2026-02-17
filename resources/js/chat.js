@@ -8,59 +8,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const textarea = document.getElementById('textarea');
     const usersArea = document.getElementById('usersArea');
     const chatArea = document.getElementById('chatArea');
+    const adminSearch = document.getElementById('adminSearch');
 
     textarea.value = '';
 
+    //search through users
+    if (adminSearch) {
+        adminSearch.value = '';
+        adminSearch.addEventListener('input', () => {
 
-    //messages
-    if (Array.isArray(window.chatMessage)) {
-        window.chatMessage.forEach(message => {
-            renderMessage({
-                user_id: message.user_id,
-                message: message.message
+            const filter = adminSearch.value.toLowerCase();
+            const userItems = document.querySelectorAll('#usersArea .user-list-item');
+
+            userItems.forEach(user => {
+                const name = user.textContent.toLowerCase();
+                const match = name.includes(filter);
+
+                user.classList.toggle('hidden', !match);
             });
         });
-    }
-
-    // Only render admin panel if usersArea exists and there are users
-    if (usersArea && Array.isArray(window.users)) {
-        window.users.forEach(user => {
-            if (user.chat?.id) { // make sure the user has a chat
-                usersArea.appendChild(createProfile(user));
+        usersArea.addEventListener('click', (e) => {
+            const userItem = e.target.closest('.user-list-item');
+            if (userItem && userItem.dataset.chatId) {
+                window.location.href = `/chat/${userItem.dataset.chatId}`;
             }
         });
     }
 
-    //user profiles
-    function createProfile(user) {
-        // if no user return it as null instead of undifined
-        if (!user.chat) return null;
-
-        const userList = document.createElement('div');
-        userList.className = 'user-list-items';
-        userList.dataset.chatId = user.chat.id;
-
-        const userInfo = document.createElement('div');
-        userInfo.className = 'userInfo';
-
-        const name = document.createElement('h5');
-        name.className = 'user-name';
-        name.textContent = user.name;
-
-        const email = document.createElement('h6');
-        email.className = 'email';
-        email.textContent = user.email;
-
-        userInfo.appendChild(name);
-        userInfo.appendChild(email);
-        userList.appendChild(userInfo);
-
-        userList.addEventListener('click', () => {
-            window.location.href = `/chat/${user.chat.id}`;
-        });
-
-        return userList;
-    }
 
     //render the message bubbles
     function renderMessage(e) {
@@ -78,34 +52,46 @@ document.addEventListener('DOMContentLoaded', () => {
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 
-    //send message, remove the white spaces at the ends, clear the textarea
-    sendMessage.addEventListener('submit', function (e) {
-        e.preventDefault();
+    if (sendMessage && textarea && sendBtn) {
 
-        if (!textarea.value.trim()) return;
+        // Submit via AJAX
+        sendMessage.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-        fetch(this.action, {
-            method: 'POST',
-            body: new FormData(this),
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            const message = textarea.value.trim();
+            if (!message) return;
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                    }
+                });
+
+                const data = await response.json();
+                if (data.success) renderMessage(data.message);
+
+            } catch (err) {
+                console.error('Error sending message:', err);
             }
+
+            textarea.value = '';
         });
 
-        textarea.value = '';
-    });
-
-    //send with button
-    sendBtn.addEventListener('click', e => {
-        e.preventDefault();
-        sendMessage.requestSubmit();
-
-    });
-    //send with enter, go to the next line with shift enter
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && !e.shiftKey) {
+        // Send with button
+        sendBtn.addEventListener('click', e => {
             e.preventDefault();
             sendMessage.requestSubmit();
-        }
-    });
+        });
+
+        // Send with Enter key in textarea
+        textarea.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage.requestSubmit();
+            }
+        });
+    }
 });

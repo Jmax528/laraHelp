@@ -164,7 +164,7 @@ body {
     @apply flex flex-col p-0 overflow-y-auto;
 
 }
-.user-list-items {
+.user-list-item {
     @apply w-full h-16 flex items-center gap-4 px-5 py-4 border-b border-blue-500;
     &:hover {
         background: $blue;
@@ -173,7 +173,7 @@ body {
 .userImg {
     @apply w-9 h-9 bg-red-600 rounded-full flex-none;
 }
-.userInfo {
+.user-info {
     @apply flex flex-col;
 }
 .onderwerp, .user-name {
@@ -181,3 +181,6 @@ body {
     @apply  text-xs font-semibold;
 }
 
+.hidden {
+    display: none;
+}

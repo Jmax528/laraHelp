@@ -63,4 +63,8 @@ class User extends Authenticatable
     public function isAdmin(): bool {
         return $this->role === 1;
     }
+
+    public function isAnon(): bool {
+        return $this->anon === 1;
+    }
 }
