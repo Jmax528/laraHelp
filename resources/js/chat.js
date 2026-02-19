@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const usersArea = document.getElementById('usersArea');
     const chatArea = document.getElementById('chatArea');
     const adminSearch = document.getElementById('adminSearch');
+    const email = document.getElementsByClassName('email');
 
     textarea.value = '';
 
@@ -28,28 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         usersArea.addEventListener('click', (e) => {
+
+            if (e.target.closest('.email')) {
+                e.stopPropagation();
+
+                const email = e.target.closest('.email');
+                email.classList.toggle('emailShow');
+
+                return;
+            }
+
             const userItem = e.target.closest('.user-list-item');
             if (userItem && userItem.dataset.chatId) {
                 window.location.href = `/chat/${userItem.dataset.chatId}`;
             }
         });
-    }
-
-
-    //render the message bubbles
-    function renderMessage(e) {
-        const bubble = document.createElement('div');
-        bubble.classList.add('chat-container');
-
-        if (parseInt(e.user_id) === window.currentUserId) {
-            bubble.classList.add('chat-one');
-        } else {
-            bubble.classList.add('chat-two');
-        }
-
-        bubble.textContent = e.message;
-        chatArea.appendChild(bubble);
-        chatArea.scrollTop = chatArea.scrollHeight;
     }
 
     if (sendMessage && textarea && sendBtn) {
@@ -70,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                const data = await response.json();
-                if (data.success) renderMessage(data.message);
+                // const data = await response.json();
+                // if (data.success) renderMessage(data.message);
 
             } catch (err) {
                 console.error('Error sending message:', err);
@@ -79,6 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             textarea.value = '';
         });
+
+
+
 
         // Send with button
         sendBtn.addEventListener('click', e => {

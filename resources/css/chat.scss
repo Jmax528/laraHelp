@@ -184,3 +184,35 @@ body {
 .hidden {
     display: none;
 }
+
+.email {
+    position: relative;
+    cursor: pointer;
+}
+
+.emailShow {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: $lush-meadows;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    padding: 2px 8px;
+    transition: 0.3s;
+    @apply rounded-full;
+    &.email h6 {
+        opacity: 1;
+    }
+}
+
+.email h6 {
+    opacity: 0;
+}
+
+.email:hover {
+    padding: 2px 8px;
+    background-color: $lush-meadows;
+    @apply rounded-full;
+}
