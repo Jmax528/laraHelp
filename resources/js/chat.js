@@ -16,22 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
     textarea.value = '';
 
 
-    adminMove.addEventListener('click', () => {
-        const adminCard = document.getElementById('adminCard');
-        const svgArrowClose = path.getAttribute('d');
-        const sbgArrowOpen = "M20 4V20M4 12H16M4 12L8 8M4 12L8 16"
+    if (adminMove) {
+        adminMove.addEventListener('click', () => {
+            const adminCard = document.getElementById('adminCard');
+            const svgArrowClose = path.getAttribute('d');
+            const sbgArrowOpen = "M20 4V20M4 12H16M4 12L8 8M4 12L8 16"
 
-        if (path.getAttribute('d') === svgArrowClose) {
-            path.setAttribute('d', sbgArrowOpen);
-        } else {
-            path.setAttribute('d', svgArrowClose);
-        }
+            if (path.getAttribute('d') === svgArrowClose) {
+                path.setAttribute('d', sbgArrowOpen);
+            } else {
+                path.setAttribute('d', svgArrowClose);
+            }
 
-        adminCard.classList.toggle('admin-card-hide');
-        const centerCard = document.getElementById('chatCard');
-        centerCard.classList.toggle('center-card');
+            adminCard.classList.toggle('admin-card-hide');
+            const centerCard = document.getElementById('chatCard');
+            centerCard.classList.toggle('center-card');
 
-    })
+        })
+    }
 
 
 
@@ -77,10 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = textarea.value.trim();
             if (!message) return;
 
+            //render the message bubbles
+            function renderMessage(e) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('chat-container');
+
+                if (parseInt(e.user_id) === window.currentUserId) {
+                    bubble.classList.add('chat-one');
+                } else {
+                    bubble.classList.add('chat-two');
+                }
+
+                bubble.textContent = e.message;
+                chatArea.appendChild(bubble);
+                chatArea.scrollTop = chatArea.scrollHeight;
+            }
+
             try {
-                const response = await fetch(this.action, {
+                const response = await fetch(sendMessage.action, {
                     method: 'POST',
-                    body: new FormData(this),
+                    body: new FormData(sendMessage),
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
                     }
