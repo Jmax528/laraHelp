@@ -63,7 +63,6 @@ new #[Layout('layouts.guest')] class extends Component
         <div class="block mt-4">
             <label for="remember" class="inline-flex items-center">
                 <input wire:model="form.remember" id="remember" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <input wire:model="form.remember" id="remember" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
                 <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div>
@@ -77,9 +76,12 @@ new #[Layout('layouts.guest')] class extends Component
 
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
-                <li><x-nav-link href="{{ route('register') }}">Register</x-nav-link></li>
-
             </x-primary-button>
+{{--                <x-primary-button class="ms-3">--}}
+{{--                    <li>--}}
+{{--                        <x-nav-link href="{{ route('register') }}">Register</x-nav-link>--}}
+{{--                    </li>--}}
+{{--                </x-primary-button>--}}
         </div>
     </form>
 </div>

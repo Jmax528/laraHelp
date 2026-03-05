@@ -22,13 +22,13 @@
     @if(Auth::user()->isAdmin())
 
         {{--    admin card--}}
-        <x-card class="admin-card">
+        <x-card class="admin-card" id="adminCard">
             <div class="card-header flex items-center p-3 gap-3">
                 <!-- aligns with admin-side -->
                 <div class="w-12 flex justify-center">
                     {{--                                    possible button to hide or appear the admin panel--}}
 
-                    <button class="admin-btn">
+                    <button class="admin-btn" id="adminBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -67,7 +67,7 @@
     @endif
 
     <!-- Main Card -->
-    <x-card class="chat-card">
+    <x-card class="chat-card" id="chatCard">
         <div class="card-header">
             <h2 class="text-lg font-bold text-center">{{data_get ($chat, 'title', '')}}</h2>
         </div>
@@ -80,7 +80,7 @@
         <!-- Fixed Input Area -->
         <div class="chat-div card-typing">
             <form id="sentMessageForm" class="chat-div-form" method="post"
-                  action="{{ route('chat.create', $chat->id) }}">
+                  action="{{ route('chat.sendMessage', $chat->id) }}">
                 @csrf
                 <textarea id="textarea"
                           class="textarea dark no-scrollbar"

@@ -18,15 +18,20 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('/create', 'create');
+
 require __DIR__.'/auth.php';
 
 Route::view('/faq', 'faq' );
 
 Route::middleware('auth')->group(function () {
 
-    // 👤 Regular user: open OWN chat (auto-create if needed)
+    // 👤 Regular user: open OWN chat (create if needed)
     Route::get('/chat', [ChatController::class, 'userChat'])
         ->name('chat.user');
+
+    Route::post('/chat/store', [ChatController::class, 'storeCreateChat'])
+        ->name('chat.store');
 
     // 🛡 Admin: open chat with a specific user
     Route::get('/admin/chat/user/{user}', [ChatController::class, 'openUserChat'])
@@ -38,8 +43,8 @@ Route::middleware('auth')->group(function () {
         ->name('chat.show');
 
     // ✉ Send message
-    Route::post('/chat/{chat}/message', [ChatController::class, 'create'])
-        ->name('chat.create');
+    Route::post('/chat/{chat}/message', [ChatController::class, 'sendMessage'])
+        ->name('chat.sendMessage');
 
 });
 

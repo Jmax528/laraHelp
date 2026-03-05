@@ -24,4 +24,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     darkMode();
+
 })

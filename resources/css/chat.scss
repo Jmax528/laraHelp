@@ -44,6 +44,7 @@ body {
 
 .section-one {
     @apply flex flex-1 items-center justify-center;
+    z-index: 20;
     height:calc(100vh);
     max-width: 992px;
     width: 100%;
@@ -118,9 +119,25 @@ body {
 
 
 .chat-card, .admin-card {
+    transition: 0.8s;
+    transform-style: preserve-3d;
     height: calc(100vh - 105px);
     @apply gap-0 border w-96 border-blue-500 bg-gray-200 rounded-xl shadow-lg
     flex flex-col overflow-hidden py-0;
+}
+
+.center-card {
+    transform: translateX(-108px);
+    transition: 0.8s;
+    transform-style: preserve-3d;
+}
+
+.admin-card-hide {
+    transform: translateX(108px);
+    position: relative;
+    z-index: -1;
+    transition: 0.8s;
+    transform-style: preserve-3d;
 }
 
 .admin-card {
@@ -216,3 +233,6 @@ body {
     background-color: $lush-meadows;
     @apply rounded-full;
 }
+
+
+

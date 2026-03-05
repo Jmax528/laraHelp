@@ -10,8 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatArea = document.getElementById('chatArea');
     const adminSearch = document.getElementById('adminSearch');
     const email = document.getElementsByClassName('email');
+    const adminMove = document.getElementById('adminBtn');
 
+    if (!textarea) return;
     textarea.value = '';
+
+
+    adminMove.addEventListener('click', () => {
+        const adminCard = document.getElementById('adminCard');
+        const svgArrowClose = path.getAttribute('d');
+        const sbgArrowOpen = "M20 4V20M4 12H16M4 12L8 8M4 12L8 16"
+
+        if (path.getAttribute('d') === svgArrowClose) {
+            path.setAttribute('d', sbgArrowOpen);
+        } else {
+            path.setAttribute('d', svgArrowClose);
+        }
+
+        adminCard.classList.toggle('admin-card-hide');
+        const centerCard = document.getElementById('chatCard');
+        centerCard.classList.toggle('center-card');
+
+    })
+
+
 
     //search through users
     if (adminSearch) {
@@ -64,8 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // const data = await response.json();
-                // if (data.success) renderMessage(data.message);
+                const data = await response.json();
+                if (data.success) {
+                    renderMessage(data.message);
+                }
 
             } catch (err) {
                 console.error('Error sending message:', err);

@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-    /**
-     * 👤 Regular user: open own chat (auto-create)
-     */
+//    regular users open their own chat or one needs to be created
     public function userChat()
     {
         $user = auth()->user();
@@ -26,34 +24,35 @@ class ChatController extends Controller
             abort(403);
         }
 
-        $chat = Chats::firstOrCreate(
-            ['user_id' => $user->id],
-            ['title' => 'Support chat']
-        );
 
-        return redirect()->route('chat.show', $chat);
+        $chat = Chats::where('user_id', $user->id)->first();
+
+        if (!$chat) {
+            return view('create');
+        }
+
+        return redirect()->route('chat.show', $chat->id);
     }
 
-    /**
-     * 🛡 Admin: open chat with a specific user
-     */
-    public function openUserChat(User $user)
+//    Admin chat, if not an admin abort 403
+    public function openUserChat(User $user): RedirectResponse
     {
         if (!auth()->user()->isAdmin()) {
             abort(403);
         }
 
-        $chat = Chats::firstOrCreate(
-            ['user_id' => $user->id],
-            ['title' => 'Chat with ' . $user->name]
-        );
+        $chat = Chats::where('user_id', $user->id)->first();
 
-        return redirect()->route('chat.show', $chat);
+//        chat doesn't exists
+        if (!$chat) {
+            abort(404);
+        }
+
+        return redirect()->route('chat.show', $chat->id);
     }
 
-    /**
-     * 💬 Show an existing chat
-     */
+
+//   show existing chats
     public function show($chatId): View|RedirectResponse
     {
         $chat = Chats::find($chatId);
@@ -74,8 +73,6 @@ class ChatController extends Controller
             'messages.user:id,name'
         ]);
 
-
-
         $users = User::with('chat')
             ->where('id', '!=', $user->id)
             ->whereHas('chat')
@@ -89,10 +86,33 @@ class ChatController extends Controller
         ]);
     }
 
-    /**
-     * ✉ Send a message
-     */
-    public function create(Request $request, Chats $chat): JsonResponse
+    public function storeCreateChat(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
+
+        $user = auth()->user();
+        $user->anon = $request -> boolean('anon');
+        $user->save();
+
+        $existingChat = Chats::where('user_id', Auth::id())->first();
+
+        if ($existingChat) {
+            return redirect()->route('chat.show', $existingChat->id);
+        }
+
+        $chat = Chats::create([
+            'user_id' => Auth::id(),
+            'title' => request('title'),
+        ]);
+
+        return redirect()->route('chat.show', $chat->id);
+    }
+
+
+//    send a message
+    public function sendMessage(Request $request, Chats $chat): JsonResponse
     {
         $request->validate([
             'message' => 'required|string'
