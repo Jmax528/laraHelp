@@ -19,18 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (adminMove) {
         adminMove.addEventListener('click', () => {
             const adminCard = document.getElementById('adminCard');
-            const svgArrowClose = path.getAttribute('d');
-            const sbgArrowOpen = "M20 4V20M4 12H16M4 12L8 8M4 12L8 16"
+            const path = document.getElementById('svgAdmin');
+            //default close icon
+            const svgArrowClose = "M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 " +
+                "0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 " +
+                "0v13a.5.5 0 0 1-.5.5";
+            //open icon
+            const svgArrowOpen = "M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 " +
+                "8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 " +
+                "7.5H9.5a.5.5 0 0 1 .5.5"
 
-            if (path.getAttribute('d') === svgArrowClose) {
-                path.setAttribute('d', sbgArrowOpen);
-            } else {
-                path.setAttribute('d', svgArrowClose);
-            }
 
-            adminCard.classList.toggle('admin-card-hide');
+            // adminCard.classList.toggle('admin-card-hide');
             const centerCard = document.getElementById('chatCard');
             centerCard.classList.toggle('center-card');
+
+            const isHidden = adminCard.classList.toggle('admin-card-hide');
+            path.setAttribute('d', isHidden ? svgArrowOpen : svgArrowClose);
 
         })
     }

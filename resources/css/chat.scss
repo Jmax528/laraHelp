@@ -154,8 +154,26 @@ body {
     @apply self-start;
 }
 
+.notification, .notification-btn {
+    @apply rounded-full h-10 w-10 flex-shrink-0 flex items-center justify-center text-xs;
+}
+
+.notification {
+    background: $lush-meadows;
+}
+
+.notification-btn {
+    background: $aurora-red;
+    cursor: pointer;
+    &:hover {
+        background-color: #de0303;
+    }
+}
+
 
 .admin-btn {
+    transition: 0.8s;
+    transform-style: preserve-3d;
     background: $lush-meadows;
     @apply h-9 px-6 flex items-center justify-start rounded;
     &:hover {
