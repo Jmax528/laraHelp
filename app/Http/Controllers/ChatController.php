@@ -25,10 +25,12 @@ class ChatController extends Controller
         }
 
 
-        $chat = Chats::where('user_id', $user->id)->first();
+        $chat = Chats::where('user_id', $user->id)
+            ->where('closed', 0)
+            ->first();
 
         if (!$chat) {
-            return view('create');
+            return view('chat.create');
         }
 
         return redirect()->route('chat.show', $chat->id);
@@ -41,7 +43,9 @@ class ChatController extends Controller
             abort(403);
         }
 
-        $chat = Chats::where('user_id', $user->id)->first();
+        $chat = Chats::where('user_id', $user->id)
+            ->where('closed', 0)
+            ->first();
 
 //        chat doesn't exists
         if (!$chat) {
@@ -53,13 +57,12 @@ class ChatController extends Controller
 
 
 //   show existing chats
-    public function show($chatId): View|RedirectResponse
+    public function show(Chats $chat): View|RedirectResponse
     {
-        $chat = Chats::find($chatId);
 
         $user = auth()->user();
 
-        if (!$chat) {
+        if ($chat->closed) {
             return redirect()->route('chat.user');
 
         }
@@ -69,13 +72,17 @@ class ChatController extends Controller
         }
 
         $chat->load([
-            'messages' => fn ($q) => $q->orderBy('id', 'asc'),
+            'messages' => fn ($q) => $q->oldest(),
             'messages.user:id,name'
         ]);
 
-        $users = User::with('chat')
+        $users = User::with(['chat' => function ($q) {
+            $q->where('closed', 0);
+        }])
             ->where('id', '!=', $user->id)
-            ->whereHas('chat')
+            ->whereHas('chat', function ($q) {
+                $q->where('closed', 0);
+            })
             ->orderBy('name')
             ->get();
 
@@ -96,7 +103,9 @@ class ChatController extends Controller
         $user->anon = $request -> boolean('anon');
         $user->save();
 
-        $existingChat = Chats::where('user_id', Auth::id())->first();
+        $existingChat = Chats::where('user_id', Auth::id())
+            ->where('closed', 0)
+            ->first();
 
         if ($existingChat) {
             return redirect()->route('chat.show', $existingChat->id);
@@ -136,4 +145,19 @@ class ChatController extends Controller
             'message' => $message,
         ]);
     }
+
+
+    //admins can close chats, users can't
+    public function closeChat($chatId) {
+
+        if(!auth()->user()->isAdmin()) {
+            abort(403);
+        }
+
+        $chat = Chats::findOrFail($chatId);
+        $chat->closed = 1;
+        $chat->save();
+        return redirect()->route('dashboard')->with('success', 'Chat closed successfully.');
+    }
+
 }
