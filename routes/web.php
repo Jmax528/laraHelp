@@ -17,6 +17,7 @@ require __DIR__.'/auth.php';
 
 Route::view('/faq', 'faq' );
 Route::view('/ons-team', 'about' );
+Route::view('/beheren', 'beheer' );
 
 Route::view('/chat', 'chat' );
 Route::get('/chat', [ChatController::class, 'chat'] )->name('chat');
