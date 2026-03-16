@@ -45,7 +45,7 @@ function createMessage(e) {
     }
 
 
-    // Same class applied to both
+    //render the message bubbles
     messageBox.classList.add('chat-container');
 
     const userId = parseInt(e.user_id);

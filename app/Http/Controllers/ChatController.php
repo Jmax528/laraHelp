@@ -19,9 +19,20 @@ class ChatController extends Controller
     {
         $user = auth()->user();
 
-        // Admins should not use this route
         if ($user->isAdmin()) {
-            abort(403);
+            $users = User::with(['chat' => function ($q) {
+                $q->where('closed', 0);
+            }]) -> whereHas('chat', function ($q) {
+                $q->where('closed', 0);
+            }) -> orderBy('name')
+                -> get();
+            return view('chat', [
+                'chat' => null,
+                'users' => $users,
+                'messages' => [],
+                'unread_count' => 0,
+
+            ]);
         }
 
 
@@ -71,6 +82,10 @@ class ChatController extends Controller
             return redirect()->route('chat.user');
         }
 
+        if ($user->isAdmin()) {
+            $chat->update(['unread_count' => 0]);
+        }
+
         $chat->load([
             'messages' => fn ($q) => $q->oldest(),
             'messages.user:id,name'
@@ -114,6 +129,7 @@ class ChatController extends Controller
         $chat = Chats::create([
             'user_id' => Auth::id(),
             'title' => request('title'),
+            'message' => strip_tags($request->message),
         ]);
 
         return redirect()->route('chat.show', $chat->id);
@@ -133,11 +149,14 @@ class ChatController extends Controller
             'message' => strip_tags($request->message),
         ]);
 
+//        if (!auth()->user()->isAdmin()) {
+//            $chat->increment('unread_count');
+//        }
+
         broadcast(new MessageSent(
             $message->message,
             $chat->id,
             $message->user_id,
-            Auth::user()->name
         ))->toOthers();
 
         return response()->json([
@@ -157,7 +176,7 @@ class ChatController extends Controller
         $chat = Chats::findOrFail($chatId);
         $chat->closed = 1;
         $chat->save();
-        return redirect()->route('dashboard')->with('success', 'Chat closed successfully.');
+        return redirect()->route('chat')->with('success', 'Chat closed successfully.');
     }
 
 }

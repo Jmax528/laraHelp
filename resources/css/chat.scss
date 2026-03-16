@@ -154,15 +154,19 @@ body {
     @apply self-start;
 }
 
-.notification, .notification-btn {
-    @apply rounded-full h-10 w-10 flex-shrink-0 flex items-center justify-center text-xs;
+.notification, .close-btn {
+    @apply rounded-full h-10 w-10 flex-shrink-0 flex items-center justify-center text-lg;
 }
 
 .notification {
     background: $lush-meadows;
 }
 
-.notification-btn {
+.notification.notif-glow {
+    background: #22c55c;
+}
+
+.close-btn {
     background: $aurora-red;
     cursor: pointer;
     &:hover {
@@ -193,6 +197,8 @@ body {
         background-color: #22c55c;
     }
 }
+
+
 
 
 .users-area {

@@ -11,18 +11,23 @@
         window.chatMessage = @json($messages ?? []);
 
         function closeChat(param) {
-        const userId = param.getAttribute('data-user-id');
-        const userItem = document.querySelector(`[data-chat-id="${userId}"]`);
-        userItem.remove();
+            const userId = param.getAttribute('data-user-id'); // now param is the button element
+            const userItem = document.querySelector(`[data-chat-id="${userId}"]`);
+            if (userItem) userItem.remove();
         }
 
         function closePopupWindow(){
             let text
             if(confirm("Weet je zeker dat je deze chat wilt verwijderen?")) {
-                window.location.href = "{{ route('chat.closed', $chat->id) }}";
+                @if($chat)
+                    window.location.href = "{{ route('chat.closed', $chat->id) }}";
+                @endif
+
             } else {
                 text = "Je chat blijft behouden."
             }
+            document.getElementsByClassName("close-btn").innerHTML = text;
+
             alert(text);
             closeChat();
         }
@@ -35,7 +40,6 @@
 
 <section class="section-one flex-1 flex
     {{ Auth::user()->isAdmin() ? 'items-start justify-start' : 'items-center justify-center' }}">
-    {{--    isAnon: {{ auth()->user()->isAnon() ? 'true' : 'false' }},--}}
     @if(Auth::user()->isAdmin())
 
         {{--    admin card--}}
@@ -65,7 +69,10 @@
             <div id="usersArea" class="users-area dark no-scrollbar">
                 @foreach($users as $user)
                     <div class="user-list-item flex items-center justify-between" data-chat-id="{{ $user['chat']['id'] ?? '' }}">
-                        <div class="notification">22</div>
+                        <div class="notification"
+                             data-unread-count="{{ $user['chat']['unread_count'] ?? 0 }}">
+                            <h5>{{ $user['chat']['unread_count'] ?? 0 }}</h5>
+                        </div>
                         <div class="user-info">
                             <div class="user-name">
                                 <h5>{{ $user['anon'] == 1 ? 'Anonymous' : $user['name'] }}</h5>
@@ -76,7 +83,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button class="notification-btn" onclick="deleteUser()">
+                        <button class="close-btn" data-user-id="{{ $user->id }}" onclick="closePopupWindow()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
@@ -97,23 +104,37 @@
         </div>
 
         <!-- Scrollable Chat Area -->
+        @if($chat)
         <div id="chatArea" class="dark chat-area no-scrollbar" data-chat-id="{{ $chat->id }}">
+            @else
+                <div id="chatArea"
+                     class="dark chat-area no-scrollbar">
+                    @endif
             <p class="text-center mb-4" id="chatPlaceholder">Stuur een bericht om de chat the beginnen.</p>
         </div>
 
         <!-- Fixed Input Area -->
+            @if($chat)
         <div class="chat-div card-typing">
-            <form id="sentMessageForm" class="chat-div-form" method="post"
-                  action="{{ route('chat.sendMessage', $chat->id) }}">
+            @if($chat)
+                <form id="sentMessageForm" class="flex items-end gap-2"
+                      method="post"
+                      action="{{ route('chat.sendMessage', $chat->id) }}">
+                    @else
+                        <form id="sentMessageForm" class="flex items-end gap-2"
+                              method="post"
+                              action=""
+                              onsubmit="return false;">
+                            @endif
                 @csrf
-                <textarea id="textarea"
-                          class="textarea dark no-scrollbar"
-                          placeholder="Jouw bericht hier."
+                <textarea id="textarea" class="textarea dark no-scrollbar flex-1" placeholder="Jouw bericht hier."
                           name="message">
+                    {{!$chat ? 'disabled' : ''}}
                 </textarea>
                 <button id="sendBtn"
-                        class="send-btn dark pt-3"
+                        class="send-btn dark pt-3 mb-4"
                         type="submit">
+                        {{!$chat ? 'disabled' : ''}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-send" viewBox="0 0 16 16">
                         <path
@@ -121,6 +142,12 @@
                     </svg>
                 </button>
             </form>
+            @else
+                <div class="chat-div card-typing text-center p-4">
+                    <p>Selecteer een chat om te beginnen.</p>
+                </div>
+                @endif
+        </div>
         </div>
     </x-card>
 </section>

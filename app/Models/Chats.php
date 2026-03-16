@@ -13,6 +13,7 @@ class Chats extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'unread_count',
     ];
 
     public function user() {

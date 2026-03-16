@@ -1,4 +1,6 @@
 import './echo.js';
+// message bubbles are done in echo.js, trying to do that here (again)
+// makes them appear double
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -9,12 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const usersArea = document.getElementById('usersArea');
     const chatArea = document.getElementById('chatArea');
     const adminSearch = document.getElementById('adminSearch');
-    const email = document.getElementsByClassName('email');
     const adminMove = document.getElementById('adminBtn');
 
-    if (!textarea) return;
-    textarea.value = '';
-
+    if(textarea) {
+        textarea.value = '';
+    }
 
     if (adminMove) {
         adminMove.addEventListener('click', () => {
@@ -68,12 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            let notif = e.target.closest('.notification');
+            if (notif && notif.dataset.unread_count) {
+                notif.textContent = '0';
+                notif.dataset.unread_count = '0';
+            }
+
+
+
             const userItem = e.target.closest('.user-list-item');
             if (userItem && userItem.dataset.chatId) {
                 window.location.href = `/chat/${userItem.dataset.chatId}`;
             }
         });
     }
+
+    const notifications = document.querySelectorAll('.notification');
+
+    notifications.forEach(notif => {
+        const count = parseInt(notif.dataset.unreadCount, 10) || 0;
+
+        if (count > 0) {
+            notif.classList.add('notif-glow');
+        } else {
+            notif.classList.remove('notif-glow');
+        }
+    });
+
 
     if (sendMessage && textarea && sendBtn) {
 
@@ -84,21 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = textarea.value.trim();
             if (!message) return;
 
-            //render the message bubbles
-            function renderMessage(e) {
-                const bubble = document.createElement('div');
-                bubble.classList.add('chat-container');
-
-                if (parseInt(e.user_id) === window.currentUserId) {
-                    bubble.classList.add('chat-one');
-                } else {
-                    bubble.classList.add('chat-two');
-                }
-
-                bubble.textContent = e.message;
-                chatArea.appendChild(bubble);
-                chatArea.scrollTop = chatArea.scrollHeight;
-            }
 
             try {
                 const response = await fetch(sendMessage.action, {
@@ -109,20 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                const data = await response.json();
-                if (data.success) {
-                    renderMessage(data.message);
-                }
-
             } catch (err) {
                 console.error('Error sending message:', err);
             }
 
             textarea.value = '';
         });
-
-
-
 
         // Send with button
         sendBtn.addEventListener('click', e => {
