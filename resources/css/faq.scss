@@ -1,3 +1,7 @@
+/* import all the variables */
+@use 'variables' as *;
+
+/* Tailwind directives — must stay at the top */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

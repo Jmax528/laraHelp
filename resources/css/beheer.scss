@@ -1,24 +1,40 @@
+/* import all the variables */
+@use 'variables' as *;
+
 /* Tailwind directives — must stay at the top */
 @tailwind base;
-@import "tailwindcss/preflight";
 @tailwind components;
 @tailwind utilities;
-
-
 
 @import 'tailwindcss';
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-@theme { --font-sans: 'Instrument Sans', ui-sans-serif, system-ui,
-sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
-@tailwind base;
-@import "tailwindcss/preflight";
-@tailwind components;
-@tailwind utilities;
 
 /* Your custom SCSS */
 
+main {
+    display: flex;
 
+    .side-nav {
+        width: 256px;
+        min-height: calc(100vh - 72px);
+        padding-top: 48px;
+        background-color: $riverside-400;
+
+        div {
+            display: flex;
+            justify-content: center;
+            height: 56px;
+            width: 100%;
+            padding: 8px 12px;
+
+            p {
+                font-size: 32px;
+                line-height: 40px;
+            }
+        }
+    }
+
+    .beheer-container {
+        padding-top: 48px;
+        flex: 1;
+    }
+}

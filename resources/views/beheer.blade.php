@@ -12,35 +12,21 @@
 <x-header />
 
 <main>
-
-</main>
-
-<!-- Footer -->
-<footer class="bg-gray-800 text-white mt-12 py-8">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h3 class="footer-title mb-4">Contact/Locatie</h3>
-                <p class="normal-text">Email: info@studiebegeleiding.nl</p>
-                <p class="normal-text">Locatie: Boumaboulevard 573, 9723 ZS Groningen</p>
-            </div>
-            <div>
-                <h3 class="footer-title mb-4">Snelle links</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-blue-300 normal-text">Home</a></li>
-                    <li><a href="#" class="hover:text-blue-300 normal-text">Chatbox</a></li>
-                    <li><a href="#" class="hover:text-blue-300 normal-text">FAQ</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="footer-title mb-4">Openingstijden</h3>
-                <p class="normal-text">Maandag - Vrijdag: 9:00 - 17:00</p>
-            </div>
+    <div class="side-nav">
+        <div>
+            <p>Vragen</p>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-            <p class="normal-text">&copy; 2025 StudieBegeleiding. Alle rechten voorbehouden.</p>
+        <div>
+            <p>Thema's</p>
+        </div>
+        <div>
+            <p>Chat</p>
         </div>
     </div>
-</footer>
+    <div class="beheer-container">
+        <p>Vragen beheren</p>
+    </div>
+</main>
+
 </body>
 </html>

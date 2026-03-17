@@ -1,3 +1,7 @@
+/* import all the variables */
+@use 'variables' as *;
+
+/* Tailwind directives — must stay at the top */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,19 +9,7 @@
 @import 'tailwindcss';
 
 /* Your custom SCSS */
-$primary-color: #ffffff;
-$primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-$blue: #0C8CE9;
-$riverside: #4C6A92;
-$airy-blue: #92B6D5;
-$sharkskin: #838487;
-$aurora-red: #B93A32;
-$warm-taupe: #AE9382;
-$dusty-cedar: #AD5D5D;
-$lush-meadows: #006E51;
-$spicy-mustard: #D8AD47;
-$potters-clay: #9D4624;
-$bodacious: #B66AA3;
+
 
 
 /* Your custom SCSS */
