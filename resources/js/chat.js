@@ -84,15 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const notifications = document.querySelectorAll('.notification');
+    const notifications = document.querySelectorAll('.notification-count');
 
     notifications.forEach(notif => {
         const count = parseInt(notif.dataset.unreadCount, 10) || 0;
+        const userItem = notif.closest('.user-list-item');
+        notif.textContent = count > 99 ? '99+' : count.toString();
 
         if (count > 0) {
             notif.classList.add('notif-glow');
+            userItem.classList.add('notification');
         } else {
             notif.classList.remove('notif-glow');
+            userItem.classList.remove('notification');
         }
     });
 

@@ -149,9 +149,7 @@ class ChatController extends Controller
             'message' => strip_tags($request->message),
         ]);
 
-//        if (!auth()->user()->isAdmin()) {
-//            $chat->increment('unread_count');
-//        }
+
 
         broadcast(new MessageSent(
             $message->message,

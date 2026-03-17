@@ -113,7 +113,7 @@ body {
 
 .card-header {
     background: $riverside-600;
-    @apply flex justify-center items-center p-3 max-h-14;
+    @apply flex flex-row relative flex-auto justify-center items-center p-3 max-h-14;
 }
 
 
@@ -154,7 +154,7 @@ body {
     @apply self-start;
 }
 
-.notification, .close-btn {
+.notification-count, .close-btn {
     @apply rounded-full h-10 w-10 flex-shrink-0 flex items-center justify-center text-lg;
 }
 
@@ -162,8 +162,9 @@ body {
     background: $lush-meadows;
 }
 
-.notification.notif-glow {
+.notification-count.notif-glow {
     background: #22c55c;
+    @apply animate-pulse;
 }
 
 .close-btn {
