@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class ChatController extends Controller
 {
 //    regular users open their own chat or one needs to be created
@@ -171,19 +172,21 @@ class ChatController extends Controller
         ]);
     }
 
-    public function closeRequest(Request $request, Chats $chat) {
-
-        $chat -> close_request = $request -> boolean('close_request');
-        $chat -> save();
+    public function closeRequest(Request $request, Chats $chat)
+    {
+        $chat->close_request = $request->boolean('close_request');
+        $chat->save();
 
         broadcast(new CloseRequest(
             $chat->id,
-            $chat->close_request,
+            $chat->close_request
         ))->toOthers();
 
-        return response()->json(['success' => true, 'message' => 'Close request sent.']);
-
+        return response()->json([
+            'success' => true,
+        ]);
     }
+
 
 
     //admins can close chats, users can't

@@ -130,22 +130,26 @@ function updateAdminCounter(e) {
     }
 }
 
+
+
+
+
 // Optional: show delete request in chat
-function deleteRequest() {
-    const deleteRequest = document.getElementById('deleteRequest');
-    const deleteNotif = document.querySelectorAll('.user-list-item');
-    const chatArea = document.getElementById('chatArea');
-    if (!deleteRequest || !chatArea) return;
-
-    const messageBox = document.createElement('div');
-
-    deleteNotif.forEach(notif => {
-        notif.classList.add('chat-delete', 'chat-two');
-    });
-
-    messageBox.classList.add('chat-delete');
-    messageBox.textContent = 'De gebruiker zou graag de chat willen beeindigen';
-    chatArea.appendChild(messageBox);
-
-    console.log("deleteRequest displayed");
-}
+// function showCloseRequest() {
+//     const showCloseRequest = document.getElementById('closeRequest');
+//     const deleteNotif = document.querySelectorAll('.user-list-item');
+//     const chatArea = document.getElementById('chatArea');
+//     if (!showCloseRequest || !chatArea) return;
+//
+//     const messageBox = document.createElement('div');
+//
+//     deleteNotif.forEach(notif => {
+//         notif.classList.add('chat-delete', 'chat-two');
+//     });
+//
+//     messageBox.classList.add('chat-delete');
+//     messageBox.textContent = 'De gebruiker zou graag de chat willen beeindigen';
+//     chatArea.appendChild(messageBox);
+//
+//     console.log("deleteRequest displayed");
+// }
