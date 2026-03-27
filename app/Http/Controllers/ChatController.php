@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CloseRequest;
 use App\Events\MessageSent;
 use App\Models\Chats;
 use App\Models\Messages;
 use App\Models\User;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +33,6 @@ class ChatController extends Controller
                 'users' => $users,
                 'messages' => [],
                 'unread_count' => 0,
-
             ]);
         }
 
@@ -41,7 +42,7 @@ class ChatController extends Controller
             ->first();
 
         if (!$chat) {
-            return view('chat.create');
+            return view('create');
         }
 
         return redirect()->route('chat.show', $chat->id);
@@ -130,6 +131,7 @@ class ChatController extends Controller
             'user_id' => Auth::id(),
             'title' => request('title'),
             'message' => strip_tags($request->message),
+            'unread_count' => 0,
         ]);
 
         return redirect()->route('chat.show', $chat->id);
@@ -149,18 +151,38 @@ class ChatController extends Controller
             'message' => strip_tags($request->message),
         ]);
 
-
+        if (!auth()->user()->isAdmin()) {
+            $chat->increment('unread_count');
+//            $chat->update(['last_message_at' => now()]);
+            $chat->refresh();
+        }
 
         broadcast(new MessageSent(
             $message->message,
             $chat->id,
             $message->user_id,
+            $chat->unread_count,
         ))->toOthers();
+
 
         return response()->json([
             'success' => true,
             'message' => $message,
         ]);
+    }
+
+    public function closeRequest(Request $request, Chats $chat) {
+
+        $chat -> close_request = $request -> boolean('close_request');
+        $chat -> save();
+
+        broadcast(new CloseRequest(
+            $chat->id,
+            $chat->close_request,
+        ))->toOthers();
+
+        return response()->json(['success' => true, 'message' => 'Close request sent.']);
+
     }
 
 
@@ -178,3 +200,5 @@ class ChatController extends Controller
     }
 
 }
+
+

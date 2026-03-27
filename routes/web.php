@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/chat/{chat}/closed', [ChatController::class, 'closeChat'])
         ->name('chat.closed');
 
+    Route::post('/chat/{chat}/close-request', [ChatController::class, 'closeRequest']);
+
     // 🛡 Admin: open chat with a specific user
     Route::get('/admin/chat/user/{user}', [ChatController::class, 'openUserChat'])
         ->middleware('admin')

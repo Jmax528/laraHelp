@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/app.js'])
     <script>
         window.currentUserId = @json(Auth::id());
         window.chatId = @json($chat->id ?? null);
         window.users = @json($users ?? []);
         window.chatMessage = @json($messages ?? []);
+        window.isAdmin = @json(Auth::user()->isAdmin());
 
         function closeChat(param) {
             const userId = param.getAttribute('data-user-id'); // now param is the button element
@@ -32,7 +34,6 @@
             closeChat();
         }
     </script>
-    @vite(['resources/css/app.scss','resources/css/chat.scss', 'resources/js/app.js'])
     <title>Chat Layout</title>
 </head>
 <body class="body dark min-h-screen flex flex-col">
@@ -101,16 +102,18 @@
     <x-card class="chat-card" id="chatCard">
         <div class="card-header">
             <h2 class="text-lg font-bold text-center w-full text-centerw-full">{{data_get ($chat, 'title', '')}}</h2>
-{{--            @if(!Auth::user()->isAdmin())--}}
-{{--                <div>--}}
-{{--                <button class="close-btn right-3" onclick="closePopupWindow()">--}}
-{{--                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">--}}
-{{--                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>--}}
-{{--                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>--}}
-{{--                    </svg>--}}
-{{--                </button>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            @if(!Auth::user()->isAdmin())
+                <div>
+                <button id="closeRequest"
+                        data-chat-id="{{ $chat->id ?? ''}}"
+                        class="close-btn right-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                    </svg>
+                </button>
+                </div>
+            @endif
         </div>
         <!-- Scrollable Chat Area -->
         @if($chat)

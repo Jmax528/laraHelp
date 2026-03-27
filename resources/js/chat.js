@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const sendBtn = document.getElementById('sendBtn');
+    const closeBtn = document.getElementById('closeRequest');
     const sendMessage = document.getElementById('sentMessageForm');
     const textarea = document.getElementById('textarea');
     const usersArea = document.getElementById('usersArea');
@@ -84,22 +85,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const notifications = document.querySelectorAll('.notification-count');
 
-    notifications.forEach(notif => {
-        const count = parseInt(notif.dataset.unreadCount, 10) || 0;
-        const userItem = notif.closest('.user-list-item');
-        notif.textContent = count > 99 ? '99+' : count.toString();
 
-        if (count > 0) {
-            notif.classList.add('notif-glow');
-            userItem.classList.add('notification');
-        } else {
-            notif.classList.remove('notif-glow');
-            userItem.classList.remove('notification');
-        }
-    });
 
+    if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                const chatId = this.dataset.chatId;
+
+                fetch(`/chat/${chatId}/close-request`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({delete_request: true})
+                })
+            })
+        console.log("closeBtn loaded");
+    }
 
     if (sendMessage && textarea && sendBtn) {
 
