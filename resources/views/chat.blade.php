@@ -20,7 +20,7 @@
 
         function closePopupWindow(){
             let text
-            if(confirm("Weet je zeker dat je deze chat wilt verwijderen?")) {
+            if(confirm("Weet je zeker dat je deze chat wilt  verwijderen?")) {
                 @if($chat)
                     window.location.href = "{{ route('chat.closed', $chat->id) }}";
                 @endif
@@ -59,7 +59,6 @@
                     </button>
                 </div>
 
-
                 <!-- search area -->
                 <textarea
                     id="adminSearch"
@@ -69,7 +68,9 @@
             </div>
             <div id="usersArea" class="users-area dark no-scrollbar">
                 @foreach($users as $user)
-                    <div class="user-list-item flex items-center justify-between" data-chat-id="{{ $user['chat']['id'] ?? '' }}">
+                    <div class="user-list-item flex items-center justify-between"
+                         data-chat-id="{{ $user['chat']['id'] ?? '' }}"
+                         data-close-request="{{ (int) $chat->close_request }}">
                         <div class="notification-count"
                              data-unread-count="{{ $user['chat']['unread_count'] ?? 0 }}">
                             <h5>{{ $user['chat']['unread_count'] ?? 0 }}</h5>
@@ -106,7 +107,6 @@
                 <div>
                 <button id="closeRequest"
                         data-chat-id="{{ $chat->id ?? ''}}"
-                        data-close-request="{{ $chat->close_request }}"
                         class="close-btn right-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>

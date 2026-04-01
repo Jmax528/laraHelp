@@ -39,38 +39,6 @@ if (window.chatId) {
     console.warn("ChatId not found, live messaging will not work.");
 }
 
-// -----------------------------
-// Admin Notifications (Persistent Glow)
-// -----------------------------
-if (window.isAdmin) {
-    window.Echo.private(`admin.notification`)
-        .listen('.message.sent', (e) => {
-            console.log("Admin notification received:", e);
-            updateAdminCounter(e);
-        });
-}
-
-// Apply persistent glow on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const notifications = document.querySelectorAll('.user-list-item .notification-count');
-    notifications.forEach(notif => {
-        const userItem = notif.closest('.user-list-item');
-        const count = parseInt(notif.dataset.unreadCount, 10) || 0;
-
-        if (count > 0) {
-            notif.classList.add('notif-glow');
-            userItem.classList.add('notification');
-        } else {
-            notif.classList.remove('notif-glow');
-            userItem.classList.remove('notification');
-        }
-    });
-});
-
-// -----------------------------
-// Functions
-// -----------------------------
-
 // Render chat messages
 function createMessage(e) {
     const chatArea = document.getElementById('chatArea');
@@ -91,10 +59,10 @@ function createMessage(e) {
         messageBox.classList.add('chat-two'); // receiver
     }
 
-    // User name element (optional)
-    const userName = document.createElement('div');
-    userName.classList.add('chat-name');
-    messageBox.appendChild(userName);
+    // // Username element (optional)
+    // const userName = document.createElement('div');
+    // userName.classList.add('chat-name');
+    // messageBox.appendChild(userName);
 
     // Message text
     messageBox.textContent = e.message;
@@ -104,52 +72,3 @@ function createMessage(e) {
     chatArea.scrollTop = chatArea.scrollHeight;
 }
 
-// Update admin notification counter and glow
-function updateAdminCounter(e) {
-    const userItem = document.querySelector(`.user-list-item[data-chat-id="${e.chat_id}"]`);
-    if (!userItem) return;
-
-    const notif = userItem.querySelector('.notification-count');
-    if (!notif) return;
-
-    const count = parseInt(e.unread_count, 10) || 0;
-
-    // Update text
-    notif.textContent = count > 99 ? '99+' : count.toString();
-
-    // Update dataset for persistence
-    notif.dataset.unreadCount = count;
-
-    // Apply or remove glow
-    if (count > 0) {
-        notif.classList.add('notif-glow');
-        userItem.classList.add('notification');
-    } else {
-        notif.classList.remove('notif-glow');
-        userItem.classList.remove('notification');
-    }
-}
-
-
-
-
-
-// Optional: show delete request in chat
-// function showCloseRequest() {
-//     const showCloseRequest = document.getElementById('closeRequest');
-//     const deleteNotif = document.querySelectorAll('.user-list-item');
-//     const chatArea = document.getElementById('chatArea');
-//     if (!showCloseRequest || !chatArea) return;
-//
-//     const messageBox = document.createElement('div');
-//
-//     deleteNotif.forEach(notif => {
-//         notif.classList.add('chat-delete', 'chat-two');
-//     });
-//
-//     messageBox.classList.add('chat-delete');
-//     messageBox.textContent = 'De gebruiker zou graag de chat willen beeindigen';
-//     chatArea.appendChild(messageBox);
-//
-//     console.log("deleteRequest displayed");
-// }

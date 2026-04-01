@@ -1,0 +1,6 @@
+App js is the file that imports all the javascript files for the app.
+It is also the file that needs to be included for the app to work, import it to the page.
+echo.js is the file that handles the echoing of messages.
+chat.js is the file that handles the admin panel and overall behavior of the chat.
+adminGlow.js is the file that handles the glowing of the admin panel's notifications and close requests.
+darkModeBtn.js toggles background of pages to a darker color (dark mode).

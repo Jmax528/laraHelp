@@ -154,11 +154,13 @@ body {
     @apply self-start;
 }
 
-.chat-delete {
+.chat-close {
     background: $aurora-red;
-    &:hover {
-        background-color: #de0303;
-    }
+}
+
+.notification-count.close-glow {
+    background-color: #de0303;
+    @apply animate-pulse;
 }
 
 .notification-count, .close-btn {

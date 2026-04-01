@@ -72,6 +72,7 @@ class ChatController extends Controller
 //   show existing chats
     public function show(Chats $chat): View|RedirectResponse
     {
+        $chat->refresh();
 
         $user = auth()->user();
 
@@ -133,6 +134,7 @@ class ChatController extends Controller
             'title' => request('title'),
             'message' => strip_tags($request->message),
             'unread_count' => 0,
+            'close_request' => 0,
         ]);
 
         return redirect()->route('chat.show', $chat->id);
@@ -154,7 +156,7 @@ class ChatController extends Controller
 
         if (!auth()->user()->isAdmin()) {
             $chat->increment('unread_count');
-//            $chat->update(['last_message_at' => now()]);
+            $chat->update(['last_message_at' => now()]);
             $chat->refresh();
         }
 
@@ -172,6 +174,8 @@ class ChatController extends Controller
         ]);
     }
 
+
+    //request to close chat
     public function closeRequest(Request $request, Chats $chat)
     {
         $chat->close_request = $request->boolean('close_request');

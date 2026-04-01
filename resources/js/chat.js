@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const sendBtn = document.getElementById('sendBtn');
-    const closeBtn = document.getElementById('closeRequest');
     const sendMessage = document.getElementById('sentMessageForm');
     const textarea = document.getElementById('textarea');
     const usersArea = document.getElementById('usersArea');
-    const chatArea = document.getElementById('chatArea');
     const adminSearch = document.getElementById('adminSearch');
     const adminMove = document.getElementById('adminBtn');
 
@@ -42,8 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-
-
     //search through users
     if (adminSearch) {
         adminSearch.value = '';
@@ -59,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 user.classList.toggle('hidden', !match);
             });
         });
+        //show the user's email
         usersArea.addEventListener('click', (e) => {
 
             if (e.target.closest('.email')) {
@@ -70,13 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            //the unread counter should be reset
             let notif = e.target.closest('.notification');
             if (notif && notif.dataset.unread_count) {
                 notif.textContent = '0';
                 notif.dataset.unread_count = '0';
             }
-
-
 
             const userItem = e.target.closest('.user-list-item');
             if (userItem && userItem.dataset.chatId) {
@@ -85,60 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-
-
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function () {
-            const chatId = this.dataset.chatId;
-
-            fetch(`/chat/${chatId}/close-request`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: JSON.stringify({ close_request: true })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log('close request sent', data);
-                })
-                .catch(err => console.error(err));
-        });
-    }
-
-    if (window.isAdmin) {
-        window.Echo.private('admin.notification')
-            .listen('.close.request', (e) => {
-                console.log('close request received:', e);
-
-                updateCloseRequestUI(e);
-            });
-    }
-
-    function updateCloseRequestUI(e) {
-        const userItem = document.querySelector(
-            `.user-list-item[data-chat-id="${e.chat_id}"]`
-        );
-
-        if (!userItem) return;
-
-        if (parseInt(e.close_request) === 1) {
-            userItem.classList.add('chat-delete');
-        } else {
-            userItem.classList.remove('chat-delete');
-        }
-    }
-
-    document.querySelectorAll('.user-list-item').forEach(item => {
-        const val = parseInt(item.dataset.closeRequest, 10) || 0;
-
-        if (val === 1) {
-            item.classList.add('chat-delete');
-        }
-    });
 
     if (sendMessage && textarea && sendBtn) {
 
