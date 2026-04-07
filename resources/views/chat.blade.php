@@ -70,7 +70,7 @@
                 @foreach($users as $user)
                     <div class="user-list-item flex items-center justify-between"
                          data-chat-id="{{ $user['chat']['id'] ?? '' }}"
-                         data-close-request="{{ (int) $chat->close_request }}">
+                         data-close-request="{{ (int) $user['chat']['close_request'] ?? 0 }}">
                         <div class="notification-count"
                              data-unread-count="{{ $user['chat']['unread_count'] ?? 0 }}">
                             <h5>{{ $user['chat']['unread_count'] ?? 0 }}</h5>

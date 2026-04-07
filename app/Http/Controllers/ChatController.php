@@ -134,7 +134,6 @@ class ChatController extends Controller
             'title' => request('title'),
             'message' => strip_tags($request->message),
             'unread_count' => 0,
-            'close_request' => 0,
         ]);
 
         return redirect()->route('chat.show', $chat->id);
