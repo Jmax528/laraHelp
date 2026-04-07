@@ -142,7 +142,7 @@
     </div>
 </div>
 
-<div id="popup popup-chat" class="popup hidden">
+<div id="popup" class="popup popup-chat">
     <div class="popup-content">
         <p class="title">Wil je deze chat verwijderen?</p>
         <form action="">

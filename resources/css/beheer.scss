@@ -229,3 +229,15 @@ main {
         }
     }
 }
+
+.popup, .popup-chat {
+    .popup-content {
+        text-align: center;
+
+        form {
+            .buttons {
+                justify-content: center;
+            }
+        }
+    }
+}
