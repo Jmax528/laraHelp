@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/app.scss', 'resources/css/beheer.scss', 'resources/js/app.js'])
+    @vite(['resources/css/app.scss', 'resources/css/beheer.scss', 'resources/js/app.js', 'resources/js/beheer.js'])
     <script src="https://kit.fontawesome.com/f23681219e.js" crossorigin="anonymous"></script>
     <title>Studiebegeleiding - Beheren</title>
 </head>
@@ -28,10 +28,10 @@
         <div class="beheer-header">
             <p>Vragen beheren</p>
             <div class="beheer-buttons">
-                <div class="beheer-btn">
+                <div id="openTheme" class="beheer-btn">
                     Nieuw thema
                 </div>
-                <div class="beheer-btn">
+                <div id="openQuestion" class="beheer-btn">
                     Nieuwe vraag
                 </div>
             </div>
@@ -85,9 +85,7 @@
     </div>
 </main>
 
-{{--<button id="openPopup">Open Pop-up</button>--}}
-
-<div id="popup popup-vraag" class="popup hidden">
+<div id="popupQuestion" class="popup hidden">
     <div class="popup-content">
         <p class="title">Een nieuwe FAQ toevoegen</p>
         <form action="">
@@ -117,15 +115,15 @@
 --}}
             </div>
             <div class="buttons">
-                <button class="delete">Verwijderen</button>
-                <button class="exit">Annuleren</button>
-                <button class="add">Voeg toe</button>
+                <div id="openQuestionDel" class="btn delete">Verwijderen</div>
+                <div id="closeQuestion" class="btn exit">Annuleren</div>
+                <button class="btn add">Voeg toe</button>
             </div>
         </form>
     </div>
 </div>
 
-<div id="popup popup-thema" class="popup hidden">
+<div id="popupThema" class="popup hidden">
     <div class="popup-content">
         <p class="title">Een nieuwe thema toevoegen</p>
         <form action="">
@@ -134,21 +132,46 @@
                 <input type="text"> {{--dropdown--}}
             </div>
             <div class="buttons">
-                <button class="delete">Verwijderen</button>
-                <button class="exit">Annuleren</button>
-                <button class="add">Voeg toe</button>
+                <div id="openThemeDel" class="btn delete">Verwijderen</div>
+                <div id="closeTheme" class="btn exit">Annuleren</div>
+                <button class="btn add">Voeg toe</button>
             </div>
         </form>
     </div>
 </div>
 
-<div id="popup" class="popup popup-chat">
+<div id="popupChatDel" class="popup popup-chat hidden">
     <div class="popup-content">
         <p class="title">Wil je deze chat verwijderen?</p>
         <form action="">
             <div class="buttons">
-                <button class="exit">Annuleren</button>
-                <button class="delete">Verwijderen</button>
+                <btn id="closeChatDel" class="btn exit">Annuleren</btn>
+                <button class="btn delete">Verwijderen</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="popupQuestionDel" class="popup popup-vraag-delete hidden">
+    <div class="popup-content">
+        <p class="title">Wil je deze vraag verwijderen?</p>
+        <form action="">
+            <div class="buttons">
+                <div id="closeQuestionDel" class="btn exit">Annuleren</div>
+                <button class="btn delete">Verwijderen</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="popupThemaDel" class="popup popup-thema-delete hidden">
+    <div class="popup-content">
+        <p class="title">Hoe wil je dit thema verwijderen?</p>
+        <form action="">
+            <div class="buttons">
+                <div id="closeThemeDel" class="btn exit">Annuleren</div>
+                <button class="btn delete">Thema en vragen verwijderen</button>
+                <button class="btn delete">Alleen thema verwijderen</button>
             </div>
         </form>
     </div>

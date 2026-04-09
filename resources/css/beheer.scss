@@ -2,8 +2,9 @@
 @use 'variables' as *;
 
 /* Tailwind directives — must stay at the top */
-@tailwind base;
-@tailwind components;
+//@tailwind base;
+//@tailwind components;
+@import 'tailwindcss/preflight.css';
 @tailwind utilities;
 
 @import 'tailwindcss';
@@ -187,7 +188,7 @@ main {
             gap: 24px;
             font-size: 24px;
             line-height: 32px;
-
+            text-align: start;
 
             div {
                 display: flex;
@@ -209,9 +210,12 @@ main {
                 justify-content: end;
                 color: white;
 
-                button{
+                .btn {
                     padding: 8px 12px;
                     border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .delete {
@@ -230,7 +234,7 @@ main {
     }
 }
 
-.popup, .popup-chat {
+.popup, .popup-chat, .popup-thema-delete, .popup-vraag-delete {
     .popup-content {
         text-align: center;
 
