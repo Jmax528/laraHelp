@@ -14,6 +14,7 @@ class Chats extends Model
         'user_id',
         'title',
         'unread_count',
+        'system_message'
     ];
 
     public function user() {

@@ -154,6 +154,11 @@ body {
     @apply self-start;
 }
 
+.system-message {
+    background: $aurora-red;
+    @apply self-center;
+}
+
 .chat-close {
     background: $aurora-red;
 }

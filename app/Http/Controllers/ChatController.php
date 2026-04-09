@@ -174,24 +174,63 @@ class ChatController extends Controller
     }
 
 
-    //request to close chat
     public function closeRequest(Request $request, Chats $chat)
     {
-        $chat->close_request = $request->boolean('close_request');
-        $chat->save();
+        if (!$chat->close_request) {
 
-        broadcast(new CloseRequest(
-            $chat->id,
-            $chat->close_request
-        ))->toOthers();
+            try {
+                $chat->close_request = $request->boolean('close_request');
 
-        return response()->json([
-            'success' => true,
-        ]);
+                Messages::create([
+                    'chat_id' => $chat->id,
+                    'user_id' => null,
+                    'system_message' => 'De gebruiker heeft aangegeven dat ze deze chat wil sluiten.',
+                ]);
+                $chat->save();
+
+
+                broadcast(new CloseRequest(
+                    $chat->id,
+                    $chat->close_request
+                ))->toOthers();
+
+
+                return response()->json(['success' => true]);
+
+
+            } catch (\Throwable $e) {
+                return response()->json([
+                    'error' => $e->getMessage()
+                ], 500);
+            }
+        }
     }
 
-
-
+//    public function closeRequest(Request $request, Chats $chat)
+//    {
+//        try {
+//            $chat->close_request = $request->boolean('close_request');
+//            $chat->save();
+//
+//            Messages::create([
+//                'chat_id' => $chat->id,
+//                'user_id' => null,
+//                'system_message' => 'De gebruiker heeft aangegeven dat ze deze chat wil sluiten.',
+//            ]);
+//
+//            broadcast(new CloseRequest(
+//                $chat->id,
+//                $chat->close_request
+//            ))->toOthers();
+//
+//            return response()->json(['success' => true]);
+//
+//        } catch (\Throwable $e) {
+//            return response()->json([
+//                'error' => $e->getMessage()
+//            ], 500);
+//        }
+//    }
     //admins can close chats, users can't
     public function closeChat($chatId) {
 

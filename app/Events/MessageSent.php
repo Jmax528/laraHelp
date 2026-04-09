@@ -46,7 +46,7 @@ class MessageSent implements ShouldBroadcast
             'chat_id' => $this->chatId,
             'unread_count' => $this->unreadCount,
             'close_request' => $this->close_request ?? 'false',
-            'type' => 'message',
+            'system_message' => $this->system_message,
         ];
     }
 

@@ -40,7 +40,7 @@ if (window.chatId) {
 }
 
 // Render chat messages
-function createMessage(e) {
+export function createMessage(e) {
     const chatArea = document.getElementById('chatArea');
     if (!chatArea) return;
 
@@ -52,17 +52,16 @@ function createMessage(e) {
 
     // Message bubble classes
     messageBox.classList.add('chat-container');
-    const userId = parseInt(e.user_id);
-    if (userId === currentUserId) {
-        messageBox.classList.add('chat-one'); // sender
+    if (!e.user_id) {
+        messageBox.classList.add('system-message'); // System message
     } else {
-        messageBox.classList.add('chat-two'); // receiver
+        const userId = parseInt(e.user_id);
+        if (userId === currentUserId) {
+            messageBox.classList.add('chat-one'); // sender
+        } else {
+            messageBox.classList.add('chat-two'); // receiver
+        }
     }
-
-    // // Username element (optional)
-    // const userName = document.createElement('div');
-    // userName.classList.add('chat-name');
-    // messageBox.appendChild(userName);
 
     // Message text
     messageBox.textContent = e.message;

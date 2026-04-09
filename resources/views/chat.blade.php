@@ -13,7 +13,7 @@
         window.isAdmin = @json(Auth::user()->isAdmin());
 
         function closeChat(param) {
-            const userId = param.getAttribute('data-user-id'); // now param is the button element
+            const userId = param.getAttribute('data-user-id');
             const userItem = document.querySelector(`[data-chat-id="${userId}"]`);
             if (userItem) userItem.remove();
         }

@@ -1,6 +1,5 @@
-// ==============================
-// DOM READY: Apply initial state
-// ==============================
+import {createMessage} from "./echo.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.user-list-item').forEach(item => {
         const notif = item.querySelector('.notification-count');
@@ -9,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const close = parseInt(item.dataset.closeRequest, 10) || 0;
 
         // PRIORITY: close request overrides everything
-        if (close === 1 || close === true) {
+        if (close === 1) {
             item.classList.add('chat-close');
             item.classList.remove('notification');
 
@@ -102,6 +101,8 @@ if (window.isAdmin) {
             console.log('close request received:', e);
 
             updateCloseRequestUI(e);
+
+            createCloseMessage(e);
         });
 }
 
@@ -132,6 +133,14 @@ function updateCloseRequestUI(e) {
             notif.classList.remove('close-glow');
         }
     }
+}
+
+function createCloseMessage(e) {
+    createMessage({
+        system_message: true,
+        message: 'De gebruiker heeft aangegeven dat ze deze chat wil sluiten.'
+
+    })
 }
 
 

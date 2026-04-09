@@ -10,6 +10,7 @@ class Messages extends Model
         'user_id',
         'chat_id',
         'message',
+        'system_message',
     ];
 
     public $timestamps = false;
