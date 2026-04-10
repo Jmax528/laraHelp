@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'tailwindcss';
+
+/* Your custom SCSS */
+$primary-color: #ffffff;
+$primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+$blue: #0C8CE9;
+$riverside: #4C6A92;
+$riverside-300: #8196B2;
+$riverside-600: #445f83;
+$airy-blue: #92B6D5;
+$airy-blue-300: #7491aa;
+$sharkskin: #838487;
+$aurora-red: #B93A32;
+$warm-taupe: #AE9382;
+$dusty-cedar: #AD5D5D;
+$lush-meadows: #006E51;
+$lush-meadows-200: #80cdbf;
+$spicy-mustard: #D8AD47;
+$potters-clay: #9D4624;
+$bodacious: #B66AA3;
+$bodacious-300: #e1c3da;
+
+
+/* Your custom SCSS */
+$primary-font: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: $warm-taupe;
+    font-family: $primary-font;
+    color: $primary-color;
+}
+.chat-div {
+    background: $sharkskin;
+}
+.card-body {
+    @apply  flex flex-col flex-1 gap-0 overscroll-none;
+}
+
+.section-one {
+    @apply flex flex-1 items-center justify-center;
+    height:calc(100vh);
+    max-width: 992px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    &.dark-mode {
+        background-color: #293a50;
+    }
+}
+
+////TailwindCSS that for the chat bubbles
+.chat-container {
+    @apply p-[10px] flex flex-col relative max-w-[80%] text-black rounded-lg
+    w-fit whitespace-pre-line break-words;
+    overflow-wrap: anywhere;
+}
+
+.chat-area {
+    background: $airy-blue-300;
+    @apply flex-1 overflow-y-auto p-4 space-y-3 flex flex-col overflow-hidden text-white;
+
+    &.dark-mode {
+        background-color: #293a50;
+    }
+}
+
+.users-area {
+    background-color: #293a50;
+    //background: $airy-blue-300;
+    @apply flex-1 overflow-y-auto flex text-white p-0;
+}
+
+.admin-side {
+    background: $riverside-600;
+    @apply  w-8 flex-none;
+}
+
+
+.chat-box {
+    @apply flex-1 p-4;
+}
+
+.chat-div {
+    background: $riverside-600;
+    @apply text-white items-center gap-2 p-3 border-t flex-none mt-auto pb-2;
+}
+
+.chat-div-form {
+    @apply text-white flex items-center gap-2 p-3 flex-none mt-auto pb-2;
+}
+
+.textarea, .admin-search {
+    background: $riverside-300;
+    @apply text-white border-2 border-blue-500 rounded w-full p-2 resize-none h-16;
+
+    &.dark-mode {
+        background-color: #293a50;
+    }
+}
+
+.admin-search {
+    @apply h-9;
+    width: 80%;
+
+}
+
+.card-header {
+    background: $riverside-600;
+    @apply flex justify-center items-center p-3 max-h-14;
+}
+
+
+
+.chat-card, .admin-card {
+    height: calc(100vh - 105px);
+    @apply gap-0 border w-96 border-blue-500 bg-gray-200 rounded-xl shadow-lg
+    flex flex-col overflow-hidden py-0;
+}
+
+.admin-card {
+    @apply w-72;
+}
+
+.chat-one {
+    background: $lush-meadows-200;
+    @apply self-end;
+}
+
+.chat-two {
+    background: $bodacious-300;
+    @apply self-start;
+}
+
+
+.admin-btn {
+    background: $lush-meadows;
+    @apply h-9 px-6 flex items-center justify-start rounded;
+    &:hover {
+        background-color: #22c55c;
+    }
+}
+
+.admin-btn {
+    background: $lush-meadows;
+}
+
+
+.send-btn {
+    background: $lush-meadows;
+    @apply  px-8 py-3 rounded;
+    &:hover {
+        background-color: #22c55c;
+    }
+}
+
+
+.users-area {
+    @apply flex flex-col p-0 overflow-y-auto;
+
+}
+.user-list-items {
+    @apply w-full h-16 flex items-center gap-4 px-5 py-4 border-b border-blue-500;
+    &:hover {
+        background: $blue;
+    }
+}
+.userImg {
+    @apply w-9 h-9 bg-red-600 rounded-full flex-none;
+}
+.userInfo {
+    @apply flex flex-col;
+}
+.onderwerp, .user-name {
+    color: white;
+    @apply  text-xs font-semibold;
+}
+

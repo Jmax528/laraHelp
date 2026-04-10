@@ -48,17 +48,6 @@ new #[Layout('layouts.guest')] class extends Component
             <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
         </div>
 
-{{--        titel input--}}
-{{--        <div class="mt-4">--}}
-{{--            <x-input-label for="titel" :value="__('titel')" />--}}
-
-{{--            <x-text-input wire:model="form.titel" id="titel" class="block mt-1 w-full"--}}
-{{--                          type="text"--}}
-{{--                          name="titel"/>--}}
-
-{{--            <x-input-error :messages="$errors->get('form.password')" class="mt-2" />--}}
-{{--        </div>--}}
-
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember" class="inline-flex items-center">
@@ -76,12 +65,9 @@ new #[Layout('layouts.guest')] class extends Component
 
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
+{{--                <li><x-nav-link href="{{ route('register') }}">Register</x-nav-link></li>--}}
+
             </x-primary-button>
-{{--                <x-primary-button class="ms-3">--}}
-{{--                    <li>--}}
-{{--                        <x-nav-link href="{{ route('register') }}">Register</x-nav-link>--}}
-{{--                    </li>--}}
-{{--                </x-primary-button>--}}
         </div>
     </form>
 </div>
