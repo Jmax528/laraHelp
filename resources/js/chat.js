@@ -1,4 +1,5 @@
 import './echo.js';
+import {createMessage} from "./echo.js";
 // message bubbles are done in echo.js, trying to do that here (again)
 // makes them appear double
 
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendMessage = document.getElementById('sentMessageForm');
     const textarea = document.getElementById('textarea');
     const usersArea = document.getElementById('usersArea');
+    const chatArea = document.getElementById('chatArea');
     const adminSearch = document.getElementById('adminSearch');
     const adminMove = document.getElementById('adminBtn');
 
@@ -40,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+
+
     //search through users
     if (adminSearch) {
         adminSearch.value = '';
@@ -55,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 user.classList.toggle('hidden', !match);
             });
         });
-        //show the user's email
         usersArea.addEventListener('click', (e) => {
 
             if (e.target.closest('.email')) {
@@ -67,12 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            //the unread counter should be reset
             let notif = e.target.closest('.notification');
             if (notif && notif.dataset.unread_count) {
                 notif.textContent = '0';
                 notif.dataset.unread_count = '0';
             }
+
+
 
             const userItem = e.target.closest('.user-list-item');
             if (userItem && userItem.dataset.chatId) {
@@ -80,6 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const notifications = document.querySelectorAll('.notification');
+
+    notifications.forEach(notif => {
+        const count = parseInt(notif.dataset.unreadCount, 10) || 0;
+
+        if (count > 0) {
+            notif.classList.add('notif-glow');
+        } else {
+            notif.classList.remove('notif-glow');
+        }
+    });
 
 
     if (sendMessage && textarea && sendBtn) {

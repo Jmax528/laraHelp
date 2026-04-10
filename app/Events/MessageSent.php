@@ -46,7 +46,7 @@ class MessageSent implements ShouldBroadcast
             'chat_id' => $this->chatId,
             'unread_count' => $this->unreadCount,
             'close_request' => $this->close_request ?? 'false',
-            'system_message' => $this->system_message,
+            'system_message' => $this->system_message ?? null,
         ];
     }
 
@@ -55,14 +55,6 @@ class MessageSent implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-//    public function broadcastOn()
-//    {
-//        return [
-//            new PrivateChannel('chat.' . $this->chatId),
-//            new PrivateChannel('admin.notification'),
-//        ];
-//    }
-
     public function broadcastOn()
     {
         \Log::info('Broadcasting to:', [
@@ -75,10 +67,10 @@ class MessageSent implements ShouldBroadcast
             new PrivateChannel('admin.notification'),
         ];
     }
-    public function broadcastAs(): string
-    {
-        return 'message.sent';
-    }
+//    public function broadcastAs(): string
+//    {
+//        return 'message.sent';
+//    }
 
 
 }

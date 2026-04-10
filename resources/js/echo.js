@@ -17,12 +17,10 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-// -----------------------------
-// Chat Listener
-// -----------------------------
+// Chat Listener, it must be MessageSent, no .message.sent or live will stop working
 if (window.chatId) {
     window.Echo.private(`chat.${window.chatId}`)
-        .listen('.message.sent', (e) => {
+        .listen('MessageSent', (e) => {
             createMessage(e);
         });
 
