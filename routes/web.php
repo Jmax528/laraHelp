@@ -17,8 +17,8 @@ require __DIR__.'/auth.php';
 
 Route::view('/faq', 'faq' );
 Route::view('/ons-team', 'about' );
-Route::view('/beheren', 'beheer' );
+Route::view('/beheer', 'beheer' );
 
-Route::view('/chat', 'chat' );
-Route::get('/chat', [ChatController::class, 'chat'] )->name('chat');
-Route::post('/chat', [ChatController::class, 'send'] )->name('chat');
+//Route::view('/chat', 'chat' );
+//Route::get('/chat', [ChatController::class, 'chat'] )->name('chat');
+//Route::post('/chat', [ChatController::class, 'send'] )->name('chat');

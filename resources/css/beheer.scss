@@ -19,6 +19,7 @@ main {
         min-height: calc(100vh - 72px);
         padding-top: 48px;
         background-color: $riverside-400;
+        color: white;
 
         div {
             display: flex;
@@ -26,6 +27,14 @@ main {
             height: 56px;
             width: 100%;
             padding: 8px 12px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.active {
+                background-color: $riverside-600;
+            }
 
             p {
                 font-size: 32px;
@@ -71,63 +80,31 @@ main {
             margin-top: 56px;
             width: 100%;
 
-
             &-header {
                 display: grid;
-                grid-template-columns: 16fr 6fr 9fr 32px;
                 gap: 24px;
                 align-items: center;
                 padding-right: 24px;
                 padding-left: 24px;
                 height: 40px;
                 width: 100%;
-
                 font-size: 24px;
                 line-height: 32px;
                 font-weight: 600;
                 color: white;
-
                 background-color: $dusty-cedar-600;
-
-                &-kernwoord {
-                    grid-column: 3 / span 2;
-                }
             }
 
             &-row {
                 display: grid;
-                grid-template-columns: 16fr 6fr 9fr 32px;
                 gap: 24px;
                 align-items: center;
                 padding: 8px 24px;
                 min-height: 64px;
                 width: 100%;
-
                 font-size: 24px;
                 line-height: 32px;
                 color: black;
-
-                &-kernwoord {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 4px;
-                    min-height: 40px;
-
-                    &-box {
-                        display: flex;
-                        gap: 4px;
-                        align-items: center;
-                        padding: 4px;
-                        height: 40px;
-                        width: fit-content;
-                        background-color: $sharkskin-300;
-                        border-radius: 4px;
-                    }
-
-                    i {
-                        color: $aurora-red-500;
-                    }
-                }
 
                 &-edit-btn {
                     display: flex;
@@ -140,12 +117,65 @@ main {
                     border-radius: 4px;
                 }
 
-                &.uneven {
+                &.even {
                     background-color: $dusty-cedar-500;
                 }
 
-                &.even {
+                &.uneven {
                     background-color: $dusty-cedar-400;
+                }
+            }
+
+            &#tableQuestion {
+
+                .table-header {
+                    grid-template-columns: 16fr 6fr 9fr 32px;
+
+                    &-kernwoord {
+                        grid-column: 3 / span 2;
+                    }
+                }
+
+                .table-row {
+                    grid-template-columns: 16fr 6fr 9fr 32px;
+
+                    &-kernwoord {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 4px;
+                        min-height: 40px;
+
+                        &-box {
+                            display: flex;
+                            gap: 4px;
+                            align-items: center;
+                            padding: 4px;
+                            height: 40px;
+                            width: fit-content;
+                            background-color: $sharkskin-300;
+                            border-radius: 4px;
+                        }
+
+                        i {
+                            color: $aurora-red-500;
+                        }
+                    }
+                }
+            }
+
+            &#tableTheme {
+
+                .table-header {
+                    grid-template-columns: 3fr 2fr 32px;
+
+                    &-kernwoord {
+                        grid-column: 3 / span 2;
+                    }
+                }
+
+                .table-row {
+                    grid-template-columns: 3fr 2fr 32px;
+
                 }
             }
         }

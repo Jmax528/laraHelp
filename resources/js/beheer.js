@@ -1,3 +1,10 @@
+// variables for opening the right tables
+const theme = document.getElementById("navTheme");
+const tableTheme = document.getElementById("tableTheme");
+const question = document.getElementById("navQuestion");
+const tableQuestion = document.getElementById("tableQuestion");
+
+// variables for editing and adding theme's and questions
 const openThemeBtn = document.getElementById("openTheme");
 const themePopup = document.getElementById("popupThema");
 const closeThemeBtn = document.getElementById("closeTheme");
@@ -17,13 +24,30 @@ const chatDelPopup = document.getElementById("popupChatDel");
 const closeChatDelBtn = document.getElementById("closeChatDel");
 
 function open(element) {
-    element.classList.remove("hidden");
+        element.classList.remove("hidden");
 }
 
 function close(element) {
-    element.classList.add("hidden");
+        element.classList.add("hidden");
 }
 
+//switching with the side nav
+theme.addEventListener("click", function () {
+    open(tableTheme);
+        theme.classList.add("active");
+    close(tableQuestion);
+        question.classList.remove("active");
+})
+
+question.addEventListener("click", function () {
+    open(tableQuestion);
+        question.classList.add("active");
+    close(tableTheme);
+        theme.classList.remove("active");
+})
+
+
+// opening and closing of popups or switching to a different popup
 openThemeBtn.addEventListener("click", function () {
     open(themePopup);
 });
