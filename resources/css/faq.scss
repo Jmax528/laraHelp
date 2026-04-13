@@ -2,8 +2,9 @@
 @use 'variables' as *;
 
 /* Tailwind directives — must stay at the top */
-@tailwind base;
-@tailwind components;
+//@tailwind base;
+//@tailwind components;
+@import 'tailwindcss/preflight.css';
 @tailwind utilities;
 
 @import 'tailwindcss';

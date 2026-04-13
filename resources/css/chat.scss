@@ -2,8 +2,9 @@
 @use 'variables' as *;
 
 /* Tailwind directives — must stay at the top */
-@tailwind base;
-@tailwind components;
+//@tailwind base;
+//@tailwind components;
+@import 'tailwindcss/preflight.css';
 @tailwind utilities;
 
 @import 'tailwindcss';
@@ -31,8 +32,8 @@ body {
 
 ////TailwindCSS that for the chat bubbles
 .chat-container {
-    @apply p-[10px] flex flex-col relative max-w-[80%] text-white rounded-lg
-    w-fit whitespace-pre-line break-words;
+    @apply p-2.5 flex flex-col relative max-w-[80%] text-white rounded-lg
+    w-fit whitespace-pre-line wrap-break-word;
     overflow-wrap: anywhere;
 }
 
