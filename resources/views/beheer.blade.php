@@ -14,15 +14,15 @@
 
 <main>
     <div class="side-nav">
-        <div>
+        <div id="navQuestion" class="active">
             <p>Vragen</p>
         </div>
-        <div>
+        <div id="navTheme">
             <p>Thema's</p>
         </div>
-        <div>
-            <p>Chat</p>
-        </div>
+{{--        <div>--}}
+{{--            <p>Chat</p>--}}
+{{--        </div>--}}
     </div>
     <div class="beheer-container">
         <div class="beheer-header">
@@ -37,13 +37,13 @@
             </div>
         </div>
 
-        <div class="table">
+        <div id="tableQuestion" class="table">
             <div class="table-header">
                 <p class="table-header-vraag">Vraag</p>
                 <p class="table-header-vraag-thema">Thema</p>
                 <p class="table-header-kernwoord">Kernwoorden</p>
             </div>
-            <div class="table-row uneven">
+            <div class="table-row even">
                 <p class="table-row-vraag">Vraag</p>
                 <p class="table-row-vraag-thema">Thema</p>
                 <div class="table-row-kernwoord">
@@ -53,7 +53,7 @@
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
             </div>
-            <div class="table-row even">
+            <div class="table-row uneven">
                 <p class="table-row-vraag">Vraag</p>
                 <p class="table-row-vraag-thema">Thema</p>
                 <div class="table-row-kernwoord">
@@ -71,7 +71,7 @@
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
             </div>
-            <div class="table-row uneven">
+            <div class="table-row even">
                 <p class="table-row-vraag">Vraag</p>
                 <p class="table-row-vraag-thema">Thema</p>
                 <div class="table-row-kernwoord">
@@ -80,6 +80,45 @@
                 <div class="table-row-edit-btn">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </div>
+            </div>
+        </div>
+
+        <div id="tableTheme" class="table hidden">
+            <div class="table-header">
+                <p class="table-header-vraag">Thema</p>
+                <p class="table-header-vraag-thema">Aantal vragen</p>
+            </div>
+            <div class="table-row even">
+                <p class="table-row-vraag">Duo</p>
+                <p class="table-row-vraag-thema">6</p>
+                <div class="table-row-edit-btn">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+            </div>
+            <div class="table-row uneven">
+                <p class="table-row-vraag">Leerplicht</p>
+                <p class="table-row-vraag-thema">2</p>
+                <div class="table-row-edit-btn">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+            </div>
+            <div class="table-row even">
+                <p class="table-row-vraag">Gezondheid</p>
+                <p class="table-row-vraag-thema">5</p>
+                <div class="table-row-edit-btn">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+            </div>
+            <div class="table-row uneven">
+                <p class="table-row-vraag">Financieel</p>
+                <p class="table-row-vraag-thema">4</p>
+                <div class="table-row-edit-btn">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+            </div>
+            <div class="table-row even">
+                <p class="table-row-vraag">Overig</p>
+                <p class="table-row-vraag-thema">7</p>
             </div>
         </div>
     </div>

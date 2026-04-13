@@ -1,8 +1,8 @@
 <header class="bg-[#4C6A92] shadow-md sticky top-0 z-50">
     <div class="px-[75px] flex justify-between items-center">
         <div class="flex items-center gap-12">
-            <img class="my-2" width="56px" height="56px" src="image/alfa-logo-wit.png" alt="Alfa-college">
-            <h1 class="text-white main-title">Het LBC</h1>
+{{--            <img class="my-2" width="56px" height="56px" src="image/alfa-logo-wit.png" alt="Alfa-college">--}}
+            <h1 class="text-white main-title mt-4 mb-4">Vraag het stip</h1>
         </div>
         <div class="flex gap-3">
             <button id="darkModeBtn" class="dark-button">
@@ -19,7 +19,7 @@
                 <li><x-nav-link href="/">Home</x-nav-link></li>
                 <li><x-nav-link href="/faq">Veelgestelde vragen</x-nav-link></li>
                 <li><x-nav-link href="/ons-team">Ons team</x-nav-link></li>
-                <li><x-nav-link href="/chat">Chat</x-nav-link></li>
+{{--                <li><x-nav-link href="/chat">Chat</x-nav-link></li>--}}
 
             </ul>
         </nav>
