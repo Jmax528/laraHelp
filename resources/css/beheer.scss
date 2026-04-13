@@ -72,6 +72,11 @@ main {
                     line-height: 32px;
                     color: white;
                     background-color: $lush-meadows-600;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: $lush-meadows-700;
+                    }
                 }
             }
         }
@@ -246,18 +251,34 @@ main {
                     display: flex;
                     align-items: center;
                     justify-content: center;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
 
                 .delete {
                     background-color: $aurora-red-500;
+
+                    &:hover {
+                        background-color: $aurora-red-600;
+                    }
                 }
 
                 .exit {
                     background-color: $sharkskin-300;
+
+                    &:hover {
+                        background-color: $sharkskin-400;
+                    }
                 }
 
                 .add {
                     background-color: $lush-meadows-600;
+
+                    &:hover {
+                        background-color: $lush-meadows-700;
+                    }
                 }
             }
         }

@@ -36,7 +36,6 @@
                 </div>
             </div>
         </div>
-
         <div id="tableQuestion" class="table">
             <div class="table-header">
                 <p class="table-header-vraag">Vraag</p>
@@ -82,7 +81,6 @@
                 </div>
             </div>
         </div>
-
         <div id="tableTheme" class="table hidden">
             <div class="table-header">
                 <p class="table-header-vraag">Thema</p>
