@@ -67,10 +67,6 @@ class MessageSent implements ShouldBroadcast
             new PrivateChannel('admin.notification'),
         ];
     }
-    public function broadcastAs(): string
-    {
-        return 'message.sent';
-    }
 
 
 }
