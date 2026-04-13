@@ -70,13 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            let notif = e.target.closest('.notification');
+
+            // if(window.isAdmin) {
+            //
+            // }
+
+
+            let notif = e.target.closest('.notification-count');
             if (notif && notif.dataset.unread_count) {
                 notif.textContent = '0';
                 notif.dataset.unread_count = '0';
             }
-
-
 
             const userItem = e.target.closest('.user-list-item');
             if (userItem && userItem.dataset.chatId) {
