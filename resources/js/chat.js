@@ -1,5 +1,4 @@
 import './echo.js';
-import {createMessage} from "./echo.js";
 // message bubbles are done in echo.js, trying to do that here (again)
 // makes them appear double
 
@@ -70,17 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-
-            // if(window.isAdmin) {
-            //
+            // let notif = e.target.closest('.notification-count');
+            // if (notif && notif.dataset.unreadCount) {
+            //     notif.textContent = '0';
+            //     notif.dataset.unreadCount = '0';
             // }
-
-
-            let notif = e.target.closest('.notification-count');
-            if (notif && notif.dataset.unread_count) {
-                notif.textContent = '0';
-                notif.dataset.unread_count = '0';
-            }
 
             const userItem = e.target.closest('.user-list-item');
             if (userItem && userItem.dataset.chatId) {
@@ -89,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const notifications = document.querySelectorAll('.notification');
+    const notifications = document.querySelectorAll('.notification-count');
 
     notifications.forEach(notif => {
         const count = parseInt(notif.dataset.unreadCount, 10) || 0;

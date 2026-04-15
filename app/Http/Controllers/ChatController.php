@@ -91,7 +91,7 @@ class ChatController extends Controller
 
         $chat->load([
             'messages' => fn ($q) => $q->oldest(),
-            'messages.user:id,name'
+            'messages.user:id,name',
         ]);
 
         $users = User::with(['chat' => function ($q) {
@@ -170,6 +170,7 @@ class ChatController extends Controller
         return response()->json([
             'success' => true,
             'message' => $message,
+            'unread_count' =>$chat->unread_count,
         ]);
     }
 
@@ -206,32 +207,6 @@ class ChatController extends Controller
         }
     }
 
-//    public function closeRequest(Request $request, Chats $chat)
-//    {
-//        try {
-//            $chat->close_request = $request->boolean('close_request');
-//            $chat->save();
-//
-//            Messages::create([
-//                'chat_id' => $chat->id,
-//                'user_id' => null,
-//                'system_message' => 'De gebruiker heeft aangegeven dat ze deze chat wil sluiten.',
-//            ]);
-//
-//            broadcast(new CloseRequest(
-//                $chat->id,
-//                $chat->close_request
-//            ))->toOthers();
-//
-//            return response()->json(['success' => true]);
-//
-//        } catch (\Throwable $e) {
-//            return response()->json([
-//                'error' => $e->getMessage()
-//            ], 500);
-//        }
-//    }
-    //admins can close chats, users can't
     public function closeChat($chatId) {
 
         if(!auth()->user()->isAdmin()) {

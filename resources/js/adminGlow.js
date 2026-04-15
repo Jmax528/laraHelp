@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==============================
 if (window.isAdmin) {
     window.Echo.private('admin.notification')
-        .listen('.message.sent', (e) => {
+        .listen('MessageSent', (e) => {
             console.log("Admin notification received:", e);
             updateAdminCounter(e);
         });
@@ -58,7 +58,7 @@ function updateAdminCounter(e) {
 
     if (!userItem) return;
 
-    const notif = userItem.querySelector('.notification-count');
+    const notif = userItem.querySelector('h5');
     if (!notif) return;
 
     const count = parseInt(e.unread_count, 10) || 0;
@@ -76,19 +76,6 @@ function updateAdminCounter(e) {
         userItem.classList.remove('notification');
         notif.classList.remove('notif-glow');
     }
-
-
-    // if (close === 1) {
-    //     item.classList.add('chat-close');
-    //     item.classList.remove('notification');
-    //
-    //     if (notif) {
-    //         notif.classList.add('close-glow');
-    //         notif.classList.remove('notif-glow');
-    //     }
-    //
-    //     return;
-    // }
 }
 
 
